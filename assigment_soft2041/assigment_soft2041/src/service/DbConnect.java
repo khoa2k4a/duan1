@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 
 public class DbConnect {
     private static final String USERNAME = "sa";
-    private static final String PASSWORD = "khoa710a";
+    private static final String PASSWORD = "197775";
     private static final String SERVER = "localhost";
     private static final String PORT = "1433";
     private static final String DATABASE_NAME = "cuong dep trai";
