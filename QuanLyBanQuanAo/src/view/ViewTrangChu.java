@@ -35,6 +35,7 @@ public class ViewTrangChu extends javax.swing.JFrame {
         MenuHoaDon = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("PolyClothes");
 
         MenuTrangChu.setText("Trang Chủ");
         jMenuBar1.add(MenuTrangChu);
