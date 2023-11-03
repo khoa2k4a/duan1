@@ -9,6 +9,7 @@ package model;
  * @author ADMIN
  */
 public class SanPham {
+
     private String ten;
     private String loai;
     private String mau;
@@ -17,12 +18,12 @@ public class SanPham {
     private String soLuong;
     private String gia;
     private String giaSale;
-    private String trangThai;
+    private boolean trangThai;
 
     public SanPham() {
     }
 
-    public SanPham(String ten, String loai, String mau, String size, String chatLieu, String soLuong, String gia, String giaSale, String trangThai) {
+    public SanPham(String ten, String loai, String mau, String size, String chatLieu, String soLuong, String gia, String giaSale, boolean trangThai) {
         this.ten = ten;
         this.loai = loai;
         this.mau = mau;
@@ -98,15 +99,15 @@ public class SanPham {
         this.giaSale = giaSale;
     }
 
-    public String getTrangThai() {
+    public boolean isTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(String trangThai) {
+    public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-    
-    public Object[] toData(){
+
+    public Object[] toData() {
         return new Object[]{
             this.ten,
             this.loai,
