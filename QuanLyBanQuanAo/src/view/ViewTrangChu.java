@@ -28,43 +28,43 @@ public class ViewTrangChu extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu5 = new javax.swing.JMenu();
+        MenuTrangChu = new javax.swing.JMenu();
+        MenuSanPham = new javax.swing.JMenu();
+        MenuNhanVien = new javax.swing.JMenu();
+        MenuKhachHang = new javax.swing.JMenu();
+        MenuHoaDon = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("Trang Chủ");
-        jMenuBar1.add(jMenu1);
+        MenuTrangChu.setText("Trang Chủ");
+        jMenuBar1.add(MenuTrangChu);
 
-        jMenu2.setText("Sản Phẩm");
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+        MenuSanPham.setText("Sản Phẩm");
+        MenuSanPham.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu2MouseClicked(evt);
+                MenuSanPhamMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(MenuSanPham);
 
-        jMenu3.setText("Nhân Viên");
-        jMenu3.addMouseListener(new java.awt.event.MouseAdapter() {
+        MenuNhanVien.setText("Nhân Viên");
+        MenuNhanVien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu3MouseClicked(evt);
+                MenuNhanVienMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu3);
+        jMenuBar1.add(MenuNhanVien);
 
-        jMenu4.setText("Khách Hàng");
-        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+        MenuKhachHang.setText("Khách Hàng");
+        MenuKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu4MouseClicked(evt);
+                MenuKhachHangMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu4);
+        jMenuBar1.add(MenuKhachHang);
 
-        jMenu5.setText("Hóa Đơn");
-        jMenuBar1.add(jMenu5);
+        MenuHoaDon.setText("Hóa Đơn");
+        jMenuBar1.add(MenuHoaDon);
 
         setJMenuBar(jMenuBar1);
 
@@ -82,26 +82,26 @@ public class ViewTrangChu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+    private void MenuSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuSanPhamMouseClicked
         // TODO add your handling code here:
         ViewSanPham mainSP = new ViewSanPham();
         mainSP.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jMenu2MouseClicked
+    }//GEN-LAST:event_MenuSanPhamMouseClicked
 
-    private void jMenu3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu3MouseClicked
+    private void MenuNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuNhanVienMouseClicked
         // TODO add your handling code here:
         ViewNhanVien mainNV = new ViewNhanVien();
         mainNV.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jMenu3MouseClicked
+    }//GEN-LAST:event_MenuNhanVienMouseClicked
 
-    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+    private void MenuKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_MenuKhachHangMouseClicked
         // TODO add your handling code here:
         ViewKhachHang mainKH = new ViewKhachHang();
         mainKH.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_jMenu4MouseClicked
+    }//GEN-LAST:event_MenuKhachHangMouseClicked
 
     /**
      * @param args the command line arguments
@@ -139,11 +139,11 @@ public class ViewTrangChu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu MenuHoaDon;
+    private javax.swing.JMenu MenuKhachHang;
+    private javax.swing.JMenu MenuNhanVien;
+    private javax.swing.JMenu MenuSanPham;
+    private javax.swing.JMenu MenuTrangChu;
     private javax.swing.JMenuBar jMenuBar1;
     // End of variables declaration//GEN-END:variables
 }
