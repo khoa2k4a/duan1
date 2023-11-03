@@ -13,7 +13,7 @@ public class DbConnect {
     private static final String PASSWORD = "khoa710a";
     private static final String SERVER = "localhost";
     private static final String PORT = "1433";
-    private static final String DATABASE_NAME = "EduSys";
+    private static final String DATABASE_NAME = "POLYCLOTHES";
     private static final boolean USING_SSL = false;
    
     private static String CONNECT_STRING;
