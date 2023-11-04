@@ -272,9 +272,27 @@ public class ViewSanPham extends javax.swing.JFrame {
         jMenuBar1.add(MenuNhanVien);
 
         MenuKhachHang.setText("Khách Hàng");
+        MenuKhachHang.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                MenuKhachHangMenuSelected(evt);
+            }
+        });
         jMenuBar1.add(MenuKhachHang);
 
         MenuHoaDon.setText("Hóa Đơn");
+        MenuHoaDon.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                MenuHoaDonMenuSelected(evt);
+            }
+        });
         jMenuBar1.add(MenuHoaDon);
 
         setJMenuBar(jMenuBar1);
@@ -373,6 +391,20 @@ public class ViewSanPham extends javax.swing.JFrame {
             serviceCT.addChatLieu(cl);
         }
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void MenuHoaDonMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_MenuHoaDonMenuSelected
+        // TODO add your handling code here:
+        ViewHoaDon mainHD = new ViewHoaDon();
+        mainHD.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MenuHoaDonMenuSelected
+
+    private void MenuKhachHangMenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_MenuKhachHangMenuSelected
+        // TODO add your handling code here:
+        ViewKhachHang mainKH = new ViewKhachHang();
+        mainKH.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_MenuKhachHangMenuSelected
 
     /**
      * @param args the command line arguments

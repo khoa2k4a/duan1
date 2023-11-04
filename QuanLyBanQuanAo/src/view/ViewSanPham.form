@@ -32,11 +32,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Kh&#xe1;ch H&#xe0;ng"/>
           </Properties>
+          <Events>
+            <EventHandler event="menuSelected" listener="javax.swing.event.MenuListener" parameters="javax.swing.event.MenuEvent" handler="MenuKhachHangMenuSelected"/>
+          </Events>
         </Menu>
         <Menu class="javax.swing.JMenu" name="MenuHoaDon">
           <Properties>
             <Property name="text" type="java.lang.String" value="H&#xf3;a &#x110;&#x1a1;n"/>
           </Properties>
+          <Events>
+            <EventHandler event="menuSelected" listener="javax.swing.event.MenuListener" parameters="javax.swing.event.MenuEvent" handler="MenuHoaDonMenuSelected"/>
+          </Events>
         </Menu>
       </SubComponents>
     </Menu>
