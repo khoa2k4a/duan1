@@ -11,8 +11,6 @@ import model.Size;
 import service.CTSanPhamService;
 import service.SanPhamService;
 
-
-
 /**
  *
  * @author ADMIN
@@ -22,6 +20,7 @@ public class ViewSanPham extends javax.swing.JFrame {
     private CTSanPhamService serviceCT = new CTSanPhamService();
     private SanPhamService service = new SanPhamService();
     private DefaultTableModel mol = new DefaultTableModel();
+
     /**
      * Creates new form ViewSanPham
      */
@@ -30,7 +29,7 @@ public class ViewSanPham extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         cboSize.removeAllItems();
         List<Size> listS = serviceCT.getSize();
-        for(Size x : listS){
+        for (Size x : listS) {
             cboSize.addItem(x.getSize());
         }
         this.fillTable(service.getSanPham());
@@ -120,8 +119,18 @@ public class ViewSanPham extends javax.swing.JFrame {
         jLabel10.setText("Trạng thái");
 
         btnNew.setText("NEW");
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewActionPerformed(evt);
+            }
+        });
 
         btnAdd.setText("ADD");
+        btnAdd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddActionPerformed(evt);
+            }
+        });
 
         btnUpdate.setText("UPDATE");
 
@@ -333,6 +342,30 @@ public class ViewSanPham extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtGiaSaleActionPerformed
 
+    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+        // TODO add your handling code here:
+        txtChatLieu.setText("");
+        txtGia.setText("");
+        txtGiaSale.setText("");
+        txtLoai.setText("");
+        txtMau.setText("");
+        txtSoLuong.setText("");
+        txtTenSP.setText("");
+        txtTrangThai.setText("");
+    }//GEN-LAST:event_btnNewActionPerformed
+
+    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
+        // TODO add your handling code here:
+        String mau = txtMau.getText();
+        if (!serviceCT.getMau().contains(mau)) {
+            serviceCT.addMau(mau);
+        };
+        String loai = txtLoai.getText();
+        if(!serviceCT.getLoai().contains(loai)){
+            serviceCT.addLoai(loai);
+        }
+    }//GEN-LAST:event_btnAddActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -367,11 +400,11 @@ public class ViewSanPham extends javax.swing.JFrame {
             }
         });
     }
-    
-    void fillTable(List<SanPham> list){
-        mol = (DefaultTableModel)tblSanPham.getModel();
+
+    void fillTable(List<SanPham> list) {
+        mol = (DefaultTableModel) tblSanPham.getModel();
         mol.setRowCount(0);
-        for(SanPham x : list){
+        for (SanPham x : list) {
             mol.addRow(x.toData());
         }
     }

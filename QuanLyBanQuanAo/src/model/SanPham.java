@@ -15,15 +15,15 @@ public class SanPham {
     private String mau;
     private String size;
     private String chatLieu;
-    private String soLuong;
-    private String gia;
-    private String giaSale;
+    private int soLuong;
+    private double gia;
+    private double giaSale;
     private boolean trangThai;
 
     public SanPham() {
     }
 
-    public SanPham(String ten, String loai, String mau, String size, String chatLieu, String soLuong, String gia, String giaSale, boolean trangThai) {
+    public SanPham(String ten, String loai, String mau, String size, String chatLieu, int soLuong, double gia, double giaSale, boolean trangThai) {
         this.ten = ten;
         this.loai = loai;
         this.mau = mau;
@@ -75,27 +75,27 @@ public class SanPham {
         this.chatLieu = chatLieu;
     }
 
-    public String getSoLuong() {
+    public int getSoLuong() {
         return soLuong;
     }
 
-    public void setSoLuong(String soLuong) {
+    public void setSoLuong(int soLuong) {
         this.soLuong = soLuong;
     }
 
-    public String getGia() {
+    public double getGia() {
         return gia;
     }
 
-    public void setGia(String gia) {
+    public void setGia(double gia) {
         this.gia = gia;
     }
 
-    public String getGiaSale() {
+    public double getGiaSale() {
         return giaSale;
     }
 
-    public void setGiaSale(String giaSale) {
+    public void setGiaSale(double giaSale) {
         this.giaSale = giaSale;
     }
 
