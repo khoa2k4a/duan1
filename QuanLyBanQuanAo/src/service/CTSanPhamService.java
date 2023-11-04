@@ -6,9 +6,12 @@ package service;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import model.ChatLieu;
 import model.LoaiSP;
 import model.Mau;
+import model.SanPham;
 import model.Size;
+import model.TenSP;
 /**
  *
  * @author ADMIN
@@ -38,13 +41,13 @@ public class CTSanPhamService {
     }
     public List<Mau> getMau(){
         List<Mau> listM = new ArrayList<>();
-        sql = "select TenMau from MAU";
+        sql = "select ID, TenMau from MAU";
         try {
             con = DbConnect.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
-                Mau m = new Mau(rs.getString(1));
+                Mau m = new Mau(rs.getInt(1), rs.getString(2));
                 listM.add(m);
             }
             return listM;
@@ -67,13 +70,13 @@ public class CTSanPhamService {
     }
     public List<LoaiSP> getLoai(){
         List<LoaiSP> listL = new ArrayList<>();
-        sql = "select TenLoaiSP from LoaiSanPham";
+        sql = "select ID, TenLoaiSP from LoaiSanPham";
         try {
             con = DbConnect.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
-                LoaiSP l = new LoaiSP(rs.getString(1));
+                LoaiSP l = new LoaiSP(rs.getInt(1), rs.getString(2));
                 listL.add(l);
             }
             return listL;
@@ -88,6 +91,64 @@ public class CTSanPhamService {
             con = DbConnect.getConnection();
             ps = con.prepareStatement(sql);
             ps.setObject(1, loai);
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    public List<TenSP> getSP(){
+        List<TenSP> listSP = new ArrayList<>();
+        sql = "select ID, TenSP from SanPham";
+        try {
+            con = DbConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                TenSP tenSP = new TenSP(rs.getInt(1), rs.getString(2));
+                listSP.add(tenSP);
+            }
+            return listSP;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public int addTen(String ten){
+        sql = "insert into SanPham(TenSanPham) values(?)";
+        try {
+            con = DbConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, ten);
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    public List<ChatLieu> getChatLieu(){
+        List<ChatLieu> listCL = new ArrayList<>();
+        sql = "";
+        try {
+            con = DbConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                ChatLieu cl = new ChatLieu(rs.getInt(1), rs.getString(2));
+                listCL.add(cl);
+            }
+            return listCL;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public int addChatLieu(String chatLieu){
+        sql = "insert into ChatLieu(TenCL) values(?)";
+        try {
+            con = DbConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, chatLieu);
             return ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

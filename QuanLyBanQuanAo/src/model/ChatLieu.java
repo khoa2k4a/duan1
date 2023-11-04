@@ -8,17 +8,16 @@ package model;
  *
  * @author ADMIN
  */
-public class Mau {
-
+public class ChatLieu {
     private int id;
-    private String tenMau;
+    private String tenCL;
 
-    public Mau() {
+    public ChatLieu() {
     }
 
-    public Mau(int id, String tenMau) {
+    public ChatLieu(int id, String tenCL) {
         this.id = id;
-        this.tenMau = tenMau;
+        this.tenCL = tenCL;
     }
 
     public int getId() {
@@ -29,12 +28,12 @@ public class Mau {
         this.id = id;
     }
 
-    public String getTenMau() {
-        return tenMau;
+    public String getTenCL() {
+        return tenCL;
     }
 
-    public void setTenMau(String tenMau) {
-        this.tenMau = tenMau;
+    public void setTenCL(String tenCL) {
+        this.tenCL = tenCL;
     }
-
+    
 }

@@ -357,12 +357,20 @@ public class ViewSanPham extends javax.swing.JFrame {
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         // TODO add your handling code here:
         String mau = txtMau.getText();
-        if (!serviceCT.getMau().contains(mau)) {
-            serviceCT.addMau(mau);
-        };
         String loai = txtLoai.getText();
-        if(!serviceCT.getLoai().contains(loai)){
+        String ten = txtTenSP.getText();
+        String cl = txtChatLieu.getText();
+        if (!serviceCT.getMau().equals(mau)) {
+            serviceCT.addMau(mau);
+        }
+        if (!serviceCT.getLoai().equals(loai)) {
             serviceCT.addLoai(loai);
+        }
+        if (!serviceCT.getSP().equals(ten)) {
+            serviceCT.addTen(ten);
+        }
+        if (serviceCT.getChatLieu().equals(cl)) {
+            serviceCT.addChatLieu(cl);
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
