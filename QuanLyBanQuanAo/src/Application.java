@@ -1,5 +1,6 @@
 
-import view.MainJFrame;
+import java.awt.Frame;
+import view.LoginJDialog;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -11,7 +12,9 @@ import view.MainJFrame;
  * @author admin
  */
 public class Application {
+
+    private static Frame parent;
     public static void main(String[] args) {
-        new MainJFrame().setVisible(true);
+        new LoginJDialog(parent, true).setVisible(true);
     }
 }
