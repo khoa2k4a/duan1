@@ -134,9 +134,9 @@
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <Component id="btnDangNhap" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnDangNhap" linkSize="3" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                      <Component id="btnThoat" min="-2" pref="105" max="-2" attributes="0"/>
+                                      <Component id="btnThoat" linkSize="3" min="-2" pref="105" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
