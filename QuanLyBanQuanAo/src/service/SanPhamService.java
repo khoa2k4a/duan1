@@ -22,12 +22,11 @@ public class SanPhamService {
 
     public List<SanPham> getSanPham() {
         List<SanPham> listSP = new ArrayList<>();
-        sql = "select TenSP, TenLoaiSP, TenMau, TenSize, TenCL, SoLuong, GiaSP, GiaSauSale, SANPHAM_CT.TrangThai from SANPHAM_CT\n" +
-                "join SANPHAM on SANPHAM_CT.ID_SP = SANPHAM.ID\n" +
-                "join LOAISANPHAM on SANPHAM_CT.ID_LoaiSP = LOAISANPHAM.ID\n" +
-                "join MAU on SANPHAM_CT.ID_Mau = MAU.ID\n" +
-                "join SIZE on SANPHAM_CT.ID_Size = SIZE.ID\n" +
-                "join CHATLIEU on SANPHAM_CT.ID_CL = CHATLIEU.ID";
+        sql = "select TenSP, TenLoaiSP, TenMau, TenSize, TenCL, SoLuong, GiaSP, GiaSauSale, SANPHAM.TrangThai from SANPHAM\n" +
+                "join LOAISANPHAM on SANPHAM.ID_LoaiSP = LOAISANPHAM.ID\n" +
+                "join MAU on SANPHAM.ID_Mau = MAU.ID\n" +
+                "join SIZE on SANPHAM.ID_Size = SIZE.ID\n" +
+                "join CHATLIEU on SANPHAM.ID_CL = CHATLIEU.ID";
         try {
             con = DbConnect.getConnection();
             ps = con.prepareStatement(sql);

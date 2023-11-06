@@ -5,6 +5,7 @@
 package view;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.SanPham;
 import model.Size;
@@ -384,9 +385,6 @@ public class ViewSanPham extends javax.swing.JFrame {
         if (!serviceCT.getLoai().equals(loai)) {
             serviceCT.addLoai(loai);
         }
-        if (!serviceCT.getSP().equals(ten)) {
-            serviceCT.addTen(ten);
-        }
         if (serviceCT.getChatLieu().equals(cl)) {
             serviceCT.addChatLieu(cl);
         }
@@ -447,6 +445,35 @@ public class ViewSanPham extends javax.swing.JFrame {
         for (SanPham x : list) {
             mol.addRow(x.toData());
         }
+    }
+
+    boolean check() {
+        if (txtTenSP.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "chưa nhập tên");
+            return false;
+        }
+        if (txtLoai.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "chưa nhập loại sản phẩm");
+            return false;
+        }
+        if (txtSoLuong.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "chưa nhập số lượng");
+            return false;
+        }
+        if (txtMau.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "chưa nhập màu");
+            return false;
+        }
+        if (txtChatLieu.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "chưa nhập chất liệu");
+            return false;
+        }
+        if (txtGia.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "chưa nhập giá");
+            return false;
+        }
+
+        return true;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

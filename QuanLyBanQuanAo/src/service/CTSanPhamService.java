@@ -11,7 +11,7 @@ import model.LoaiSP;
 import model.Mau;
 import model.SanPham;
 import model.Size;
-import model.TenSP;
+
 /**
  *
  * @author ADMIN
@@ -97,35 +97,7 @@ public class CTSanPhamService {
             return 0;
         }
     }
-    public List<TenSP> getSP(){
-        List<TenSP> listSP = new ArrayList<>();
-        sql = "select ID, TenSP from SanPham";
-        try {
-            con = DbConnect.getConnection();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while(rs.next()){
-                TenSP tenSP = new TenSP(rs.getInt(1), rs.getString(2));
-                listSP.add(tenSP);
-            }
-            return listSP;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
-    public int addTen(String ten){
-        sql = "insert into SanPham(TenSanPham) values(?)";
-        try {
-            con = DbConnect.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setObject(1, ten);
-            return ps.executeUpdate();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return 0;
-        }
-    }
+    
     public List<ChatLieu> getChatLieu(){
         List<ChatLieu> listCL = new ArrayList<>();
         sql = "";
