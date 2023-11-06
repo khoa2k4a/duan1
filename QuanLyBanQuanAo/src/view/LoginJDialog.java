@@ -79,11 +79,11 @@ public class LoginJDialog extends javax.swing.JDialog {
         });
 
         btnDangNhap.setBackground(new java.awt.Color(255, 214, 232));
-        btnDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_Login.png"))); // NOI18N
+        btnDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_DN.png"))); // NOI18N
         btnDangNhap.setText("Đăng nhập");
 
         btnThoat.setBackground(new java.awt.Color(255, 214, 232));
-        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_exit.png"))); // NOI18N
+        btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconThoat.png"))); // NOI18N
         btnThoat.setText("Thoát");
 
         lbl_ForgotPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_forgotpass.png"))); // NOI18N
