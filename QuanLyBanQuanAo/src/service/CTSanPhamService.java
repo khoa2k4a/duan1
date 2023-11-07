@@ -9,7 +9,6 @@ import java.util.List;
 import model.ChatLieu;
 import model.LoaiSP;
 import model.Mau;
-import model.SanPham;
 import model.Size;
 
 /**
