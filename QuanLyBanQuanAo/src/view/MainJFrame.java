@@ -16,7 +16,7 @@ public class MainJFrame extends javax.swing.JFrame {
     public MainJFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        
     }
 
     /**
@@ -235,6 +235,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
         // TODO add your handling code here:
+        new NhanVienJFrame().setVisible(true);
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void btnHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonActionPerformed
