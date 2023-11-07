@@ -13,34 +13,42 @@ import model.SanPham;
  *
  * @author ADMIN
  */
-public class SanPhamService {
+public class SanPhamService extends PolyClothes<SanPham, String>{
 
-    Connection con = null;
-    PreparedStatement ps = null;
-    ResultSet rs = null;
-    String sql = "";
+    String SQL_SELECT_ALL = "select TenSP, TenLoaiSP, TenMau, TenSize, TenCL, SoLuong, GiaSP, GiaSauSale, SANPHAM.TrangThai from SANPHAM\n" +
+                                "join LOAISANPHAM on SANPHAM.ID_LoaiSP = LOAISANPHAM.ID\n" +
+                                "join MAU on SANPHAM.ID_Mau = MAU.ID\n" +
+                                "join SIZE on SANPHAM.ID_Size = SIZE.ID\n" +
+                                "join CHATLIEU on SANPHAM.ID_CL = CHATLIEU.ID";
+    
 
-    public List<SanPham> getSanPham() {
-        List<SanPham> listSP = new ArrayList<>();
-        sql = "select TenSP, TenLoaiSP, TenMau, TenSize, TenCL, SoLuong, GiaSP, GiaSauSale, SANPHAM.TrangThai from SANPHAM\n" +
-                "join LOAISANPHAM on SANPHAM.ID_LoaiSP = LOAISANPHAM.ID\n" +
-                "join MAU on SANPHAM.ID_Mau = MAU.ID\n" +
-                "join SIZE on SANPHAM.ID_Size = SIZE.ID\n" +
-                "join CHATLIEU on SANPHAM.ID_CL = CHATLIEU.ID";
-        try {
-            con = DbConnect.getConnection();
-            ps = con.prepareStatement(sql);
-            rs = ps.executeQuery();
-            while(rs.next()){
-                SanPham sp = new SanPham(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
-                        rs.getString(5), rs.getInt(6), rs.getDouble(7), rs.getDouble(8), rs.getBoolean(9));
-                listSP.add(sp);
-            }
-            return listSP;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+    @Override
+    protected List<SanPham> selectBySQL(String sql, Object[] args) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
+    @Override
+    public List<SanPham> selectAll() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void insert(SanPham model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void update(SanPham model) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void delete(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public SanPham selectByID(String id) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }
