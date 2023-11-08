@@ -81,6 +81,11 @@ public class LoginJDialog extends javax.swing.JDialog {
         btnDangNhap.setBackground(new java.awt.Color(255, 214, 232));
         btnDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_DN.png"))); // NOI18N
         btnDangNhap.setText("Đăng nhập");
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangNhapActionPerformed(evt);
+            }
+        });
 
         btnThoat.setBackground(new java.awt.Color(255, 214, 232));
         btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconThoat.png"))); // NOI18N
@@ -212,6 +217,13 @@ public class LoginJDialog extends javax.swing.JDialog {
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+        // TODO add your handling code here:
+//        MainJFrame mainC = new MainJFrame();
+//        mainC.setVisible(true);
+//        this.dispose();
+    }//GEN-LAST:event_btnDangNhapActionPerformed
 
     /**
      * @param args the command line arguments
