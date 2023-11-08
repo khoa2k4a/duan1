@@ -24,13 +24,13 @@ public class CTSanPhamService {
     
     public List<Size> getSize(){
         List<Size> listS = new ArrayList<>();
-        sql = "select TenSize from SIZE";
+        sql = "select ID, TenSize, TrangThai from SIZE";
         try {
             con = DbConnect.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
-                Size s = new Size(rs.getString(1));
+                Size s = new Size(rs.getInt(1), rs.getString(2), rs.getBoolean(3));
                 listS.add(s);
             }
             return listS;
@@ -41,13 +41,13 @@ public class CTSanPhamService {
     }
     public List<Mau> getMau(){
         List<Mau> listM = new ArrayList<>();
-        sql = "select ID, TenMau from MAU";
+        sql = "select ID, TenMau, TrangThai from MAU";
         try {
             con = DbConnect.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
-                Mau m = new Mau(rs.getInt(1), rs.getString(2));
+                Mau m = new Mau(rs.getInt(1), rs.getString(2), rs.getBoolean(3));
                 listM.add(m);
             }
             return listM;
@@ -57,11 +57,12 @@ public class CTSanPhamService {
         }
     }
     public int addMau(String mau){
-        sql = "insert into MAU(TenMau) values(?)";
+        sql = "insert into MAU(TenMau, TrangThai) values(?, ?)";
         try {
             con = DbConnect.getConnection();
             ps = con.prepareStatement(sql);
             ps.setObject(1, mau);
+            ps.setObject(2, con);
             return ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

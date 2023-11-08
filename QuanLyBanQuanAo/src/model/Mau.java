@@ -12,13 +12,16 @@ public class Mau {
 
     private int id;
     private String tenMau;
+    private boolean trangThai;
+    private String mauSac = "Màu sắc";
 
     public Mau() {
     }
 
-    public Mau(int id, String tenMau) {
+    public Mau(int id, String tenMau, boolean trangThai) {
         this.id = id;
         this.tenMau = tenMau;
+        this.trangThai = trangThai;
     }
 
     public int getId() {
@@ -37,4 +40,20 @@ public class Mau {
         this.tenMau = tenMau;
     }
 
+    public boolean isTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    public Object[] toData() {
+        return new Object[]{
+            this.id,
+            this.mauSac,
+            this.tenMau,
+            this.trangThai
+        };
+    }
 }

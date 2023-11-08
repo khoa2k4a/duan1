@@ -10,29 +10,37 @@ package model;
  */
 public class SanPham {
 
+    private int id;
     private String ten;
+    private int soLuong;
+    private double gia;
     private String loai;
     private String mau;
     private String size;
     private String chatLieu;
-    private int soLuong;
-    private double gia;
-    private double giaSale;
     private boolean trangThai;
 
     public SanPham() {
     }
 
-    public SanPham(String ten, String loai, String mau, String size, String chatLieu, int soLuong, double gia, double giaSale, boolean trangThai) {
+    public SanPham(int id, String ten, int soLuong, double gia, String loai, String mau, String size, String chatLieu, boolean trangThai) {
+        this.id = id;
         this.ten = ten;
+        this.soLuong = soLuong;
+        this.gia = gia;
         this.loai = loai;
         this.mau = mau;
         this.size = size;
         this.chatLieu = chatLieu;
-        this.soLuong = soLuong;
-        this.gia = gia;
-        this.giaSale = giaSale;
         this.trangThai = trangThai;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getTen() {
@@ -91,14 +99,6 @@ public class SanPham {
         this.gia = gia;
     }
 
-    public double getGiaSale() {
-        return giaSale;
-    }
-
-    public void setGiaSale(double giaSale) {
-        this.giaSale = giaSale;
-    }
-
     public boolean isTrangThai() {
         return trangThai;
     }
@@ -109,14 +109,14 @@ public class SanPham {
 
     public Object[] toData() {
         return new Object[]{
+            this.id,
             this.ten,
+            this.soLuong,
+            this.gia,
             this.loai,
             this.mau,
             this.size,
             this.chatLieu,
-            this.soLuong,
-            this.gia,
-            this.giaSale,
             this.trangThai
         };
     }

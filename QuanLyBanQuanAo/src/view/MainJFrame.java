@@ -58,7 +58,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnSP.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon san pham.png"))); // NOI18N
+        btnSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_SP.png"))); // NOI18N
         btnSP.setText("Sản phẩm");
         btnSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -67,7 +67,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnNhanVien.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon NhanVien.png"))); // NOI18N
+        btnNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_NhanVien.png"))); // NOI18N
         btnNhanVien.setText("Nhân viên");
         btnNhanVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +76,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnHoaDon.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon HoaDon.png"))); // NOI18N
+        btnHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_HoaDon.png"))); // NOI18N
         btnHoaDon.setText("Hóa đơn");
         btnHoaDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -85,7 +85,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnKH.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnKH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon KhachHang.png"))); // NOI18N
+        btnKH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_KhachHang.png"))); // NOI18N
         btnKH.setText("Khách hàng");
         btnKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +94,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnKhuyenMai.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnKhuyenMai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon KhuyenMai.png"))); // NOI18N
+        btnKhuyenMai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_KhuyenMai.png"))); // NOI18N
         btnKhuyenMai.setText("Khuyến mãi");
         btnKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +103,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnLichSu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnLichSu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon LichSu.png"))); // NOI18N
+        btnLichSu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_LichSu.png"))); // NOI18N
         btnLichSu.setText("Lịch sử");
         btnLichSu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +112,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnThongKe.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon ThongKe.png"))); // NOI18N
+        btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_ThongKe.png"))); // NOI18N
         btnThongKe.setText("Thống kê");
         btnThongKe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +121,7 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         btnTaiKhoan.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnTaiKhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon TaiKhoan.png"))); // NOI18N
+        btnTaiKhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_TaiKhoan.png"))); // NOI18N
         btnTaiKhoan.setText("Tài khoản");
         btnTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -189,21 +189,21 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 255, 255));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Pink Bold Retro Aesthetic Lash Artist Circle Logo.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/LogoHome.png"))); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(237, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(89, 89, 89)
                 .addComponent(jLabel1)
-                .addGap(184, 184, 184))
+                .addContainerGap(101, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(111, 111, 111)
+                .addGap(83, 83, 83)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -231,20 +231,26 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPActionPerformed
         // TODO add your handling code here:
+        new SanPhamJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnSPActionPerformed
 
     private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
         // TODO add your handling code here:
         new NhanVienJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void btnHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonActionPerformed
         // TODO add your handling code here:
+        new HoaDonJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHoaDonActionPerformed
 
     private void btnKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKHActionPerformed
         // TODO add your handling code here:
         new KhachHangJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnKHActionPerformed
 
     private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed
