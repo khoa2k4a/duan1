@@ -56,13 +56,13 @@ public class CTSanPhamService {
             return null;
         }
     }
-    public int addMau(String mau){
+    public int addMau(Mau mau){
         sql = "insert into MAU(TenMau, TrangThai) values(?, ?)";
         try {
             con = DbConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setObject(1, mau);
-            ps.setObject(2, con);
+            ps.setObject(1, mau.getTenMau());
+            ps.setObject(2, mau.isTrangThai());
             return ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -101,13 +101,13 @@ public class CTSanPhamService {
     
     public List<ChatLieu> getChatLieu(){
         List<ChatLieu> listCL = new ArrayList<>();
-        sql = "";
+        sql = "select ID, TenCL, TrangThai from CHATLIEU";
         try {
             con = DbConnect.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
-                ChatLieu cl = new ChatLieu(rs.getInt(1), rs.getString(2));
+                ChatLieu cl = new ChatLieu(rs.getInt(1), rs.getString(2), rs.getBoolean(3));
                 listCL.add(cl);
             }
             return listCL;

@@ -22,7 +22,7 @@ public class SanPhamService {
     
     public List<SanPham> getSanPham(){
         List<SanPham> listS = new ArrayList<>();
-        sql = "select ID, TenSP, SoLuong, GiaSP, TenLoaiSP, TenMau, TenSize, TenCL, SANPHAM.TrangThai from SANPHAM\n" +
+        sql = "select SANPHAM.ID, TenSP, SoLuong, GiaSP, TenLoaiSP, TenMau, TenSize, TenCL, SANPHAM.TrangThai from SANPHAM\n" +
                                 "join LOAISANPHAM on SANPHAM.ID_LoaiSP = LOAISANPHAM.ID\n" +
                                 "join MAU on SANPHAM.ID_Mau = MAU.ID\n" +
                                 "join SIZE on SANPHAM.ID_Size = SIZE.ID\n" +

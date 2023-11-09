@@ -9,15 +9,19 @@ package model;
  * @author ADMIN
  */
 public class ChatLieu {
+
     private int id;
     private String tenCL;
+    private boolean trangThai;
+    private String cl = "Chất Liệu";
 
     public ChatLieu() {
     }
 
-    public ChatLieu(int id, String tenCL) {
+    public ChatLieu(int id, String tenCL, boolean trangThai) {
         this.id = id;
         this.tenCL = tenCL;
+        this.trangThai = trangThai;
     }
 
     public int getId() {
@@ -35,5 +39,21 @@ public class ChatLieu {
     public void setTenCL(String tenCL) {
         this.tenCL = tenCL;
     }
-    
+
+    public boolean isTrangThai() {
+        return trangThai;
+    }
+
+    public void setTrangThai(boolean trangThai) {
+        this.trangThai = trangThai;
+    }
+
+    public Object[] toData() {
+        return new Object[]{
+            this.id,
+            this.cl,
+            this.tenCL,
+            this.trangThai
+        };
+    }
 }

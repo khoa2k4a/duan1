@@ -315,9 +315,9 @@
                               <Component id="lblTenNV" min="-2" pref="91" max="-2" attributes="0"/>
                               <Component id="lblMaNV" min="-2" pref="91" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jRadioButton1" min="-2" pref="98" max="-2" attributes="0"/>
+                                  <Component id="rdoActive" min="-2" pref="98" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="jRadioButton2" min="-2" pref="98" max="-2" attributes="0"/>
+                                  <Component id="rdoDisable" min="-2" pref="98" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="btnThem" min="-2" max="-2" attributes="0"/>
@@ -358,8 +358,8 @@
                                   <Component id="lblTenNV2" min="-2" pref="30" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jRadioButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="jRadioButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rdoActive" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="rdoDisable" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
@@ -421,6 +421,9 @@
                     </Property>
                     <Property name="text" type="java.lang.String" value="Th&#xea;m"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnThemActionPerformed"/>
+                  </Events>
                 </Component>
                 <Component class="javax.swing.JButton" name="btnSua">
                   <Properties>
@@ -449,7 +452,7 @@
                     <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton1">
+                <Component class="javax.swing.JRadioButton" name="rdoActive">
                   <Properties>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup_TrangThaiTT"/>
@@ -458,7 +461,7 @@
                     <Property name="text" type="java.lang.String" value="Active"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="jRadioButton2">
+                <Component class="javax.swing.JRadioButton" name="rdoDisable">
                   <Properties>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup_TrangThaiTT"/>
@@ -511,6 +514,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblThuocTinhMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -550,33 +556,33 @@
                                       <Group type="102" alignment="1" attributes="0">
                                           <Component id="lblSDT1" min="-2" pref="91" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="txtSDT1" linkSize="7" min="-2" pref="263" max="-2" attributes="0"/>
+                                          <Component id="txtSoLuong" linkSize="7" min="-2" pref="263" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="103" alignment="1" groupAlignment="1" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="lblTenNV1" min="-2" pref="91" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="txtTenNV1" linkSize="7" min="-2" pref="263" max="-2" attributes="0"/>
+                                              <Component id="txtTenSP" linkSize="7" min="-2" pref="263" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                                               <Component id="lblMaNV1" min="-2" pref="91" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="txtMaNV1" linkSize="7" min="-2" pref="263" max="-2" attributes="0"/>
+                                              <Component id="txtMaSP" linkSize="7" min="-2" pref="263" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="lblDiaChi1" min="-2" pref="91" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="txtDiaChi1" linkSize="7" min="-2" pref="263" max="-2" attributes="0"/>
+                                              <Component id="txtDonGia" linkSize="7" min="-2" pref="263" max="-2" attributes="0"/>
                                           </Group>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="lblGTinh1" min="-2" pref="91" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="rdoNam1" min="-2" pref="76" max="-2" attributes="0"/>
+                                              <Component id="rdoActiveCT" min="-2" pref="76" max="-2" attributes="0"/>
                                               <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                                              <Component id="rdoNu1" min="-2" pref="96" max="-2" attributes="0"/>
+                                              <Component id="rdoDisabaleCT" min="-2" pref="96" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -592,22 +598,22 @@
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="lblMatKhau1" min="-2" pref="91" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="cboLocVaiTro3" linkSize="5" max="32767" attributes="0"/>
+                                          <Component id="cboMau" linkSize="5" max="32767" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="lblTaiKhoan1" min="-2" pref="91" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="cboLocVaiTro2" linkSize="5" min="-2" pref="240" max="-2" attributes="0"/>
+                                          <Component id="cboLoaiSP" linkSize="5" min="-2" pref="240" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="lblVaiTro2" min="-2" pref="91" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="cboLocVaiTro5" linkSize="5" min="-2" pref="244" max="-2" attributes="0"/>
+                                          <Component id="cboChatLieu" linkSize="5" min="-2" pref="244" max="-2" attributes="0"/>
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="lblVaiTro1" min="-2" pref="91" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                          <Component id="cboLocVaiTro4" linkSize="5" min="-2" pref="244" max="-2" attributes="0"/>
+                                          <Component id="cboSize" linkSize="5" min="-2" pref="244" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -630,39 +636,39 @@
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblMaNV1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="txtMaNV1" linkSize="8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="txtMaSP" linkSize="8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                       <Component id="lblTaiKhoan1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="cboLocVaiTro2" linkSize="6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="cboLoaiSP" linkSize="6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblTenNV1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="txtTenNV1" linkSize="8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="txtTenSP" linkSize="8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblSDT1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="txtSDT1" linkSize="8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="txtSoLuong" linkSize="8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="1" attributes="0">
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblMatKhau1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="cboLocVaiTro3" linkSize="6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="cboMau" linkSize="6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblVaiTro1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="cboLocVaiTro4" linkSize="6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <Component id="cboSize" linkSize="6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtDiaChi1" linkSize="8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="txtDonGia" linkSize="8" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="lblDiaChi1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               <Component id="lblVaiTro2" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="cboLocVaiTro5" linkSize="6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="cboChatLieu" linkSize="6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -670,8 +676,8 @@
                               <Component id="btnSua1" linkSize="10" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="btnXoa1" linkSize="10" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="lblGTinh1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="rdoNam1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                              <Component id="rdoNu1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="rdoActiveCT" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              <Component id="rdoDisabaleCT" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jScrollPane2" pref="293" max="32767" attributes="0"/>
@@ -702,7 +708,7 @@
                               <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
                               <Component id="jLabel5" min="-2" pref="91" max="-2" attributes="0"/>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Component id="txtTimTen1" min="-2" pref="249" max="-2" attributes="0"/>
+                              <Component id="txtTimTen" min="-2" pref="249" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                               <Component id="jLabel6" min="-2" pref="94" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -720,7 +726,7 @@
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="txtTimTen1" alignment="3" max="32767" attributes="0"/>
+                                          <Component id="txtTimTen" alignment="3" max="32767" attributes="0"/>
                                           <Component id="jLabel6" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
@@ -742,7 +748,7 @@
                         <Property name="text" type="java.lang.String" value="T&#xea;n s&#x1ea3;n ph&#x1ea9;m"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtTimTen1">
+                    <Component class="javax.swing.JTextField" name="txtTimTen">
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel6">
                       <Properties>
@@ -780,9 +786,9 @@
                     <Property name="text" type="java.lang.String" value="M&#xe3; s&#x1ea3;n ph&#x1ea9;m"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtMaNV1">
+                <Component class="javax.swing.JTextField" name="txtMaSP">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMaNV1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMaSPActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblTenNV1">
@@ -790,9 +796,9 @@
                     <Property name="text" type="java.lang.String" value="T&#xea;n s&#x1ea3;n ph&#x1ea9;m"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtTenNV1">
+                <Component class="javax.swing.JTextField" name="txtTenSP">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTenNV1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTenSPActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblSDT1">
@@ -800,9 +806,9 @@
                     <Property name="text" type="java.lang.String" value="S&#x1ed1; l&#x1b0;&#x1ee3;ng"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtSDT1">
+                <Component class="javax.swing.JTextField" name="txtSoLuong">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSDT1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSoLuongActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblDiaChi1">
@@ -810,9 +816,9 @@
                     <Property name="text" type="java.lang.String" value="&#x110;&#x1a1;n gi&#xe1;"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JTextField" name="txtDiaChi1">
+                <Component class="javax.swing.JTextField" name="txtDonGia">
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDiaChi1ActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtDonGiaActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblGTinh1">
@@ -820,7 +826,7 @@
                     <Property name="text" type="java.lang.String" value="Tr&#x1ea1;ng th&#xe1;i"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="rdoNam1">
+                <Component class="javax.swing.JRadioButton" name="rdoActiveCT">
                   <Properties>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup_TrangThaiSP"/>
@@ -829,7 +835,7 @@
                     <Property name="text" type="java.lang.String" value="Active"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JRadioButton" name="rdoNu1">
+                <Component class="javax.swing.JRadioButton" name="rdoDisabaleCT">
                   <Properties>
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup_TrangThaiSP"/>
@@ -898,7 +904,7 @@
                     <Property name="text" type="java.lang.String" value="Ch&#x1ea5;t li&#x1ec7;u"/>
                   </Properties>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="cboLocVaiTro2">
+                <Component class="javax.swing.JComboBox" name="cboLoaiSP">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="0"/>
@@ -908,7 +914,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="cboLocVaiTro3">
+                <Component class="javax.swing.JComboBox" name="cboMau">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="0"/>
@@ -918,7 +924,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="cboLocVaiTro4">
+                <Component class="javax.swing.JComboBox" name="cboSize">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="0"/>
@@ -928,7 +934,7 @@
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
                 </Component>
-                <Component class="javax.swing.JComboBox" name="cboLocVaiTro5">
+                <Component class="javax.swing.JComboBox" name="cboChatLieu">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="0"/>
@@ -1013,6 +1019,9 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblSanPhamMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
