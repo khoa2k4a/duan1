@@ -73,7 +73,7 @@ GO
 CREATE TABLE SALE_CT(
     ID INT IDENTITY(1,1) PRIMARY KEY,
     ID_Sale INT,
-    ID_sp INT,
+    ID_SP INT,
     GiaTriGiamGia INT,
     DonViGiam VARCHAR(10),
     TrangThai BIT
