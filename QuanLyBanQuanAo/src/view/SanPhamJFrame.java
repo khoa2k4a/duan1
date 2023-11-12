@@ -89,6 +89,8 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         btnClearSP = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblSanPham = new javax.swing.JTable();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tblSanPham1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -469,16 +471,33 @@ public class SanPhamJFrame extends javax.swing.JFrame {
 
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã SP", "Tên SP", "Số lượng", "Đơn giá", "Loại SP", "Màu sắc", "Size", "Chất liệu", "Trạng thái"
+                "Mã SPCT", "Loại SP", "Màu sắc", "Size", "Chất liệu", "Lượng tồn kho", "Đơn giá"
             }
         ));
         jScrollPane2.setViewportView(tblSanPham);
+
+        tblSanPham1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Mã SP", "Tên SP"
+            }
+        ));
+        jScrollPane3.setViewportView(tblSanPham1);
+        if (tblSanPham1.getColumnModel().getColumnCount() > 0) {
+            tblSanPham1.getColumnModel().getColumn(0).setHeaderValue("Mã SP");
+            tblSanPham1.getColumnModel().getColumn(1).setHeaderValue("Tên SP");
+        }
 
         javax.swing.GroupLayout pnlChiTietSPLayout = new javax.swing.GroupLayout(pnlChiTietSP);
         pnlChiTietSP.setLayout(pnlChiTietSPLayout);
@@ -486,8 +505,8 @@ public class SanPhamJFrame extends javax.swing.JFrame {
             pnlChiTietSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlChiTietSPLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlChiTietSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(pnTimKiemSP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlChiTietSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnTimKiemSP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlChiTietSPLayout.createSequentialGroup()
                         .addGroup(pnlChiTietSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(pnlChiTietSPLayout.createSequentialGroup()
@@ -539,9 +558,12 @@ public class SanPhamJFrame extends javax.swing.JFrame {
                                 .addComponent(lblSize, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(cboSize, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addComponent(lblQLSP, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(lblQLSP, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(pnlChiTietSPLayout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2))
         );
 
         pnlChiTietSPLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {cboChatLieu, cboLoaiSP, cboMau, cboSize});
@@ -596,8 +618,9 @@ public class SanPhamJFrame extends javax.swing.JFrame {
                     .addComponent(rdoActiveSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rdoDisableSP, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 293, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(pnlChiTietSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 299, Short.MAX_VALUE)))
         );
 
         pnlChiTietSPLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {cboChatLieu, cboLoaiSP, cboMau, cboSize});
@@ -769,6 +792,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblChatLieu;
     private javax.swing.JLabel lblDangXuat;
@@ -795,6 +819,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdoDisableSP;
     private javax.swing.JRadioButton rdoDisableTT;
     private javax.swing.JTable tblSanPham;
+    private javax.swing.JTable tblSanPham1;
     private javax.swing.JTable tblThuocTinh;
     private javax.swing.JTextField txtDonGia;
     private javax.swing.JTextField txtMaSP;
