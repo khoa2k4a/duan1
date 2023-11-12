@@ -5,6 +5,7 @@
 package view;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ChatLieu;
 import model.LoaiSP;
@@ -19,7 +20,7 @@ import service.SanPhamService;
  * @author ADMIN
  */
 public class SanPhamJFrame extends javax.swing.JFrame {
-
+    
     private DefaultTableModel mol = new DefaultTableModel();
     private CTSanPhamService serCT = new CTSanPhamService();
     private SanPhamService serSP = new SanPhamService();
@@ -31,16 +32,16 @@ public class SanPhamJFrame extends javax.swing.JFrame {
     public SanPhamJFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
-        for(ChatLieu x : serCT.getChatLieu()){
+        for (ChatLieu x : serCT.getChatLieu()) {
             cboChatLieu.addItem(x.getTenCL());
         }
-        for(Mau x : serCT.getMau()){
+        for (Mau x : serCT.getMau()) {
             cboMau.addItem(x.getTenMau());
         }
-        for(LoaiSP x : serCT.getLoai()){
+        for (LoaiSP x : serCT.getLoai()) {
             cboLoaiSP.addItem(x.getTenLoai());
         }
-        for(Size x : serCT.getSize()){
+        for (Size x : serCT.getSize()) {
             cboSize.addItem(x.getSize());
         }
         this.fillMau(serCT.getMau());
@@ -49,7 +50,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         tblThuocTinh.setRowSelectionInterval(0, 0);
         tblSanPham.setRowSelectionInterval(0, 0);
         this.showSanPham(0);
-
+        
     }
 
     /**
@@ -294,7 +295,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
             }
         });
 
-        cboThuocTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Màu sắc", "Size", "Chất liệu" }));
+        cboThuocTinh.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Màu Sắc", "Size", "Chất Liệu", "Loại Sản Phẩm" }));
         cboThuocTinh.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 cboThuocTinhItemStateChanged(evt);
@@ -468,6 +469,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
 
         lblMaNV1.setText("Mã sản phẩm");
 
+        txtMaSP.setEditable(false);
         txtMaSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaSPActionPerformed(evt);
@@ -516,6 +518,11 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         btnThem1.setBackground(new java.awt.Color(204, 255, 255));
         btnThem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
         btnThem1.setText("Thêm");
+        btnThem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThem1ActionPerformed(evt);
+            }
+        });
 
         btnSua1.setBackground(new java.awt.Color(204, 255, 255));
         btnSua1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
@@ -780,16 +787,20 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         if (cboThuocTinh.getSelectedItem().equals("Màu sắc")) {
             this.fillMau(serCT.getMau());
             this.showMau(0);
-            tblThuocTinh.setRowSelectionInterval(0, 0);
+            
         } else if (cboThuocTinh.getSelectedItem().equals("Size")) {
             this.fillSize(serCT.getSize());
             this.showSize(0);
-            tblThuocTinh.setRowSelectionInterval(0, 0);
-        } else {
+            
+        } else if (cboThuocTinh.getSelectedItem().equals("Chất Liệu")) {
             this.fillChatLieu(serCT.getChatLieu());
             this.showChatLieu(0);
-            tblThuocTinh.setRowSelectionInterval(0, 0);
+            
+        } else {
+            this.fillLoai(serCT.getLoai());
+            this.showLoai(0);
         }
+        tblThuocTinh.setRowSelectionInterval(0, 0);
     }//GEN-LAST:event_cboThuocTinhItemStateChanged
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
@@ -809,12 +820,14 @@ public class SanPhamJFrame extends javax.swing.JFrame {
     private void tblThuocTinhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblThuocTinhMouseClicked
         // TODO add your handling code here:
         index = tblThuocTinh.getSelectedRow();
-        if (cboThuocTinh.getSelectedItem().equals("Màu sắc")) {
+        if (cboThuocTinh.getSelectedItem().equals("Màu Sắc")) {
             this.showMau(index);
         } else if (cboThuocTinh.getSelectedItem().equals("Size")) {
             this.showSize(index);
-        } else {
+        } else if (cboThuocTinh.getSelectedItem().equals("Chất Liệu")) {
             this.showChatLieu(index);
+        } else {
+            this.showLoai(index);
         }
 
     }//GEN-LAST:event_tblThuocTinhMouseClicked
@@ -827,11 +840,30 @@ public class SanPhamJFrame extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        if(cboThuocTinh.getSelectedItem().equals("Màu sắc")){
+        if (cboThuocTinh.getSelectedItem().equals("Màu Sắc")) {
             serCT.addMau(this.readMau());
             this.fillMau(serCT.getMau());
+        }else if (cboThuocTinh.getSelectedItem().equals("Size")) {
+            serCT.addSize(this.readSize());
+            this.fillSize(serCT.getSize());
+        } else if (cboThuocTinh.getSelectedItem().equals("Chất Liệu")) {
+            serCT.addChatLieu(this.readChatLieu());
+            this.fillChatLieu(serCT.getChatLieu());
+        } else {
+            serCT.addLoai(this.readLoai());
+            this.fillLoai(serCT.getLoai());
         }
     }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnThem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem1ActionPerformed
+        // TODO add your handling code here:
+        if (serSP.addSanPham(readSanPham()) < 0) {
+            JOptionPane.showMessageDialog(this, "them that bai");
+        } else {
+            JOptionPane.showMessageDialog(this, "them thanh cong");
+            this.fillSanPham(serSP.getSanPham());
+        }
+    }//GEN-LAST:event_btnThem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -868,6 +900,35 @@ public class SanPhamJFrame extends javax.swing.JFrame {
             new SanPhamJFrame().setVisible(true);
         });
     }
+    
+    void fillLoai(List<LoaiSP> list) {
+        mol = (DefaultTableModel) tblThuocTinh.getModel();
+        mol.setRowCount(0);
+        for (LoaiSP x : list) {
+            mol.addRow(x.toData());
+        }
+    }
+
+    void showLoai(int index) {
+        LoaiSP loai = serCT.getLoai().get(index);
+        txtThuocTinh.setText(loai.getTenLoai());
+        if (loai.isTrangThai()) {
+            rdoActive.setSelected(true);
+        } else {
+            rdoDisable.setSelected(true);
+        }
+    }
+
+    LoaiSP readLoai() {
+        boolean trangThai;
+        String tenLoai = txtThuocTinh.getText();
+        if (rdoActive.isSelected()) {
+            trangThai = true;
+        } else {
+            trangThai = false;
+        }
+        return new LoaiSP(tenLoai, trangThai);
+    }
 
     void fillMau(List<Mau> list) {
         mol = (DefaultTableModel) tblThuocTinh.getModel();
@@ -876,27 +937,28 @@ public class SanPhamJFrame extends javax.swing.JFrame {
             mol.addRow(x.toData());
         }
     }
-
+    
     void showMau(int index) {
         Mau m = serCT.getMau().get(index);
         txtThuocTinh.setText(m.getTenMau());
         if (m.isTrangThai()) {
-            rdoActive.isSelected();
+            rdoActive.setSelected(true);
         } else {
-            rdoDisable.isSelected();
+            rdoDisable.setSelected(true);
         }
     }
-    Mau readMau(){
+    
+    Mau readMau() {
         boolean trangThai;
         String tenMau = txtThuocTinh.getText();
-        if(rdoActive.isSelected()){
+        if (rdoActive.isSelected()) {
             trangThai = true;
-        }else{
+        } else {
             trangThai = false;
         }
         return new Mau(tenMau, trangThai);
     }
-
+    
     void fillSize(List<Size> list) {
         mol = (DefaultTableModel) tblThuocTinh.getModel();
         mol.setRowCount(0);
@@ -904,17 +966,28 @@ public class SanPhamJFrame extends javax.swing.JFrame {
             mol.addRow(x.toData());
         }
     }
-
+    
     void showSize(int index) {
         Size s = serCT.getSize().get(index);
         txtThuocTinh.setText(s.getSize());
         if (s.isTrangThai()) {
-            rdoActive.isSelected();
+            rdoActive.setSelected(true);
         } else {
-            rdoDisable.isSelected();
+            rdoDisable.setSelected(true);
         }
     }
 
+    Size readSize() {
+        boolean trangThai;
+        String tensize = txtThuocTinh.getText();
+        if (rdoActive.isSelected()) {
+            trangThai = true;
+        } else {
+            trangThai = false;
+        }
+        return new Size(tensize, trangThai);
+    }
+    
     void fillChatLieu(List<ChatLieu> list) {
         mol = (DefaultTableModel) tblThuocTinh.getModel();
         mol.setRowCount(0);
@@ -922,26 +995,38 @@ public class SanPhamJFrame extends javax.swing.JFrame {
             mol.addRow(x.toData());
         }
     }
-
+    
     void showChatLieu(int index) {
         ChatLieu cl = serCT.getChatLieu().get(index);
         txtThuocTinh.setText(cl.getTenCL());
         if (cl.isTrangThai()) {
-            rdoActive.isSelected();
+            rdoActive.setSelected(true);
         } else {
-            rdoDisable.isSelected();
+            rdoDisable.setSelected(true);
         }
     }
 
+    ChatLieu readChatLieu() {
+        boolean trangThai;
+        String tenChatLieu = txtThuocTinh.getText();
+        if (rdoActive.isSelected()) {
+            trangThai = true;
+        } else {
+            trangThai = false;
+        }
+        return new ChatLieu(tenChatLieu, trangThai);
+    }
+    
     void fillSanPham(List<SanPham> list) {
         mol = (DefaultTableModel) tblSanPham.getModel();
         mol.setRowCount(0);
         for (SanPham x : list) {
             mol.addRow(x.toData());
         }
-
+        
     }
-    void showSanPham(int index){
+    
+    void showSanPham(int index) {
         SanPham sp = serSP.getSanPham().get(index);
         txtMaSP.setText(String.valueOf(sp.getId()));
         txtDonGia.setText(String.valueOf(sp.getGia()));
@@ -951,11 +1036,47 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         cboLoaiSP.setSelectedItem(sp.getLoai());
         cboMau.setSelectedItem(sp.getMau());
         cboSize.setSelectedItem(sp.getSize());
-        if(sp.isTrangThai()){
-            rdoActiveCT.isSelected();
-        }else{
-            rdoDisabaleCT.isSelected();
+        if (sp.isTrangThai()) {
+            rdoActiveCT.setSelected(true);
+        } else {
+            rdoDisabaleCT.setSelected(true);
         }
+    }
+    
+    SanPham readSanPham() {
+        SanPham sp = new SanPham();
+        sp.setTen(txtTenSP.getText());
+        for (LoaiSP x : serCT.getLoai()) {
+            if (x.getTenLoai().contains(cboLoaiSP.getSelectedItem().toString())) {
+                sp.setLoai(new LoaiSP(x.getId()));
+            }
+        }
+        for (Mau x : serCT.getMau()) {
+            if (x.getTenMau().contains(cboMau.getSelectedItem().toString())) {
+                sp.setMau(new Mau(x.getId()));
+            }
+        }
+        for (Size s : serCT.getSize()) {
+            if (s.getSize().contains(cboSize.getSelectedItem().toString())) {
+                sp.setSize(new Size(s.getId()));
+            }
+        }
+        for (ChatLieu x : serCT.getChatLieu()) {
+            if (x.getTenCL().contains(cboChatLieu.getSelectedItem().toString())) {
+                sp.setChatLieu(new ChatLieu(x.getId()));
+            }
+        }
+        sp.setGia(Double.parseDouble(txtDonGia.getText()));
+        sp.setSoLuong(Integer.parseInt(txtSoLuong.getText()));
+        
+        boolean trangThai;
+        if (rdoActive.isSelected()) {
+            trangThai = true;
+        } else {
+            trangThai = false;
+        }
+        
+        return sp;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

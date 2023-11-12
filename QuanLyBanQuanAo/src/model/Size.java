@@ -17,6 +17,14 @@ public class Size {
     public Size() {
     }
 
+    public Size(int id) {
+        this.id = id;
+    }
+
+    public Size(String size) {
+        this.size = size;
+    }
+
     public Size(String size, boolean trangThai) {
         this.size = size;
         this.trangThai = trangThai;

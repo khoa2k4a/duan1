@@ -14,16 +14,27 @@ public class SanPham {
     private String ten;
     private int soLuong;
     private double gia;
-    private String loai;
-    private String mau;
-    private String size;
-    private String chatLieu;
+    private LoaiSP loai;
+    private Mau mau;
+    private Size size;
+    private ChatLieu chatLieu;
     private boolean trangThai;
 
     public SanPham() {
     }
 
-    public SanPham(int id, String ten, int soLuong, double gia, String loai, String mau, String size, String chatLieu, boolean trangThai) {
+    public SanPham(String ten, int soLuong, double gia, LoaiSP loai, Mau mau, Size size, ChatLieu chatLieu, boolean trangThai) {
+        this.ten = ten;
+        this.soLuong = soLuong;
+        this.gia = gia;
+        this.loai = loai;
+        this.mau = mau;
+        this.size = size;
+        this.chatLieu = chatLieu;
+        this.trangThai = trangThai;
+    }
+
+    public SanPham(int id, String ten, int soLuong, double gia, LoaiSP loai, Mau mau, Size size, ChatLieu chatLieu, boolean trangThai) {
         this.id = id;
         this.ten = ten;
         this.soLuong = soLuong;
@@ -51,38 +62,6 @@ public class SanPham {
         this.ten = ten;
     }
 
-    public String getLoai() {
-        return loai;
-    }
-
-    public void setLoai(String loai) {
-        this.loai = loai;
-    }
-
-    public String getMau() {
-        return mau;
-    }
-
-    public void setMau(String mau) {
-        this.mau = mau;
-    }
-
-    public String getSize() {
-        return size;
-    }
-
-    public void setSize(String size) {
-        this.size = size;
-    }
-
-    public String getChatLieu() {
-        return chatLieu;
-    }
-
-    public void setChatLieu(String chatLieu) {
-        this.chatLieu = chatLieu;
-    }
-
     public int getSoLuong() {
         return soLuong;
     }
@@ -99,6 +78,38 @@ public class SanPham {
         this.gia = gia;
     }
 
+    public LoaiSP getLoai() {
+        return loai;
+    }
+
+    public void setLoai(LoaiSP loai) {
+        this.loai = loai;
+    }
+
+    public Mau getMau() {
+        return mau;
+    }
+
+    public void setMau(Mau mau) {
+        this.mau = mau;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
+    }
+
+    public ChatLieu getChatLieu() {
+        return chatLieu;
+    }
+
+    public void setChatLieu(ChatLieu chatLieu) {
+        this.chatLieu = chatLieu;
+    }
+
     public boolean isTrangThai() {
         return trangThai;
     }
@@ -113,10 +124,10 @@ public class SanPham {
             this.ten,
             this.soLuong,
             this.gia,
-            this.loai,
-            this.mau,
-            this.size,
-            this.chatLieu,
+            this.loai.getTenLoai(),
+            this.mau.getTenMau(),
+            this.size.getSize(),
+            this.chatLieu.getTenCL(),
             this.trangThai
         };
     }

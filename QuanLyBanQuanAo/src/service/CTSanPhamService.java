@@ -39,6 +39,19 @@ public class CTSanPhamService {
             return null;
         }
     }
+    public int addSize(Size size){
+        sql = "insert into Size(TenSize, TrangThai) values (?, ?)";
+        try {
+            con = DbConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, size.getSize());
+            ps.setObject(2, size.isTrangThai());
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
     public List<Mau> getMau(){
         List<Mau> listM = new ArrayList<>();
         sql = "select ID, TenMau, TrangThai from MAU";
@@ -71,13 +84,13 @@ public class CTSanPhamService {
     }
     public List<LoaiSP> getLoai(){
         List<LoaiSP> listL = new ArrayList<>();
-        sql = "select ID, TenLoaiSP from LoaiSanPham";
+        sql = "select ID, TenLoaiSP, TrangThai from LoaiSanPham";
         try {
             con = DbConnect.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while(rs.next()){
-                LoaiSP l = new LoaiSP(rs.getInt(1), rs.getString(2));
+                LoaiSP l = new LoaiSP(rs.getInt(1), rs.getString(2), rs.getBoolean(3));
                 listL.add(l);
             }
             return listL;
@@ -86,12 +99,13 @@ public class CTSanPhamService {
             return null;
         }
     }
-    public int addLoai(String loai){
-        sql = "insert into LoaiSanPham(TenLoaiSP) values(?)";
+    public int addLoai(LoaiSP loai){
+        sql = "insert into LoaiSanPham(TenLoaiSP, TrangThai) values(?, ?)";
         try {
             con = DbConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setObject(1, loai);
+            ps.setObject(1, loai.getTenLoai());
+            ps.setObject(2, loai.isTrangThai());
             return ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -116,12 +130,13 @@ public class CTSanPhamService {
             return null;
         }
     }
-    public int addChatLieu(String chatLieu){
-        sql = "insert into ChatLieu(TenCL) values(?)";
+    public int addChatLieu(ChatLieu chatLieu){
+        sql = "insert into ChatLieu(TenCL, TrangThai) values(?, ?)";
         try {
             con = DbConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setObject(1, chatLieu);
+            ps.setObject(1, chatLieu.getTenCL());
+            ps.setObject(2, chatLieu.isTrangThai());
             return ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
