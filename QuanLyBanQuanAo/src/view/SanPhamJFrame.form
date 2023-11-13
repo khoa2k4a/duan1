@@ -313,23 +313,25 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="lblTrangThaiTT" min="-2" pref="91" max="-2" attributes="0"/>
-                              <Component id="lblTenThuocTinh" min="-2" pref="91" max="-2" attributes="0"/>
-                              <Component id="lblLoaiThuocTinh" min="-2" pref="91" max="-2" attributes="0"/>
+                              <Component id="lblTrangThaiTT" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
+                              <Component id="lblTenThuocTinh" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
+                              <Component id="lblLoaiThuocTinh" alignment="0" min="-2" pref="91" max="-2" attributes="0"/>
+                              <Component id="txtTenThuocTinh" alignment="0" max="32767" attributes="0"/>
+                              <Component id="cboLoaiTT" alignment="0" pref="290" max="32767" attributes="0"/>
+                              <Group type="102" alignment="1" attributes="0">
+                                  <Component id="btnThem" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="btnSua" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="btnClear" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="rdoActiveTT" min="-2" pref="98" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="rdoDisableTT" min="-2" pref="98" max="-2" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="btnThem" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnSua" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="btnClear" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="txtTenThuocTinh" alignment="0" max="32767" attributes="0"/>
-                              <Component id="cboLoaiTT" alignment="0" max="32767" attributes="0"/>
+                              <Component id="lblTenThuocTinh1" min="-2" pref="91" max="-2" attributes="0"/>
+                              <Component id="txtMaThuocTinh" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="40" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -352,24 +354,28 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
                                   <Component id="cboLoaiTT" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="lblTenThuocTinh" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                                  <Component id="txtTenThuocTinh" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="lblTrangThaiTT" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+                                  <Component id="lblTenThuocTinh1" min="-2" pref="30" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="txtMaThuocTinh" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lblTenThuocTinh" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="txtTenThuocTinh" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="lblTrangThaiTT" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="rdoActiveTT" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="rdoDisableTT" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="btnThem" alignment="3" max="32767" attributes="0"/>
-                                      <Component id="btnSua" alignment="3" max="32767" attributes="0"/>
                                       <Component id="btnClear" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="btnSua" alignment="3" max="32767" attributes="0"/>
+                                      <Component id="btnThem" alignment="3" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="378" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="340" max="-2" attributes="0"/>
                               </Group>
                               <Group type="102" attributes="0">
                                   <Component id="jScrollPane1" max="32767" attributes="0"/>
@@ -399,13 +405,18 @@
                 <Component class="javax.swing.JComboBox" name="cboLoaiTT">
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="3">
-                        <StringItem index="0" value="M&#xe0;u s&#x1eaf;c"/>
-                        <StringItem index="1" value="Size"/>
-                        <StringItem index="2" value="Ch&#x1ea5;t li&#x1ec7;u"/>
+                      <StringArray count="5">
+                        <StringItem index="0" value="Lo&#x1ea1;i S&#x1ea3;n Ph&#x1ea9;m"/>
+                        <StringItem index="1" value="M&#xe0;u S&#x1eaf;c"/>
+                        <StringItem index="2" value="Size"/>
+                        <StringItem index="3" value="Ch&#x1ea5;t Li&#x1ec7;u"/>
+                        <StringItem index="4" value=" "/>
                       </StringArray>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cboLoaiTTItemStateChanged"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
@@ -510,12 +521,25 @@
                           <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tblThuocTinhMouseClicked"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>
                 <Component class="javax.swing.JLabel" name="lblThongTinTT">
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Th&#xf4;ng tin thu&#x1ed9;c t&#xed;nh"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JTextField" name="txtMaThuocTinh">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMaThuocTinhActionPerformed"/>
+                  </Events>
+                </Component>
+                <Component class="javax.swing.JLabel" name="lblTenThuocTinh1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="M&#xe3; thu&#x1ed9;c t&#xed;nh"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -675,8 +699,8 @@
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane3" pref="299" max="32767" attributes="0"/>
-                              <Component id="jScrollPane2" pref="299" max="32767" attributes="0"/>
+                              <Component id="jScrollPane3" pref="315" max="32767" attributes="0"/>
+                              <Component id="jScrollPane2" pref="315" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                   </Group>
