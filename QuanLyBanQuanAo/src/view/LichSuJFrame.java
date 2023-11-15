@@ -8,12 +8,12 @@ package view;
  *
  * @author ADMIN
  */
-public class MainJFrame extends javax.swing.JFrame {
+public class LichSuJFrame extends javax.swing.JFrame {
 
     /**
      * Creates new form ViewTrangChu
      */
-    public MainJFrame() {
+    public LichSuJFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
         
@@ -270,7 +270,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
-        new MainJFrame().setVisible(true);
+        new LichSuJFrame().setVisible(true);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     /**
@@ -290,8 +290,10 @@ public class MainJFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LichSuJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -299,7 +301,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new MainJFrame().setVisible(true);
+            new LichSuJFrame().setVisible(true);
         });
     }
 
