@@ -5,6 +5,7 @@
 package view;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ChatLieu;
 import model.LoaiSP;
@@ -17,7 +18,7 @@ import service.ThuocTinhService;
  * @author ADMIN
  */
 public class SanPhamJFrame extends javax.swing.JFrame {
-    
+
     private DefaultTableModel mol = new DefaultTableModel();
     private ThuocTinhService serviceTT = new ThuocTinhService();
     private int index = -1;
@@ -31,7 +32,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         this.fillLoaiSP(serviceTT.getLoai());
         this.showLoai(0);
         tblThuocTinh.setRowSelectionInterval(0, 0);
-        
+
     }
 
     /**
@@ -280,10 +281,20 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         btnThem.setBackground(new java.awt.Color(204, 255, 255));
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
         btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
         btnSua.setBackground(new java.awt.Color(204, 255, 255));
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnClear.setBackground(new java.awt.Color(204, 255, 255));
         btnClear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
@@ -789,7 +800,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
     private void tblThuocTinhMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblThuocTinhMouseClicked
         // TODO add your handling code here:
         index = tblThuocTinh.getSelectedRow();
-        if (cboLoaiTT.getSelectedItem().equals("Màu Sắc")) {            
+        if (cboLoaiTT.getSelectedItem().equals("Màu Sắc")) {
             this.showMau(index);
         } else if (cboLoaiTT.getSelectedItem().equals("Chất Liệu")) {
             this.showChatLieu(index);
@@ -803,6 +814,82 @@ public class SanPhamJFrame extends javax.swing.JFrame {
     private void txtMaThuocTinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaThuocTinhActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaThuocTinhActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        // TODO add your handling code here:
+        if (cboLoaiTT.getSelectedItem().equals("Màu Sắc")) {
+            if (serviceTT.addMau(this.readMau()) > 0) {
+                serviceTT.addMau(this.readMau());
+                JOptionPane.showMessageDialog(this, "thêm màu thành công");
+            } else {
+                JOptionPane.showMessageDialog(this, "thêm màu thất bại");
+            }
+            this.fillMau(serviceTT.getMau());
+        } else if (cboLoaiTT.getSelectedItem().equals("Chất Liệu")) {
+            if (serviceTT.addChatLieu(this.readChatLieu()) > 0) {
+                serviceTT.addChatLieu(this.readChatLieu());
+                JOptionPane.showMessageDialog(this, "thêm chất liệu thành công");
+            } else {
+                JOptionPane.showMessageDialog(this, "thêm chất liệu thất bại");
+            }
+            this.fillChatLieu(serviceTT.getChatLieu());
+        } else if (cboLoaiTT.getSelectedItem().equals("Size")) {
+            if (serviceTT.addSize(this.readSize()) > 0) {
+                serviceTT.addSize(this.readSize());
+                JOptionPane.showMessageDialog(this, "thêm size thành công");
+            } else {
+                JOptionPane.showMessageDialog(this, "thêm size thất bại");
+            }
+            this.fillSize(serviceTT.getSize());
+        } else {
+            if (serviceTT.addloaiSP(this.readLoaiSP()) > 0) {
+                serviceTT.addloaiSP(this.readLoaiSP());
+                JOptionPane.showMessageDialog(this, "thêm loại sản phẩm thành công");
+            } else {
+                JOptionPane.showMessageDialog(this, "thêm loại sản phẩm thất bại");
+            }
+            this.fillLoaiSP(serviceTT.getLoai());
+        }
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // TODO add your handling code here:
+        index = tblThuocTinh.getSelectedRow();
+        String ma = tblThuocTinh.getValueAt(index, 0).toString();
+        if (cboLoaiTT.getSelectedItem().equals("Màu Sắc")) {
+            if (serviceTT.updateMau(this.readMau(), ma) > 0) {
+                serviceTT.updateMau(this.readMau(), ma);
+                JOptionPane.showMessageDialog(this, "sửa màu thành công");
+            } else {
+                JOptionPane.showMessageDialog(this, "sửa màu thất bại");
+            }
+            this.fillMau(serviceTT.getMau());
+        } else if (cboLoaiTT.getSelectedItem().equals("Chất Liệu")) {
+            if (serviceTT.updateChatLieu(this.readChatLieu(), ma) > 0) {
+                serviceTT.updateChatLieu(this.readChatLieu(), ma);
+                JOptionPane.showMessageDialog(this, "sửa chất liệu thành công");
+            } else {
+                JOptionPane.showMessageDialog(this, "sửa chất liệu thất bại");
+            }
+            this.fillChatLieu(serviceTT.getChatLieu());
+        } else if (cboLoaiTT.getSelectedItem().equals("Size")) {
+            if (serviceTT.updateSize(this.readSize(), ma) > 0) {
+                serviceTT.updateSize(this.readSize(), ma);
+                JOptionPane.showMessageDialog(this, "sửa size thành công");
+            } else {
+                JOptionPane.showMessageDialog(this, "sửa size thất bại");
+            }
+            this.fillSize(serviceTT.getSize());
+        } else {
+            if (serviceTT.updateLoaiSP(this.readLoaiSP(), ma) > 0) {
+                serviceTT.updateLoaiSP(this.readLoaiSP(), ma);
+                JOptionPane.showMessageDialog(this, "sửa loại sản phẩm thành công");
+            } else {
+                JOptionPane.showMessageDialog(this, "sửa loại sản phẩm thất bại");
+            }
+            this.fillLoaiSP(serviceTT.getLoai());
+        }
+    }//GEN-LAST:event_btnSuaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -839,7 +926,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
             new SanPhamJFrame().setVisible(true);
         });
     }
-    
+
     void fillMau(List<Mau> list) {
         mol = (DefaultTableModel) tblThuocTinh.getModel();
         mol.setRowCount(0);
@@ -847,7 +934,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
             mol.addRow(m.dataMau());
         }
     }
-    
+
     void fillSize(List<Size> list) {
         mol = (DefaultTableModel) tblThuocTinh.getModel();
         mol.setRowCount(0);
@@ -855,7 +942,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
             mol.addRow(s.dataSize());
         }
     }
-    
+
     void fillChatLieu(List<ChatLieu> list) {
         mol = (DefaultTableModel) tblThuocTinh.getModel();
         mol.setRowCount(0);
@@ -863,7 +950,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
             mol.addRow(cl.dataChatLieu());
         }
     }
-    
+
     void fillLoaiSP(List<LoaiSP> list) {
         mol = (DefaultTableModel) tblThuocTinh.getModel();
         mol.setRowCount(0);
@@ -914,6 +1001,54 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         } else {
             rdoDisableTT.setSelected(true);
         }
+    }
+
+    Mau readMau() {
+        Mau m = new Mau();
+        m.setMaMau(txtMaThuocTinh.getText());
+        m.setTenMau(txtTenThuocTinh.getText());
+        if (rdoActiveTT.isSelected()) {
+            m.setTrangThai(true);
+        } else {
+            m.setTrangThai(false);
+        }
+        return m;
+    }
+
+    Size readSize() {
+        Size s = new Size();
+        s.setMaSize(txtMaThuocTinh.getText());
+        s.setTenSize(txtTenThuocTinh.getText());
+        if (rdoActiveTT.isSelected()) {
+            s.setTrangThai(true);
+        } else {
+            s.setTrangThai(false);
+        }
+        return s;
+    }
+
+    LoaiSP readLoaiSP() {
+        LoaiSP l = new LoaiSP();
+        l.setMaLoai(txtMaThuocTinh.getText());
+        l.setTenLoai(txtTenThuocTinh.getText());
+        if (rdoActiveTT.isSelected()) {
+            l.setTrangThai(true);
+        } else {
+            l.setTrangThai(false);
+        }
+        return l;
+    }
+
+    ChatLieu readChatLieu() {
+        ChatLieu cl = new ChatLieu();
+        cl.setMaCL(txtMaThuocTinh.getText());
+        cl.setTenCL(txtTenThuocTinh.getText());
+        if (rdoActiveTT.isSelected()) {
+            cl.setTrangThai(true);
+        } else {
+            cl.setTrangThai(false);
+        }
+        return cl;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
