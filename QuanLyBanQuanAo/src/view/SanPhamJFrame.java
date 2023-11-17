@@ -10,7 +10,9 @@ import javax.swing.table.DefaultTableModel;
 import model.ChatLieu;
 import model.LoaiSP;
 import model.Mau;
+import model.SanPham;
 import model.Size;
+import service.SanPhamService;
 import service.ThuocTinhService;
 
 /**
@@ -21,6 +23,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
 
     private DefaultTableModel mol = new DefaultTableModel();
     private ThuocTinhService serviceTT = new ThuocTinhService();
+    private SanPhamService serviceSP = new SanPhamService();
     private int index = -1;
 
     /**
@@ -32,6 +35,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         this.fillLoaiSP(serviceTT.getLoai());
         this.showLoai(0);
         tblThuocTinh.setRowSelectionInterval(0, 0);
+        this.fillSanPham(serviceSP.getSanPham());
 
     }
 
@@ -106,9 +110,9 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         btnSuaSP = new javax.swing.JButton();
         btnClearSP = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        tblSanPham = new javax.swing.JTable();
+        tblSanPhamChiTiet = new javax.swing.JTable();
         jScrollPane3 = new javax.swing.JScrollPane();
-        tblSanPham1 = new javax.swing.JTable();
+        tblSanPham = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -521,7 +525,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         btnClearSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
         btnClearSP.setText("Clear");
 
-        tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
+        tblSanPhamChiTiet.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null},
@@ -532,9 +536,9 @@ public class SanPhamJFrame extends javax.swing.JFrame {
                 "Mã SPCT", "Loại SP", "Màu sắc", "Size", "Chất liệu", "Lượng tồn kho", "Đơn giá"
             }
         ));
-        jScrollPane2.setViewportView(tblSanPham);
+        jScrollPane2.setViewportView(tblSanPhamChiTiet);
 
-        tblSanPham1.setModel(new javax.swing.table.DefaultTableModel(
+        tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null},
                 {null, null},
@@ -545,10 +549,10 @@ public class SanPhamJFrame extends javax.swing.JFrame {
                 "Mã SP", "Tên SP"
             }
         ));
-        jScrollPane3.setViewportView(tblSanPham1);
-        if (tblSanPham1.getColumnModel().getColumnCount() > 0) {
-            tblSanPham1.getColumnModel().getColumn(0).setHeaderValue("Mã SP");
-            tblSanPham1.getColumnModel().getColumn(1).setHeaderValue("Tên SP");
+        jScrollPane3.setViewportView(tblSanPham);
+        if (tblSanPham.getColumnModel().getColumnCount() > 0) {
+            tblSanPham.getColumnModel().getColumn(0).setHeaderValue("Mã SP");
+            tblSanPham.getColumnModel().getColumn(1).setHeaderValue("Tên SP");
         }
 
         javax.swing.GroupLayout pnlChiTietSPLayout = new javax.swing.GroupLayout(pnlChiTietSP);
@@ -1050,6 +1054,14 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         }
         return cl;
     }
+    
+    void fillSanPham(List<SanPham> list){
+        mol = (DefaultTableModel)tblSanPham.getModel();
+        mol.setRowCount(0);
+        for(SanPham sp : list){
+            mol.addRow(sp.dataSanPham());
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClear;
@@ -1108,7 +1120,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdoDisableSP;
     private javax.swing.JRadioButton rdoDisableTT;
     private javax.swing.JTable tblSanPham;
-    private javax.swing.JTable tblSanPham1;
+    private javax.swing.JTable tblSanPhamChiTiet;
     private javax.swing.JTable tblThuocTinh;
     private javax.swing.JTextField txtDonGia;
     private javax.swing.JTextField txtMaSP;
