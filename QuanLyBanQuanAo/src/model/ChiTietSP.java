@@ -9,5 +9,14 @@ package model;
  * @author ADMIN
  */
 public class ChiTietSP {
+    private int idBienThe;
+    private String maBienThe;
+    private LoaiSP loai;
+    private SanPham sp;
+    private Mau mau;
+    private Size size;
+    private ChatLieu cl;
+    private int soLuong;
+    private double gia;
     
 }
