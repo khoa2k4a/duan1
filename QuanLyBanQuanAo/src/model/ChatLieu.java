@@ -19,6 +19,11 @@ public class ChatLieu {
     public ChatLieu() {
     }
 
+    public ChatLieu(String tenCL, boolean trangThai) {
+        this.tenCL = tenCL;
+        this.trangThai = trangThai;
+    }
+
     public ChatLieu(String maCL, String tenCL, boolean trangThai) {
         this.maCL = maCL;
         this.tenCL = tenCL;

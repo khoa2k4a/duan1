@@ -823,7 +823,6 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (cboLoaiTT.getSelectedItem().equals("Màu Sắc")) {
             if (serviceTT.addMau(this.readMau()) > 0) {
-                serviceTT.addMau(this.readMau());
                 JOptionPane.showMessageDialog(this, "thêm màu thành công");
             } else {
                 JOptionPane.showMessageDialog(this, "thêm màu thất bại");
@@ -831,7 +830,6 @@ public class SanPhamJFrame extends javax.swing.JFrame {
             this.fillMau(serviceTT.getMau());
         } else if (cboLoaiTT.getSelectedItem().equals("Chất Liệu")) {
             if (serviceTT.addChatLieu(this.readChatLieu()) > 0) {
-                serviceTT.addChatLieu(this.readChatLieu());
                 JOptionPane.showMessageDialog(this, "thêm chất liệu thành công");
             } else {
                 JOptionPane.showMessageDialog(this, "thêm chất liệu thất bại");
@@ -839,7 +837,6 @@ public class SanPhamJFrame extends javax.swing.JFrame {
             this.fillChatLieu(serviceTT.getChatLieu());
         } else if (cboLoaiTT.getSelectedItem().equals("Size")) {
             if (serviceTT.addSize(this.readSize()) > 0) {
-                serviceTT.addSize(this.readSize());
                 JOptionPane.showMessageDialog(this, "thêm size thành công");
             } else {
                 JOptionPane.showMessageDialog(this, "thêm size thất bại");
@@ -847,7 +844,6 @@ public class SanPhamJFrame extends javax.swing.JFrame {
             this.fillSize(serviceTT.getSize());
         } else {
             if (serviceTT.addloaiSP(this.readLoaiSP()) > 0) {
-                serviceTT.addloaiSP(this.readLoaiSP());
                 JOptionPane.showMessageDialog(this, "thêm loại sản phẩm thành công");
             } else {
                 JOptionPane.showMessageDialog(this, "thêm loại sản phẩm thất bại");

@@ -19,6 +19,11 @@ public class LoaiSP {
     public LoaiSP() {
     }
 
+    public LoaiSP(String tenLoai, boolean trangThai) {
+        this.tenLoai = tenLoai;
+        this.trangThai = trangThai;
+    }
+
     public LoaiSP(String maLoai, String tenLoai, boolean trangThai) {
         this.maLoai = maLoai;
         this.tenLoai = tenLoai;

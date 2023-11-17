@@ -19,6 +19,11 @@ public class Mau {
     public Mau() {
     }
 
+    public Mau(String tenMau, boolean trangThai) {
+        this.tenMau = tenMau;
+        this.trangThai = trangThai;
+    }
+
     public Mau(String maMau, String tenMau, boolean trangThai) {
         this.maMau = maMau;
         this.tenMau = tenMau;
