@@ -39,8 +39,24 @@ public class TaiKhoanJFrame extends javax.swing.JFrame {
         btnThongKe = new javax.swing.JButton();
         btnTaiKhoan = new javax.swing.JButton();
         lblDangXuat = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        taikhoan2 = new javax.swing.JPanel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblTaiKhoan2 = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        txtMaTk = new javax.swing.JTextField();
+        txtHoTenTk = new javax.swing.JTextField();
+        jLabel17 = new javax.swing.JLabel();
+        txtMatKhau = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        txtThemTaiK = new javax.swing.JButton();
+        txtSuaTaiK = new javax.swing.JButton();
+        txtXoaTaiK = new javax.swing.JButton();
+        txtTimTaiK = new javax.swing.JButton();
+        txtTimTK = new javax.swing.JTextField();
+        rdoNV = new javax.swing.JRadioButton();
+        rdoQL = new javax.swing.JRadioButton();
+        txtLoadTaiK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -180,32 +196,158 @@ public class TaiKhoanJFrame extends javax.swing.JFrame {
                 .addComponent(btnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblDangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnHoaDon, btnKH, btnKhuyenMai, btnLichSu, btnNhanVien, btnSP, btnTaiKhoan, btnThongKe});
 
-        jPanel2.setBackground(new java.awt.Color(204, 255, 255));
+        jScrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED), "Danh sách tài khoản"));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Pink Bold Retro Aesthetic Lash Artist Circle Logo.png"))); // NOI18N
+        tblTaiKhoan2.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "Mã NV", "Họ Tên", "Tài khoản", "Mật khẩu", "Vai trò"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, true, false, false
+            };
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(237, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(184, 184, 184))
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tblTaiKhoan2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTaiKhoan2MouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tblTaiKhoan2);
+
+        jLabel6.setText("Mã");
+
+        jLabel17.setText("Họ tên");
+
+        jLabel19.setText("Mật khẩu");
+
+        jLabel21.setText("Vai trò");
+
+        txtThemTaiK.setText("Thêm");
+        txtThemTaiK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtThemTaiKActionPerformed(evt);
+            }
+        });
+
+        txtSuaTaiK.setText("Sửa");
+        txtSuaTaiK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSuaTaiKActionPerformed(evt);
+            }
+        });
+
+        txtXoaTaiK.setText("Xóa");
+        txtXoaTaiK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtXoaTaiKActionPerformed(evt);
+            }
+        });
+
+        txtTimTaiK.setText("Tìm");
+        txtTimTaiK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTimTaiKActionPerformed(evt);
+            }
+        });
+
+        rdoNV.setText("Nhân viên");
+
+        rdoQL.setText("Quản lý");
+
+        txtLoadTaiK.setText("LoadV");
+        txtLoadTaiK.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtLoadTaiKActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout taikhoan2Layout = new javax.swing.GroupLayout(taikhoan2);
+        taikhoan2.setLayout(taikhoan2Layout);
+        taikhoan2Layout.setHorizontalGroup(
+            taikhoan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(taikhoan2Layout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 681, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(taikhoan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(taikhoan2Layout.createSequentialGroup()
+                        .addComponent(txtSuaTaiK)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtLoadTaiK))
+                    .addGroup(taikhoan2Layout.createSequentialGroup()
+                        .addGroup(taikhoan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel17)
+                            .addComponent(jLabel19)
+                            .addComponent(jLabel21))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                        .addGroup(taikhoan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMaTk, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtHoTenTk, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(rdoNV)
+                            .addComponent(rdoQL)))
+                    .addGroup(taikhoan2Layout.createSequentialGroup()
+                        .addComponent(txtThemTaiK)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtXoaTaiK))
+                    .addGroup(taikhoan2Layout.createSequentialGroup()
+                        .addComponent(txtTimTK)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTimTaiK)))
+                .addGap(19, 19, 19))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 439, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        taikhoan2Layout.setVerticalGroup(
+            taikhoan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane4)
+            .addGroup(taikhoan2Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(taikhoan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtTimTaiK)
+                    .addComponent(txtTimTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(34, 34, 34)
+                .addGroup(taikhoan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtMaTk))
+                .addGap(18, 18, 18)
+                .addGroup(taikhoan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel17)
+                    .addComponent(txtHoTenTk))
+                .addGap(18, 18, 18)
+                .addGroup(taikhoan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(txtMatKhau))
+                .addGap(18, 18, 18)
+                .addGroup(taikhoan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(rdoNV))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(rdoQL)
+                .addGap(31, 31, 31)
+                .addGroup(taikhoan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtThemTaiK)
+                    .addComponent(txtXoaTaiK))
+                .addGap(31, 31, 31)
+                .addGroup(taikhoan2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtSuaTaiK)
+                    .addComponent(txtLoadTaiK))
+                .addGap(322, 322, 322))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -214,16 +356,14 @@ public class TaiKhoanJFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(taikhoan2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(taikhoan2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -273,6 +413,48 @@ public class TaiKhoanJFrame extends javax.swing.JFrame {
         new TaiKhoanJFrame().setVisible(true);
     }//GEN-LAST:event_btnHomeActionPerformed
 
+    private void tblTaiKhoan2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTaiKhoan2MouseClicked
+//        int row = tblTaiKhoan.getSelectedRow();
+//        loadtk(row);
+    }//GEN-LAST:event_tblTaiKhoan2MouseClicked
+
+    private void txtThemTaiKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtThemTaiKActionPerformed
+//        inserttk();
+    }//GEN-LAST:event_txtThemTaiKActionPerformed
+
+    private void txtSuaTaiKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSuaTaiKActionPerformed
+//        updatetk();
+    }//GEN-LAST:event_txtSuaTaiKActionPerformed
+
+    private void txtXoaTaiKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtXoaTaiKActionPerformed
+//        deletetk();
+    }//GEN-LAST:event_txtXoaTaiKActionPerformed
+
+    private void txtTimTaiKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimTaiKActionPerformed
+//        try {
+//            String maNV = txtTimTK.getText();
+//            if (maNV.isEmpty()) {
+//                MsgBox.alert(this, "Mã sản phẩm không được để trống.");
+//                return;
+//            }
+//            List<TaiKhoan> productList = tk.findProductByMatk(maNV);
+//
+//            if (productList.isEmpty()) {
+//                MsgBox.alert(this, "Không tìm thấy sản phẩm có mã " + maNV);
+//            } else {
+//                updateTableTaiKhoan(productList);
+//                MsgBox.alert(this, "Tìm kiếm thành công!");
+//            }
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            MsgBox.alert(this, "Tìm kiếm thất bại! Lỗi: " + e.getMessage());
+//        }
+    }//GEN-LAST:event_txtTimTaiKActionPerformed
+
+    private void txtLoadTaiKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoadTaiKActionPerformed
+//        Tabletk();
+    }//GEN-LAST:event_txtLoadTaiKActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -315,9 +497,31 @@ public class TaiKhoanJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnSP;
     private javax.swing.JButton btnTaiKhoan;
     private javax.swing.JButton btnThongKe;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JLabel lblDangXuat;
+    private javax.swing.JRadioButton rdoNV;
+    private javax.swing.JRadioButton rdoQL;
+    private javax.swing.JPanel taikhoan;
+    private javax.swing.JPanel taikhoan1;
+    private javax.swing.JPanel taikhoan2;
+    private javax.swing.JTable tblTaiKhoan;
+    private javax.swing.JTable tblTaiKhoan1;
+    private javax.swing.JTable tblTaiKhoan2;
+    private javax.swing.JTextField txtHoTenTk;
+    private javax.swing.JButton txtLoadTaiK;
+    private javax.swing.JTextField txtMaTk;
+    private javax.swing.JTextField txtMatKhau;
+    private javax.swing.JButton txtSuaTaiK;
+    private javax.swing.JButton txtThemTaiK;
+    private javax.swing.JTextField txtTimTK;
+    private javax.swing.JButton txtTimTaiK;
+    private javax.swing.JButton txtXoaTaiK;
     // End of variables declaration//GEN-END:variables
 }

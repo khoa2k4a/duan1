@@ -71,10 +71,8 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
         btnThemVoucher = new javax.swing.JButton();
         btnSuaVoucher = new javax.swing.JButton();
         btnClearVoucher = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblVoucher = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
-        tblVoucher1 = new javax.swing.JTable();
+        tblVoucher = new javax.swing.JTable();
         pnlSale = new javax.swing.JPanel();
         lbl_Sale = new javax.swing.JLabel();
         pnTimKiemSale = new javax.swing.JPanel();
@@ -101,10 +99,10 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
         btnThemSale = new javax.swing.JButton();
         btnSuaSale = new javax.swing.JButton();
         btnClearSale = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        tblSale = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
-        tblSale1 = new javax.swing.JTable();
+        tblSale = new javax.swing.JTable();
+        lblDonViGiamSale1 = new javax.swing.JLabel();
+        cboDonViGiamSale1 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -388,29 +386,16 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
 
         tblVoucher.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã VoucherCT", "Số lượng", "Giá trị giảm", "Đơn vị giảm"
+                "Mã Voucher", "Tên chiến dịch", "Ngày bắt đầu", "Ngày kết thúc", "Giá trị giảm", "Đơn vị giảm", "Số lượng", "Trạng thái"
             }
         ));
-        jScrollPane2.setViewportView(tblVoucher);
-
-        tblVoucher1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Mã Voucher", "Tên chiến dịch", "Ngày bắt đầu", "Ngày kết thúc"
-            }
-        ));
-        jScrollPane4.setViewportView(tblVoucher1);
+        jScrollPane4.setViewportView(tblVoucher);
 
         javax.swing.GroupLayout pnlVoucherLayout = new javax.swing.GroupLayout(pnlVoucher);
         pnlVoucher.setLayout(pnlVoucherLayout);
@@ -469,10 +454,7 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
                             .addComponent(lbl_Voucher, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 42, Short.MAX_VALUE))
                     .addComponent(pnTimKiemVoucher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlVoucherLayout.createSequentialGroup()
-                        .addComponent(jScrollPane4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 471, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane4))
                 .addContainerGap())
         );
 
@@ -521,9 +503,7 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
                     .addComponent(lblEndDateVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtEndDateVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(31, 31, 31)
-                .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -658,34 +638,18 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
 
         tblSale.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã SaleCT", "Số lượng", "Giá trị giảm", "Đơn vị giảm"
+                "Mã Sale", "Tên chiến dịch", "Sản phẩm áp dụng", "Ngày bắt đầu", "Ngày kết thúc", "Giá trị giảm", "Đơn vị giảm", "Số lượng", "Trạng thái"
             }
         ));
-        jScrollPane3.setViewportView(tblSale);
+        jScrollPane5.setViewportView(tblSale);
 
-        tblSale1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Mã Sale", "Tên chiến dịch", "Ngày bắt đầu", "Ngày kết thúc"
-            }
-        ));
-        jScrollPane5.setViewportView(tblSale1);
-        if (tblSale1.getColumnModel().getColumnCount() > 0) {
-            tblSale1.getColumnModel().getColumn(1).setHeaderValue("Tên chiến dịch");
-            tblSale1.getColumnModel().getColumn(2).setHeaderValue("Ngày bắt đầu");
-            tblSale1.getColumnModel().getColumn(3).setHeaderValue("Ngày kết thúc");
-        }
+        lblDonViGiamSale1.setText("Sản phẩm áp dụng");
 
         javax.swing.GroupLayout pnlSaleLayout = new javax.swing.GroupLayout(pnlSale);
         pnlSale.setLayout(pnlSaleLayout);
@@ -722,6 +686,10 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
                                 .addGap(29, 29, 29)
                                 .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(pnlSaleLayout.createSequentialGroup()
+                                        .addComponent(lblDonViGiamSale1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cboDonViGiamSale1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addGroup(pnlSaleLayout.createSequentialGroup()
                                         .addComponent(lblSoLuongSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(txtSoLuongSale, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -739,10 +707,7 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
                                     .addComponent(btnClearSale)
                                     .addComponent(btnSuaSale))))
                         .addGap(0, 42, Short.MAX_VALUE))
-                    .addGroup(pnlSaleLayout.createSequentialGroup()
-                        .addComponent(jScrollPane5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane5))
                 .addContainerGap())
         );
 
@@ -780,16 +745,16 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
                         .addComponent(btnSuaSale)
                         .addGap(18, 18, 18)
                         .addComponent(btnClearSale)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(rdoActiveSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(rdoDisableSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(rdoDisableSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblDonViGiamSale1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboDonViGiamSale1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblTrangThaiSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
-                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE))
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -980,6 +945,7 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup_TrangThaiSale;
     private javax.swing.ButtonGroup buttonGroup_TrangThaiVoucher;
     private javax.swing.JComboBox<String> cboDonViGiamSale;
+    private javax.swing.JComboBox<String> cboDonViGiamSale1;
     private javax.swing.JComboBox<String> cboDonViGiamVoucher;
     private javax.swing.JComboBox<String> cboLocTTSale;
     private javax.swing.JComboBox<String> cboLocVaiTro1;
@@ -989,13 +955,12 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblDangXuat;
     private javax.swing.JLabel lblDonViGiamSale;
+    private javax.swing.JLabel lblDonViGiamSale1;
     private javax.swing.JLabel lblDonViGiamVoucher;
     private javax.swing.JLabel lblEndDateSale;
     private javax.swing.JLabel lblEndDateVoucher;
@@ -1021,9 +986,7 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdoDisableSale;
     private javax.swing.JRadioButton rdoDisableVoucher;
     private javax.swing.JTable tblSale;
-    private javax.swing.JTable tblSale1;
     private javax.swing.JTable tblVoucher;
-    private javax.swing.JTable tblVoucher1;
     private javax.swing.JTextField txtEndDateSale;
     private javax.swing.JTextField txtEndDateVoucher;
     private javax.swing.JTextField txtGiaTriGiamSale;

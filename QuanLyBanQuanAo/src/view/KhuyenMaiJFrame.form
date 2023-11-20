@@ -370,11 +370,7 @@
                                   <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
                               </Group>
                               <Component id="pnTimKiemVoucher" max="32767" attributes="0"/>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jScrollPane4" max="32767" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane2" min="-2" pref="471" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jScrollPane4" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -429,10 +425,7 @@
                               <Component id="txtEndDateVoucher" linkSize="8" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane4" pref="360" max="32767" attributes="0"/>
-                              <Component id="jScrollPane2" pref="360" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jScrollPane4" pref="360" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -678,7 +671,7 @@
                     <Property name="text" type="java.lang.String" value="Clear"/>
                   </Properties>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane2">
+                <Container class="javax.swing.JScrollPane" name="jScrollPane4">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
@@ -688,63 +681,39 @@
                     <Component class="javax.swing.JTable" name="tblVoucher">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
-                            <Column editable="true" title="M&#xe3; VoucherCT" type="java.lang.Object"/>
-                            <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
-                            <Column editable="true" title="Gi&#xe1; tr&#x1ecb; gi&#x1ea3;m" type="java.lang.Object"/>
-                            <Column editable="true" title="&#x110;&#x1a1;n v&#x1ecb; gi&#x1ea3;m" type="java.lang.Object"/>
-                          </Table>
-                        </Property>
-                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                          <TableColumnModel selectionModel="0">
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                          </TableColumnModel>
-                        </Property>
-                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                        </Property>
-                      </Properties>
-                    </Component>
-                  </SubComponents>
-                </Container>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane4">
-                  <AuxValues>
-                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                  </AuxValues>
-
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                  <SubComponents>
-                    <Component class="javax.swing.JTable" name="tblVoucher1">
-                      <Properties>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
+                          <Table columnCount="8" rowCount="4">
                             <Column editable="true" title="M&#xe3; Voucher" type="java.lang.Object"/>
                             <Column editable="true" title="T&#xea;n chi&#x1ebf;n d&#x1ecb;ch" type="java.lang.Object"/>
                             <Column editable="true" title="Ng&#xe0;y b&#x1eaf;t &#x111;&#x1ea7;u" type="java.lang.Object"/>
                             <Column editable="true" title="Ng&#xe0;y k&#x1ebf;t th&#xfa;c" type="java.lang.Object"/>
+                            <Column editable="true" title="Gi&#xe1; tr&#x1ecb; gi&#x1ea3;m" type="java.lang.Object"/>
+                            <Column editable="true" title="&#x110;&#x1a1;n v&#x1ecb; gi&#x1ea3;m" type="java.lang.Object"/>
+                            <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
+                            <Column editable="true" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                           <TableColumnModel selectionModel="0">
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                               <Title/>
                               <Editor/>
@@ -829,6 +798,11 @@
                                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                               <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="lblDonViGiamSale1" min="-2" pref="124" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="cboDonViGiamSale1" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="0" attributes="0">
                                                   <Component id="lblSoLuongSale" min="-2" pref="91" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                   <Component id="txtSoLuongSale" min="-2" pref="244" max="-2" attributes="0"/>
@@ -838,7 +812,7 @@
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                   <Component id="txtGiaTriGiamSale" min="-2" pref="244" max="-2" attributes="0"/>
                                               </Group>
-                                              <Group type="102" alignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
                                                   <Component id="lblDonViGiamSale" min="-2" pref="91" max="-2" attributes="0"/>
                                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                                   <Component id="cboDonViGiamSale" min="-2" max="-2" attributes="0"/>
@@ -854,11 +828,7 @@
                                   </Group>
                                   <EmptySpace min="0" pref="42" max="32767" attributes="0"/>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jScrollPane5" max="32767" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="jScrollPane3" min="-2" pref="426" max="-2" attributes="0"/>
-                              </Group>
+                              <Component id="jScrollPane5" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -902,19 +872,18 @@
                                   <Component id="btnClearSale" linkSize="12" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="rdoActiveSale" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="rdoDisableSale" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="lblDonViGiamSale1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="cboDonViGiamSale1" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <Component id="lblTrangThaiSale" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jScrollPane3" pref="386" max="32767" attributes="0"/>
-                              <Component id="jScrollPane5" pref="386" max="32767" attributes="0"/>
-                          </Group>
+                          <Component id="jScrollPane5" pref="373" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -1150,7 +1119,7 @@
                     <Property name="text" type="java.lang.String" value="Clear"/>
                   </Properties>
                 </Component>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                <Container class="javax.swing.JScrollPane" name="jScrollPane5">
                   <AuxValues>
                     <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                   </AuxValues>
@@ -1160,59 +1129,16 @@
                     <Component class="javax.swing.JTable" name="tblSale">
                       <Properties>
                         <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
-                            <Column editable="true" title="M&#xe3; SaleCT" type="java.lang.Object"/>
-                            <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
-                            <Column editable="true" title="Gi&#xe1; tr&#x1ecb; gi&#x1ea3;m" type="java.lang.Object"/>
-                            <Column editable="true" title="&#x110;&#x1a1;n v&#x1ecb; gi&#x1ea3;m" type="java.lang.Object"/>
-                          </Table>
-                        </Property>
-                        <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
-                          <TableColumnModel selectionModel="0">
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title/>
-                              <Editor/>
-                              <Renderer/>
-                            </Column>
-                          </TableColumnModel>
-                        </Property>
-                        <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
-                          <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
-                        </Property>
-                      </Properties>
-                    </Component>
-                  </SubComponents>
-                </Container>
-                <Container class="javax.swing.JScrollPane" name="jScrollPane5">
-                  <AuxValues>
-                    <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                  </AuxValues>
-
-                  <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                  <SubComponents>
-                    <Component class="javax.swing.JTable" name="tblSale1">
-                      <Properties>
-                        <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                          <Table columnCount="4" rowCount="4">
+                          <Table columnCount="9" rowCount="4">
                             <Column editable="true" title="M&#xe3; Sale" type="java.lang.Object"/>
                             <Column editable="true" title="T&#xea;n chi&#x1ebf;n d&#x1ecb;ch" type="java.lang.Object"/>
+                            <Column editable="true" title="S&#x1ea3;n ph&#x1ea9;m &#xe1;p d&#x1ee5;ng" type="java.lang.Object"/>
                             <Column editable="true" title="Ng&#xe0;y b&#x1eaf;t &#x111;&#x1ea7;u" type="java.lang.Object"/>
                             <Column editable="true" title="Ng&#xe0;y k&#x1ebf;t th&#xfa;c" type="java.lang.Object"/>
+                            <Column editable="true" title="Gi&#xe1; tr&#x1ecb; gi&#x1ea3;m" type="java.lang.Object"/>
+                            <Column editable="true" title="&#x110;&#x1a1;n v&#x1ecb; gi&#x1ea3;m" type="java.lang.Object"/>
+                            <Column editable="true" title="S&#x1ed1; l&#x1b0;&#x1ee3;ng" type="java.lang.Object"/>
+                            <Column editable="true" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object"/>
                           </Table>
                         </Property>
                         <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -1223,17 +1149,42 @@
                               <Renderer/>
                             </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title value="T&#xea;n chi&#x1ebf;n d&#x1ecb;ch"/>
+                              <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title value="Ng&#xe0;y b&#x1eaf;t &#x111;&#x1ea7;u"/>
+                              <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
                             <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                              <Title value="Ng&#xe0;y k&#x1ebf;t th&#xfa;c"/>
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
+                              <Editor/>
+                              <Renderer/>
+                            </Column>
+                            <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                              <Title/>
                               <Editor/>
                               <Renderer/>
                             </Column>
@@ -1246,6 +1197,21 @@
                     </Component>
                   </SubComponents>
                 </Container>
+                <Component class="javax.swing.JLabel" name="lblDonViGiamSale1">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="S&#x1ea3;n ph&#x1ea9;m &#xe1;p d&#x1ee5;ng"/>
+                  </Properties>
+                </Component>
+                <Component class="javax.swing.JComboBox" name="cboDonViGiamSale1">
+                  <Properties>
+                    <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                      <StringArray count="0"/>
+                    </Property>
+                  </Properties>
+                  <AuxValues>
+                    <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                  </AuxValues>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>

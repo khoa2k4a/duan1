@@ -6,22 +6,22 @@ package model;
 
 /**
  *
- * @author ADMIN
+ * @author admin
  */
-public class SanPham {
+public class LoaiSanPham {
 
     private Long id;
-    private String maSP;
-    private String tenSP;
+    private String maLSP;
+    private String tenLSP;
     private boolean trangThai;
 
-    public SanPham() {
+    public LoaiSanPham() {
     }
 
-    public SanPham(Long id, String maSP, String tenSP, boolean trangThai) {
+    public LoaiSanPham(Long id, String maLSP, String tenLSP, boolean trangThai) {
         this.id = id;
-        this.maSP = maSP;
-        this.tenSP = tenSP;
+        this.maLSP = maLSP;
+        this.tenLSP = tenLSP;
         this.trangThai = trangThai;
     }
 
@@ -33,20 +33,20 @@ public class SanPham {
         this.id = id;
     }
 
-    public String getMaSP() {
-        return maSP;
+    public String getMaLSP() {
+        return maLSP;
     }
 
-    public void setMaSP(String maSP) {
-        this.maSP = maSP;
+    public void setMaLSP(String maLSP) {
+        this.maLSP = maLSP;
     }
 
-    public String getTenSP() {
-        return tenSP;
+    public String getTenLSP() {
+        return tenLSP;
     }
 
-    public void setTenSP(String tenSP) {
-        this.tenSP = tenSP;
+    public void setTenLSP(String tenLSP) {
+        this.tenLSP = tenLSP;
     }
 
     public boolean isTrangThai() {
@@ -59,7 +59,7 @@ public class SanPham {
 
     @Override
     public String toString() {
-        return "SanPham{" + "id=" + id + ", maSP=" + maSP + ", tenSP=" + tenSP + ", trangThai=" + trangThai + '}';
+        return "LoaiSanPham{" + "id=" + id + ", maLSP=" + maLSP + ", tenLSP=" + tenLSP + ", trangThai=" + trangThai + '}';
     }
 
 }
