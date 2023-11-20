@@ -19,6 +19,10 @@ public class Size {
     public Size() {
     }
 
+    public Size(String tenSize) {
+        this.tenSize = tenSize;
+    }
+
     public Size(String tenSize, boolean trangThai) {
         this.tenSize = tenSize;
         this.trangThai = trangThai;
