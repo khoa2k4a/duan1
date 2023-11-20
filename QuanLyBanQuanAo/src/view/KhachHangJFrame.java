@@ -4,19 +4,63 @@
  */
 package view;
 
+import java.util.List;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import model.KhachHang;
+import service.KhachHangService;
+
 /**
  *
  * @author ADMIN
  */
 public class KhachHangJFrame extends javax.swing.JFrame {
-
+private KhachHangService servicekhachhang = new KhachHangService();
+private DefaultTableModel mol = new DefaultTableModel();
+private int index = -1;
     /**
      * Creates new form ViewTrangChu
      */
     public KhachHangJFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        this.fillTable(servicekhachhang.getAll());
+    }
+    void fillTable(List<KhachHang> list){
+        mol = (DefaultTableModel) tblKhachHang.getModel();
+        mol.setRowCount(0);
+        for(KhachHang x: list){
+            mol.addRow(x.todata());
+        }
+    }
+    
+    void showKh(int index){
+        KhachHang kh = servicekhachhang.getAll().get(index);
+        txtDiaChi.setText(kh.getDiachi());
+        txtEmail.setText(kh.getEmail());
+        txtMaKH.setText(kh.getMakh());
+        txtSDT.setText(kh.getSdt());
+        txtTenKH.setText(kh.getTenkh());
+        if(kh.isGioitinh()){
+            rdoNu.setSelected(true);
+        }else{
+            rdoNam.setSelected(true);
+        }
+    }
+    KhachHang readfrom(){
+        String ma,ten,diachi,email,sdt;
+        boolean gioitinh,trangthai=false;
+        ma = txtMaKH.getText();
+        ten = txtTenKH.getText();
+        diachi = txtDiaChi.getText();
+        email = txtEmail.getText();
+        sdt = txtSDT.getText();
+        if(rdoNu.isSelected()){
+            gioitinh=true;
+        }else{
+            gioitinh=false;
+        }
+        return new KhachHang(ma, ten, diachi, sdt, email, gioitinh, trangthai);
     }
 
     /**
@@ -85,7 +129,7 @@ public class KhachHangJFrame extends javax.swing.JFrame {
         });
 
         btnSP.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon san pham.png"))); // NOI18N
+        btnSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_SP.png"))); // NOI18N
         btnSP.setText("Sản phẩm");
         btnSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -94,7 +138,7 @@ public class KhachHangJFrame extends javax.swing.JFrame {
         });
 
         btnNhanVien.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon NhanVien.png"))); // NOI18N
+        btnNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_NhanVien.png"))); // NOI18N
         btnNhanVien.setText("Nhân viên");
         btnNhanVien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,7 +147,7 @@ public class KhachHangJFrame extends javax.swing.JFrame {
         });
 
         btnHoaDon.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon HoaDon.png"))); // NOI18N
+        btnHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_HoaDon.png"))); // NOI18N
         btnHoaDon.setText("Hóa đơn");
         btnHoaDon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +156,7 @@ public class KhachHangJFrame extends javax.swing.JFrame {
         });
 
         btnKH.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnKH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon KhachHang.png"))); // NOI18N
+        btnKH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_KhachHang.png"))); // NOI18N
         btnKH.setText("Khách hàng");
         btnKH.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +165,7 @@ public class KhachHangJFrame extends javax.swing.JFrame {
         });
 
         btnKhuyenMai.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnKhuyenMai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon KhuyenMai.png"))); // NOI18N
+        btnKhuyenMai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_KhuyenMai.png"))); // NOI18N
         btnKhuyenMai.setText("Khuyến mãi");
         btnKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -130,7 +174,7 @@ public class KhachHangJFrame extends javax.swing.JFrame {
         });
 
         btnLichSu.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnLichSu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon LichSu.png"))); // NOI18N
+        btnLichSu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_LichSu.png"))); // NOI18N
         btnLichSu.setText("Lịch sử");
         btnLichSu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -139,7 +183,7 @@ public class KhachHangJFrame extends javax.swing.JFrame {
         });
 
         btnThongKe.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon ThongKe.png"))); // NOI18N
+        btnThongKe.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_ThongKe.png"))); // NOI18N
         btnThongKe.setText("Thống kê");
         btnThongKe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -148,7 +192,7 @@ public class KhachHangJFrame extends javax.swing.JFrame {
         });
 
         btnTaiKhoan.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        btnTaiKhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon TaiKhoan.png"))); // NOI18N
+        btnTaiKhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_TaiKhoan.png"))); // NOI18N
         btnTaiKhoan.setText("Tài khoản");
         btnTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -281,6 +325,11 @@ public class KhachHangJFrame extends javax.swing.JFrame {
                 "Mã", "Tên", "Số điện thoại", "Địa chỉ", "Email", "Giới tính", "Trạng thái"
             }
         ));
+        tblKhachHang.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblKhachHangMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblKhachHang);
 
         lblMaKH.setText("Mã khách hàng");
@@ -339,14 +388,29 @@ public class KhachHangJFrame extends javax.swing.JFrame {
         btnThem.setBackground(new java.awt.Color(204, 255, 255));
         btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
         btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
         btnSua.setBackground(new java.awt.Color(204, 255, 255));
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnXoa.setBackground(new java.awt.Color(204, 255, 255));
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -534,6 +598,46 @@ public class KhachHangJFrame extends javax.swing.JFrame {
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void tblKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblKhachHangMouseClicked
+        // TODO add your handling code here:
+        index = tblKhachHang.getSelectedRow();
+        this.showKh(index);
+    }//GEN-LAST:event_tblKhachHangMouseClicked
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        // TODO add your handling code here:
+        KhachHang kh = this.readfrom();
+        if(servicekhachhang.themKh(kh)>0){
+            JOptionPane.showMessageDialog(this, "them thanh  cong");
+            this.fillTable(servicekhachhang.getAll());
+        }else{
+            JOptionPane.showMessageDialog(this, "them that bai");
+        }
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // TODO add your handling code here:
+        String ma = tblKhachHang.getValueAt(index, 0).toString();
+        if(servicekhachhang.xoaKh(ma)>0){
+            JOptionPane.showMessageDialog(this, "xoa thanh cong");
+            this.fillTable(servicekhachhang.getAll());
+        }else{
+            JOptionPane.showMessageDialog(this, "xoa that bai");
+        }
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // TODO add your handling code here:
+        String ma = tblKhachHang.getValueAt(index, 0).toString();
+        KhachHang kh = this.readfrom();
+        if(servicekhachhang.suaKh(kh, ma)>0){
+            JOptionPane.showMessageDialog(this, "sua thanh cong");
+            this.fillTable(servicekhachhang.getAll());
+        }else{
+             JOptionPane.showMessageDialog(this, "sua that bai");
+        }
+    }//GEN-LAST:event_btnSuaActionPerformed
 
     /**
      * @param args the command line arguments

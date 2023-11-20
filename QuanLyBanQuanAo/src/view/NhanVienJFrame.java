@@ -66,7 +66,7 @@ private int index = -1;
         taikhoan=txtTaiKhoan.getText();
         matkhau=txtMatKhau.getText();
         vaitro=cboVaiTro.getSelectedItem().toString();
-        if(rdoNam.isSelected()){
+        if(rdoNu.isSelected()){
             gioitinh=true;
         }else{
             gioitinh=false;

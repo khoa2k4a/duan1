@@ -37,4 +37,54 @@ public class KhachHangService {
             return null;
         }
     }
+    
+    public int themKh(KhachHang kh){
+        sql="insert into KHACHHANG(MaKH,TenKH,DiaChi,Sdt,Email,GioiTinh,TrangThai) values (?,?,?,?,?,?,?)";
+        try {
+            con = DbConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, kh.getMakh());
+            ps.setObject(2, kh.getTenkh());
+            ps.setObject(4, kh.getSdt());
+            ps.setObject(3, kh.getDiachi());
+            ps.setObject(5, kh.getEmail());
+            ps.setObject(6, kh.isGioitinh());
+            ps.setObject(7, kh.isTrangthai());
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    public int suaKh(KhachHang kh,String ma){
+        sql="update KHACHHANG set TenKH=?,Sdt=?,DiaChi=?,Email=?,GioiTinh=?,TrangThai=? where MaKH=?";
+        try {
+            con = DbConnect.getConnection();
+            ps= con.prepareStatement(sql);           
+            ps.setObject(1, kh.getTenkh());
+            ps.setObject(2, kh.getSdt());
+            ps.setObject(3, kh.getDiachi());
+            ps.setObject(4, kh.getEmail());
+            ps.setObject(5, kh.isGioitinh());
+            ps.setObject(6, kh.isTrangthai());
+            ps.setObject(7, ma);
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+    public int xoaKh(String ma){
+        sql="delete KHACHHANG where MaKH=?";
+        try {
+            con = DbConnect.getConnection();
+            ps= con.prepareStatement(sql); 
+            ps.setObject(1, ma);
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }
