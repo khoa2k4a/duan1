@@ -26,9 +26,46 @@ public class SanPhamService {
     ResultSet rs = null;
     String sql = "";
 
+    public List<SanPham> getSP() {
+        List<SanPham> listSP = new ArrayList<>();
+        sql = "select ID_SP, MaSP, TenSP, TrangThai from SANPHAM";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                SanPham sp = new SanPham();
+                sp.setIdSP(rs.getInt(1));
+                sp.setMaSP(rs.getString(2));
+                sp.setTenSP(rs.getString(3));
+                sp.setTrangThai(rs.getBoolean(4));
+                listSP.add(sp);
+            }
+            return listSP;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public int addSP(SanPham sp){
+        sql = "insert into SANPHAM(MaSP, TenSP, TrangThai) values (?, ?, ?)";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, sp.getMaSP());
+            ps.setObject(2, sp.getTenSP());
+            ps.setObject(3, sp.isTrangThai());
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+
     public List<ChiTietSP> getChiTietSP() {
         List<ChiTietSP> listCTSP = new ArrayList<>();
-        sql = "select MaSP, TenSP, MaBienTheSP, TenLoaiSP, TenMau, TenSize, TenCL, SoLuong, GiaSP, BienThe_SANPHAM.TrangThai from BienThe_SANPHAM\n"
+        sql = "select MaBienTheSP, TenSP, TenLoaiSP, TenMau, TenSize, TenCL, SoLuong, GiaSP, BienThe_SANPHAM.TrangThai from BienThe_SANPHAM\n"
                 + "join SANPHAM on BienThe_SANPHAM.ID_SP = SANPHAM.ID_SP\n"
                 + "join LOAISANPHAM on BienThe_SANPHAM.ID_LoaiSP = LOAISANPHAM.ID_LoaiSP\n"
                 + "join MAU on BienThe_SANPHAM.ID_Mau = MAU.ID_Mau\n"
@@ -40,19 +77,19 @@ public class SanPhamService {
             rs = ps.executeQuery();
             while (rs.next()) {
                 ChiTietSP ctsp = new ChiTietSP();
-                SanPham sp = new SanPham(rs.getString(1), rs.getString(2));
+                SanPham sp = new SanPham(rs.getString(2));
                 ctsp.setSp(sp);
-                ctsp.setMaBienThe(rs.getString(3));
-                LoaiSP l = new LoaiSP(rs.getString(4));
+                ctsp.setMaBienThe(rs.getString(1));
+                LoaiSP l = new LoaiSP(rs.getString(3));
                 ctsp.setLoai(l);
-                Mau m = new Mau(rs.getString(5));
+                Mau m = new Mau(rs.getString(4));
                 ctsp.setMau(m);
-                Size s = new Size(rs.getString(6));
+                Size s = new Size(rs.getString(5));
                 ctsp.setSize(s);
-                ChatLieu cl = new ChatLieu(rs.getString(7));
+                ChatLieu cl = new ChatLieu(rs.getString(6));
                 ctsp.setCl(cl);
-                ctsp.setSoLuong(rs.getInt(8));
-                ctsp.setTrangThai(rs.getBoolean(9));
+                ctsp.setSoLuong(rs.getInt(7));
+                ctsp.setTrangThai(rs.getBoolean(8));
                 listCTSP.add(ctsp);
             }
             return listCTSP;
@@ -61,14 +98,14 @@ public class SanPhamService {
             return null;
         }
     }
-    
-    public int addCTSP(ChiTietSP ctsp){
-        sql = "insert into BienThe_SANPHAM(ID_SP, MaBienTheSP, ID_LoaiSP, ID_Mau, ID_Size, ID_ChatLieu, SoLuong, GiaSP, TrangThai) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+    public int addCTSP(ChiTietSP ctsp) {
+        sql = "insert into BienThe_SANPHAM( MaBienTheSP, ID_SP, ID_LoaiSP, ID_Mau, ID_Size, ID_ChatLieu, SoLuong, GiaSP, TrangThai) values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setObject(1, ctsp.getSp().getIdSP());
-            ps.setObject(2, ctsp.getMaBienThe());
+            ps.setObject(1, ctsp.getMaBienThe());
+            ps.setObject(2, ctsp.getSp().getIdSP());
             ps.setObject(3, ctsp.getLoai().getIdLoai());
             ps.setObject(4, ctsp.getMau().getIdMau());
             ps.setObject(5, ctsp.getSize().getIdSize());

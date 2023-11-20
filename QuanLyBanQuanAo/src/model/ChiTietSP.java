@@ -119,9 +119,8 @@ public class ChiTietSP {
 
     public Object[] dataSPCT() {
         return new Object[]{
-            this.sp.getMaSP(),
-            this.sp.getTenSP(),
             this.maBienThe,
+            this.sp.getTenSP(),
             this.loai.getTenLoai(),
             this.mau.getTenMau(),
             this.size.getTenSize(),

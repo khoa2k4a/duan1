@@ -19,6 +19,10 @@ public class Mau {
     public Mau() {
     }
 
+    public Mau(int idMau) {
+        this.idMau = idMau;
+    }
+
     public Mau(String tenMau) {
         this.tenMau = tenMau;
     }

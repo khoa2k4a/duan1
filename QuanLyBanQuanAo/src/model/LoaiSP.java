@@ -19,6 +19,10 @@ public class LoaiSP {
     public LoaiSP() {
     }
 
+    public LoaiSP(int idLoai) {
+        this.idLoai = idLoai;
+    }
+
     public LoaiSP(String tenLoai) {
         this.tenLoai = tenLoai;
     }
