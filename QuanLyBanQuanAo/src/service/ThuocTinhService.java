@@ -26,16 +26,17 @@ public class ThuocTinhService {
 
     public List<Mau> getMau() {
         List<Mau> listM = new ArrayList<>();
-        sql = "select MaMau, TenMau, TrangThai from MAU";
+        sql = "select ID_Mau, MaMau, TenMau, TrangThai from MAU";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Mau m = new Mau();
-                m.setMaMau(rs.getString(1));
-                m.setTenMau(rs.getString(2));
-                m.setTrangThai(rs.getBoolean(3));
+                m.setIdMau(rs.getInt(1));
+                m.setMaMau(rs.getString(2));
+                m.setTenMau(rs.getString(3));
+                m.setTrangThai(rs.getBoolean(4));
                 listM.add(m);
             }
             return listM;
@@ -47,16 +48,17 @@ public class ThuocTinhService {
 
     public List<Size> getSize() {
         List<Size> listS = new ArrayList<>();
-        sql = "select MaSize, TenSize, TrangThai from SIZE";
+        sql = "select ID_Size, MaSize, TenSize, TrangThai from SIZE";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Size s = new Size();
-                s.setMaSize(rs.getString(1));
-                s.setTenSize(rs.getString(2));
-                s.setTrangThai(rs.getBoolean(3));
+                s.setIdSize(rs.getInt(1));
+                s.setMaSize(rs.getString(2));
+                s.setTenSize(rs.getString(3));
+                s.setTrangThai(rs.getBoolean(4));
                 listS.add(s);
             }
             return listS;
@@ -68,16 +70,17 @@ public class ThuocTinhService {
 
     public List<ChatLieu> getChatLieu() {
         List<ChatLieu> listCL = new ArrayList<>();
-        sql = "select MaChatLieu, TenCL, TrangThai from CHATLIEU";
+        sql = "select ID_CL, MaChatLieu, TenCL, TrangThai from CHATLIEU";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 ChatLieu cl = new ChatLieu();
-                cl.setMaCL(rs.getString(1));
-                cl.setTenCL(rs.getString(2));
-                cl.setTrangThai(rs.getBoolean(3));
+                cl.setIdCL(rs.getInt(1));
+                cl.setMaCL(rs.getString(2));
+                cl.setTenCL(rs.getString(3));
+                cl.setTrangThai(rs.getBoolean(4));
                 listCL.add(cl);
             }
             return listCL;
@@ -89,16 +92,17 @@ public class ThuocTinhService {
 
     public List<LoaiSP> getLoai() {
         List<LoaiSP> listL = new ArrayList<>();
-        sql = "select MaLoaiSP, TenLoaiSP, TrangThai from LOAISANPHAM";
+        sql = "select ID_LoaiSP, MaLoaiSP, TenLoaiSP, TrangThai from LOAISANPHAM";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 LoaiSP l = new LoaiSP();
-                l.setMaLoai(rs.getString(1));
-                l.setTenLoai(rs.getString(2));
-                l.setTrangThai(rs.getBoolean(3));
+                l.setIdLoai(rs.getInt(1));
+                l.setMaLoai(rs.getString(2));
+                l.setTenLoai(rs.getString(3));
+                l.setTrangThai(rs.getBoolean(4));
                 listL.add(l);
             }
             return listL;

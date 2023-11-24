@@ -14,6 +14,7 @@ public class SanPham {
     private String maSP;
     private String tenSP;
     private boolean trangThai;
+    private String loaiTT = "Tên Sản Phẩm";
 
     public SanPham() {
     }
@@ -29,6 +30,12 @@ public class SanPham {
     public SanPham(String maSP, String tenSP) {
         this.maSP = maSP;
         this.tenSP = tenSP;
+    }
+
+    public SanPham(String maSP, String tenSP, boolean trangThai) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.trangThai = trangThai;
     }
 
     public SanPham(int idSP, String maSP, String tenSP, boolean trangThai) {
@@ -73,7 +80,8 @@ public class SanPham {
     public Object[] dataSanPham() {
         return new Object[]{
             this.maSP,
-            this.tenSP
+            this.tenSP,
+            this.trangThai
         };
     }
 }
