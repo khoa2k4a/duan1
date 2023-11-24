@@ -25,6 +25,10 @@ public class HoaDon {
     public HoaDon() {
     }
 
+    public HoaDon(String maHD) {
+        this.maHD = maHD;
+    }
+
     public HoaDon(Long id, String maHD, NhanVien n, KhachHang k, Date ngayTao, String maGiamGia, String ghiChu, String hinhThucTT, boolean trangThai) {
         this.id = id;
         this.maHD = maHD;

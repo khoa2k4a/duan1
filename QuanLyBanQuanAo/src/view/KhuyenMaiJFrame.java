@@ -4,6 +4,11 @@
  */
 package view;
 
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import model.VoucherCT;
+import service.VoucherService;
+
 /**
  *
  * @author ADMIN
@@ -13,10 +18,14 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
     /**
      * Creates new form ViewTrangChu
      */
+    private final VoucherService service = new VoucherService();
+    private DefaultTableModel mol = new DefaultTableModel();
+    private int index = -1;
+
     public KhuyenMaiJFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        this.fillTable(service.getAll());
     }
 
     /**
@@ -43,36 +52,6 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
         lblDangXuat = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        pnlVoucher = new javax.swing.JPanel();
-        lbl_Voucher = new javax.swing.JLabel();
-        pnTimKiemVoucher = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
-        txtTimTen1 = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        cboLocVaiTro1 = new javax.swing.JComboBox<>();
-        btnTimKiem1 = new javax.swing.JButton();
-        lblTenChienDichVoucher = new javax.swing.JLabel();
-        txtTenChienDichVoucher = new javax.swing.JTextField();
-        lblMaVoucher = new javax.swing.JLabel();
-        txtMaVoucher = new javax.swing.JTextField();
-        lblStartDateVoucher = new javax.swing.JLabel();
-        txtStartDateVoucher = new javax.swing.JTextField();
-        lblEndDateVoucher = new javax.swing.JLabel();
-        txtEndDateVoucher = new javax.swing.JTextField();
-        lblSoLuongVoucher = new javax.swing.JLabel();
-        txtSoLuongVoucher = new javax.swing.JTextField();
-        lblGiaTriGiamVoucher = new javax.swing.JLabel();
-        txtGiaTriGiamVoucher = new javax.swing.JTextField();
-        lblDonViGiamVoucher = new javax.swing.JLabel();
-        cboDonViGiamVoucher = new javax.swing.JComboBox<>();
-        lblTrangThaiVoucher = new javax.swing.JLabel();
-        rdoActiveVoucher = new javax.swing.JRadioButton();
-        rdoDisableVoucher = new javax.swing.JRadioButton();
-        btnThemVoucher = new javax.swing.JButton();
-        btnSuaVoucher = new javax.swing.JButton();
-        btnClearVoucher = new javax.swing.JButton();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        tblVoucher = new javax.swing.JTable();
         pnlSale = new javax.swing.JPanel();
         lbl_Sale = new javax.swing.JLabel();
         pnTimKiemSale = new javax.swing.JPanel();
@@ -84,9 +63,7 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
         lblTenChienDichSale = new javax.swing.JLabel();
         txtTenChienDichSale = new javax.swing.JTextField();
         lblStartDateSale = new javax.swing.JLabel();
-        txtStartDateSale = new javax.swing.JTextField();
         lblEndDateSale = new javax.swing.JLabel();
-        txtEndDateSale = new javax.swing.JTextField();
         lblSoLuongSale = new javax.swing.JLabel();
         txtSoLuongSale = new javax.swing.JTextField();
         lblGiaTriGiamSale = new javax.swing.JLabel();
@@ -103,6 +80,41 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
         tblSale = new javax.swing.JTable();
         lblDonViGiamSale1 = new javax.swing.JLabel();
         cboDonViGiamSale1 = new javax.swing.JComboBox<>();
+        jdcKTDot4 = new com.toedter.calendar.JDateChooser();
+        jdcKTDot5 = new com.toedter.calendar.JDateChooser();
+        pnlVoucher = new javax.swing.JPanel();
+        lblTimKiemTenCD = new javax.swing.JLabel();
+        txtTimTenCDVoucher = new javax.swing.JTextField();
+        jdcLocNgayBD = new com.toedter.calendar.JDateChooser();
+        jdcLocNgayKT = new com.toedter.calendar.JDateChooser();
+        cboLocTrangThai = new javax.swing.JComboBox<>();
+        btnTimKiemVoucher = new javax.swing.JButton();
+        lblTenChienDichVoucher = new javax.swing.JLabel();
+        txtTenChienDichVoucher = new javax.swing.JTextField();
+        lblMaNV = new javax.swing.JLabel();
+        txtMaNV = new javax.swing.JTextField();
+        lblMaKH = new javax.swing.JLabel();
+        txtMaKH = new javax.swing.JTextField();
+        lblMaHD = new javax.swing.JLabel();
+        txtMaHD = new javax.swing.JTextField();
+        lblSoLuongVoucher = new javax.swing.JLabel();
+        txtSoLuongVoucher = new javax.swing.JTextField();
+        lblGiaTriGiamVoucher = new javax.swing.JLabel();
+        txtGiaTriGiamVoucher = new javax.swing.JTextField();
+        lblDonViGiamVoucher = new javax.swing.JLabel();
+        cboDonViGiamVoucher = new javax.swing.JComboBox<>();
+        lblTrangThaiVoucher = new javax.swing.JLabel();
+        rdoActiveVoucher = new javax.swing.JRadioButton();
+        rdoDisableVoucher = new javax.swing.JRadioButton();
+        btnThemVoucher = new javax.swing.JButton();
+        btnSuaVoucher = new javax.swing.JButton();
+        btnClearVoucher = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tblVoucher = new javax.swing.JTable();
+        lblNgayBatDau = new javax.swing.JLabel();
+        jdcNgayBD = new com.toedter.calendar.JDateChooser();
+        lblNgayKT = new javax.swing.JLabel();
+        jdcNgayKT = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -253,266 +265,6 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
-        pnlVoucher.setBackground(new java.awt.Color(255, 255, 255));
-
-        lbl_Voucher.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        lbl_Voucher.setText("Quản lý Voucher");
-
-        pnTimKiemVoucher.setBackground(new java.awt.Color(255, 255, 255));
-        pnTimKiemVoucher.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
-
-        jLabel5.setText("Mã Voucher");
-
-        jLabel6.setText("Trạng thái");
-
-        cboLocVaiTro1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Disable" }));
-
-        btnTimKiem1.setBackground(new java.awt.Color(204, 255, 255));
-        btnTimKiem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search.png"))); // NOI18N
-        btnTimKiem1.setText("Tìm");
-        btnTimKiem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTimKiem1ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnTimKiemVoucherLayout = new javax.swing.GroupLayout(pnTimKiemVoucher);
-        pnTimKiemVoucher.setLayout(pnTimKiemVoucherLayout);
-        pnTimKiemVoucherLayout.setHorizontalGroup(
-            pnTimKiemVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnTimKiemVoucherLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtTimTen1, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cboLocVaiTro1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnTimKiem1)
-                .addGap(43, 43, 43))
-        );
-        pnTimKiemVoucherLayout.setVerticalGroup(
-            pnTimKiemVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTimKiemVoucherLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(pnTimKiemVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(pnTimKiemVoucherLayout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnTimKiemVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cboLocVaiTro1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnTimKiem1))
-                    .addGroup(pnTimKiemVoucherLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(txtTimTen1)))
-                .addGap(16, 16, 16))
-        );
-
-        lblTenChienDichVoucher.setText("Tên chiến dịch");
-
-        txtTenChienDichVoucher.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTenChienDichVoucherActionPerformed(evt);
-            }
-        });
-
-        lblMaVoucher.setText("Mã Voucher");
-
-        txtMaVoucher.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaVoucherActionPerformed(evt);
-            }
-        });
-
-        lblStartDateVoucher.setText("Ngày bắt đầu");
-
-        txtStartDateVoucher.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStartDateVoucherActionPerformed(evt);
-            }
-        });
-
-        lblEndDateVoucher.setText("Ngày kết thúc");
-
-        txtEndDateVoucher.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEndDateVoucherActionPerformed(evt);
-            }
-        });
-
-        lblSoLuongVoucher.setText("Số lượng");
-
-        txtSoLuongVoucher.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSoLuongVoucherActionPerformed(evt);
-            }
-        });
-
-        lblGiaTriGiamVoucher.setText("Giá trị giảm");
-
-        txtGiaTriGiamVoucher.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtGiaTriGiamVoucherActionPerformed(evt);
-            }
-        });
-
-        lblDonViGiamVoucher.setText("Đơn vị giảm");
-
-        cboDonViGiamVoucher.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "%", "VND" }));
-
-        lblTrangThaiVoucher.setText("Trạng thái");
-
-        buttonGroup_TrangThaiVoucher.add(rdoActiveVoucher);
-        rdoActiveVoucher.setSelected(true);
-        rdoActiveVoucher.setText("Active");
-
-        buttonGroup_TrangThaiVoucher.add(rdoDisableVoucher);
-        rdoDisableVoucher.setText("Disable");
-
-        btnThemVoucher.setBackground(new java.awt.Color(204, 255, 255));
-        btnThemVoucher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
-        btnThemVoucher.setText("Thêm");
-
-        btnSuaVoucher.setBackground(new java.awt.Color(204, 255, 255));
-        btnSuaVoucher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
-        btnSuaVoucher.setText("Sửa");
-
-        btnClearVoucher.setBackground(new java.awt.Color(204, 255, 255));
-        btnClearVoucher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
-        btnClearVoucher.setText("Clear");
-
-        tblVoucher.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Mã Voucher", "Tên chiến dịch", "Ngày bắt đầu", "Ngày kết thúc", "Giá trị giảm", "Đơn vị giảm", "Số lượng", "Trạng thái"
-            }
-        ));
-        jScrollPane4.setViewportView(tblVoucher);
-
-        javax.swing.GroupLayout pnlVoucherLayout = new javax.swing.GroupLayout(pnlVoucher);
-        pnlVoucher.setLayout(pnlVoucherLayout);
-        pnlVoucherLayout.setHorizontalGroup(
-            pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlVoucherLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlVoucherLayout.createSequentialGroup()
-                        .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlVoucherLayout.createSequentialGroup()
-                                .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(pnlVoucherLayout.createSequentialGroup()
-                                        .addComponent(lblStartDateVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtStartDateVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addGroup(pnlVoucherLayout.createSequentialGroup()
-                                            .addComponent(lblMaVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(txtMaVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlVoucherLayout.createSequentialGroup()
-                                            .addGap(36, 36, 36)
-                                            .addComponent(lblTenChienDichVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(txtTenChienDichVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(pnlVoucherLayout.createSequentialGroup()
-                                        .addComponent(lblEndDateVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtEndDateVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(29, 29, 29)
-                                .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(pnlVoucherLayout.createSequentialGroup()
-                                        .addComponent(lblSoLuongVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtSoLuongVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pnlVoucherLayout.createSequentialGroup()
-                                        .addComponent(lblGiaTriGiamVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtGiaTriGiamVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pnlVoucherLayout.createSequentialGroup()
-                                        .addComponent(lblDonViGiamVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cboDonViGiamVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pnlVoucherLayout.createSequentialGroup()
-                                        .addComponent(lblTrangThaiVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(rdoActiveVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(rdoDisableVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(43, 43, 43)
-                                .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnThemVoucher)
-                                    .addComponent(btnSuaVoucher)
-                                    .addComponent(btnClearVoucher)))
-                            .addComponent(lbl_Voucher, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 42, Short.MAX_VALUE))
-                    .addComponent(pnTimKiemVoucher, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane4))
-                .addContainerGap())
-        );
-
-        pnlVoucherLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtEndDateVoucher, txtMaVoucher, txtStartDateVoucher, txtTenChienDichVoucher});
-
-        pnlVoucherLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClearVoucher, btnSuaVoucher, btnThemVoucher});
-
-        pnlVoucherLayout.setVerticalGroup(
-            pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlVoucherLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(lbl_Voucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnTimKiemVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTenChienDichVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTenChienDichVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSoLuongVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSoLuongVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThemVoucher))
-                .addGap(18, 18, 18)
-                .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlVoucherLayout.createSequentialGroup()
-                        .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblMaVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMaVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblGiaTriGiamVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtGiaTriGiamVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblStartDateVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtStartDateVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDonViGiamVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboDonViGiamVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(pnlVoucherLayout.createSequentialGroup()
-                        .addComponent(btnSuaVoucher)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnClearVoucher)))
-                .addGap(18, 18, 18)
-                .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(lblTrangThaiVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(rdoActiveVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(rdoDisableVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblEndDateVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEndDateVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(31, 31, 31)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        pnlVoucherLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtEndDateVoucher, txtMaVoucher, txtStartDateVoucher, txtTenChienDichVoucher});
-
-        pnlVoucherLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnClearVoucher, btnSuaVoucher, btnThemVoucher});
-
-        jTabbedPane1.addTab("Voucher", pnlVoucher);
-
         pnlSale.setBackground(new java.awt.Color(255, 255, 255));
 
         lbl_Sale.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
@@ -549,7 +301,7 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cboLocTTSale, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                 .addComponent(btnTimKiemSale)
                 .addGap(43, 43, 43))
         );
@@ -581,19 +333,7 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
 
         lblStartDateSale.setText("Ngày bắt đầu");
 
-        txtStartDateSale.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStartDateSaleActionPerformed(evt);
-            }
-        });
-
         lblEndDateSale.setText("Ngày kết thúc");
-
-        txtEndDateSale.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEndDateSaleActionPerformed(evt);
-            }
-        });
 
         lblSoLuongSale.setText("Số lượng");
 
@@ -658,9 +398,9 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
             .addGroup(pnlSaleLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnTimKiemSale, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5)
                     .addGroup(pnlSaleLayout.createSequentialGroup()
-                        .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lbl_Sale, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnlSaleLayout.createSequentialGroup()
                                 .addGap(36, 36, 36)
@@ -668,7 +408,7 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
                                     .addGroup(pnlSaleLayout.createSequentialGroup()
                                         .addComponent(lblStartDateSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtStartDateSale, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jdcKTDot4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(pnlSaleLayout.createSequentialGroup()
                                         .addComponent(lblTenChienDichSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -676,7 +416,7 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
                                     .addGroup(pnlSaleLayout.createSequentialGroup()
                                         .addComponent(lblEndDateSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(txtEndDateSale, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jdcKTDot5, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(pnlSaleLayout.createSequentialGroup()
                                         .addComponent(lblTrangThaiSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
@@ -688,7 +428,7 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
                                     .addGroup(pnlSaleLayout.createSequentialGroup()
                                         .addComponent(lblDonViGiamSale1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(cboDonViGiamSale1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addComponent(cboDonViGiamSale1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(pnlSaleLayout.createSequentialGroup()
                                         .addComponent(lblSoLuongSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -701,13 +441,13 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
                                         .addComponent(lblDonViGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(cboDonViGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(43, 43, 43)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnThemSale)
-                                    .addComponent(btnClearSale)
-                                    .addComponent(btnSuaSale))))
-                        .addGap(0, 42, Short.MAX_VALUE))
-                    .addComponent(jScrollPane5))
+                                    .addComponent(btnThemSale, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnSuaSale, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnClearSale, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(pnTimKiemSale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 36, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -727,25 +467,26 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
                     .addComponent(lblSoLuongSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtSoLuongSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnThemSale))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlSaleLayout.createSequentialGroup()
-                        .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblGiaTriGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtGiaTriGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblStartDateSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtStartDateSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                        .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblGiaTriGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtGiaTriGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblStartDateSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jdcKTDot4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblDonViGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cboDonViGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lblEndDateSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtEndDateSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jdcKTDot5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(pnlSaleLayout.createSequentialGroup()
                         .addComponent(btnSuaSale)
                         .addGap(18, 18, 18)
                         .addComponent(btnClearSale)))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(rdoActiveSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -754,13 +495,284 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
                         .addComponent(cboDonViGiamSale1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(lblTrangThaiSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pnlSaleLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnClearSale, btnSuaSale, btnThemSale});
 
         jTabbedPane1.addTab("Sale", pnlSale);
+
+        pnlVoucher.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblTimKiemTenCD.setText("Tìm kiếm");
+
+        txtTimTenCDVoucher.setText("Tên chiến dịch");
+        txtTimTenCDVoucher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTimTenCDVoucherActionPerformed(evt);
+            }
+        });
+
+        cboLocTrangThai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Disable" }));
+
+        btnTimKiemVoucher.setBackground(new java.awt.Color(204, 255, 255));
+        btnTimKiemVoucher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search.png"))); // NOI18N
+        btnTimKiemVoucher.setText("Tìm");
+        btnTimKiemVoucher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemVoucherActionPerformed(evt);
+            }
+        });
+
+        lblTenChienDichVoucher.setText("Tên chiến dịch");
+
+        txtTenChienDichVoucher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTenChienDichVoucherActionPerformed(evt);
+            }
+        });
+
+        lblMaNV.setText("Mã Nhân viên");
+
+        txtMaNV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaNVActionPerformed(evt);
+            }
+        });
+
+        lblMaKH.setText("Mã khách hàng");
+
+        txtMaKH.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaKHActionPerformed(evt);
+            }
+        });
+
+        lblMaHD.setText("Mã hóa đơn");
+
+        txtMaHD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMaHDActionPerformed(evt);
+            }
+        });
+
+        lblSoLuongVoucher.setText("Số lượng");
+
+        txtSoLuongVoucher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSoLuongVoucherActionPerformed(evt);
+            }
+        });
+
+        lblGiaTriGiamVoucher.setText("Giá trị giảm");
+
+        txtGiaTriGiamVoucher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtGiaTriGiamVoucherActionPerformed(evt);
+            }
+        });
+
+        lblDonViGiamVoucher.setText("Đơn vị giảm");
+
+        cboDonViGiamVoucher.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "%", "VND" }));
+
+        lblTrangThaiVoucher.setText("Trạng thái");
+
+        buttonGroup_TrangThaiVoucher.add(rdoActiveVoucher);
+        rdoActiveVoucher.setSelected(true);
+        rdoActiveVoucher.setText("Active");
+
+        buttonGroup_TrangThaiVoucher.add(rdoDisableVoucher);
+        rdoDisableVoucher.setText("Disable");
+
+        btnThemVoucher.setBackground(new java.awt.Color(204, 255, 255));
+        btnThemVoucher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
+        btnThemVoucher.setText("Thêm");
+
+        btnSuaVoucher.setBackground(new java.awt.Color(204, 255, 255));
+        btnSuaVoucher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
+        btnSuaVoucher.setText("Sửa");
+
+        btnClearVoucher.setBackground(new java.awt.Color(204, 255, 255));
+        btnClearVoucher.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
+        btnClearVoucher.setText("Clear");
+
+        tblVoucher.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Tên Nhân viên", "Mã KH", "Mã HD", "Tên chiến dịch", "Ngày bắt đầu", "Ngày kết thúc", "Giá trị giảm", "Đơn vị giảm", "Số lượng", "Trạng thái"
+            }
+        ));
+        tblVoucher.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblVoucherMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tblVoucher);
+
+        lblNgayBatDau.setText("Ngày bắt đầu");
+
+        lblNgayKT.setText("Ngày kết thúc");
+
+        javax.swing.GroupLayout pnlVoucherLayout = new javax.swing.GroupLayout(pnlVoucher);
+        pnlVoucher.setLayout(pnlVoucherLayout);
+        pnlVoucherLayout.setHorizontalGroup(
+            pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlVoucherLayout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblTenChienDichVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNgayBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(lblTimKiemTenCD, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlVoucherLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtMaKH, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                            .addComponent(txtMaHD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 263, Short.MAX_VALUE)
+                            .addComponent(jdcNgayBD, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtTenChienDichVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(40, 40, 40)
+                        .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(pnlVoucherLayout.createSequentialGroup()
+                                .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblSoLuongVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblDonViGiamVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(lblTrangThaiVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblGiaTriGiamVoucher, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtSoLuongVoucher, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(cboDonViGiamVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtGiaTriGiamVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(pnlVoucherLayout.createSequentialGroup()
+                                            .addComponent(rdoActiveVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(rdoDisableVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addGroup(pnlVoucherLayout.createSequentialGroup()
+                                .addComponent(lblNgayKT, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jdcNgayKT, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnSuaVoucher, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnClearVoucher, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnThemVoucher, javax.swing.GroupLayout.Alignment.TRAILING)))
+                    .addGroup(pnlVoucherLayout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addComponent(txtTimTenCDVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 245, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jdcLocNgayBD, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jdcLocNgayKT, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cboLocTrangThai, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnTimKiemVoucher)))
+                .addGap(25, 25, 25))
+            .addGroup(pnlVoucherLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 964, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        pnlVoucherLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {txtMaHD, txtMaKH, txtMaNV, txtTenChienDichVoucher});
+
+        pnlVoucherLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClearVoucher, btnSuaVoucher, btnThemVoucher});
+
+        pnlVoucherLayout.setVerticalGroup(
+            pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlVoucherLayout.createSequentialGroup()
+                .addGap(16, 16, 16)
+                .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cboLocTrangThai, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnTimKiemVoucher))
+                    .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtTimTenCDVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblTimKiemTenCD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jdcLocNgayKT, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jdcLocNgayBD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlVoucherLayout.createSequentialGroup()
+                        .addComponent(lblTenChienDichVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(97, 97, 97)
+                        .addComponent(lblNgayBatDau, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlVoucherLayout.createSequentialGroup()
+                        .addComponent(txtTenChienDichVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtMaNV, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jdcNgayBD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlVoucherLayout.createSequentialGroup()
+                        .addGap(84, 84, 84)
+                        .addComponent(lblMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblMaHD, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlVoucherLayout.createSequentialGroup()
+                        .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtSoLuongVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblSoLuongVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtGiaTriGiamVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblGiaTriGiamVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlVoucherLayout.createSequentialGroup()
+                                .addGap(16, 16, 16)
+                                .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(cboDonViGiamVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblDonViGiamVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnlVoucherLayout.createSequentialGroup()
+                                .addGap(53, 53, 53)
+                                .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(rdoActiveVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(rdoDisableVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblTrangThaiVoucher, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(12, 12, 12)
+                        .addGroup(pnlVoucherLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNgayKT, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jdcNgayKT, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(pnlVoucherLayout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addComponent(btnThemVoucher)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnSuaVoucher)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnClearVoucher)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        pnlVoucherLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {txtMaHD, txtMaKH, txtMaNV, txtTenChienDichVoucher});
+
+        pnlVoucherLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnClearVoucher, btnSuaVoucher, btnThemVoucher});
+
+        jTabbedPane1.addTab("Voucher", pnlVoucher);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -770,7 +782,9 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 691, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -780,8 +794,7 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -828,34 +841,6 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnHomeActionPerformed
 
-    private void txtGiaTriGiamVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiaTriGiamVoucherActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtGiaTriGiamVoucherActionPerformed
-
-    private void txtSoLuongVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoLuongVoucherActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtSoLuongVoucherActionPerformed
-
-    private void txtEndDateVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEndDateVoucherActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEndDateVoucherActionPerformed
-
-    private void txtStartDateVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStartDateVoucherActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStartDateVoucherActionPerformed
-
-    private void txtMaVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaVoucherActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaVoucherActionPerformed
-
-    private void txtTenChienDichVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenChienDichVoucherActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenChienDichVoucherActionPerformed
-
-    private void btnTimKiem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTimKiem1ActionPerformed
-
     private void btnTimKiemSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemSaleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTimKiemSaleActionPerformed
@@ -864,14 +849,6 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTenChienDichSaleActionPerformed
 
-    private void txtStartDateSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStartDateSaleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtStartDateSaleActionPerformed
-
-    private void txtEndDateSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEndDateSaleActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEndDateSaleActionPerformed
-
     private void txtSoLuongSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoLuongSaleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSoLuongSaleActionPerformed
@@ -879,6 +856,42 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
     private void txtGiaTriGiamSaleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiaTriGiamSaleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtGiaTriGiamSaleActionPerformed
+
+    private void txtTimTenCDVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimTenCDVoucherActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTimTenCDVoucherActionPerformed
+
+    private void btnTimKiemVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemVoucherActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTimKiemVoucherActionPerformed
+
+    private void tblVoucherMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVoucherMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblVoucherMouseClicked
+
+    private void txtGiaTriGiamVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiaTriGiamVoucherActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtGiaTriGiamVoucherActionPerformed
+
+    private void txtSoLuongVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoLuongVoucherActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSoLuongVoucherActionPerformed
+
+    private void txtMaHDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaHDActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaHDActionPerformed
+
+    private void txtMaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaKHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaKHActionPerformed
+
+    private void txtMaNVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaNVActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMaNVActionPerformed
+
+    private void txtTenChienDichVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenChienDichVoucherActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTenChienDichVoucherActionPerformed
 
     /**
      * @param args the command line arguments
@@ -940,17 +953,15 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnThemSale;
     private javax.swing.JButton btnThemVoucher;
     private javax.swing.JButton btnThongKe;
-    private javax.swing.JButton btnTimKiem1;
     private javax.swing.JButton btnTimKiemSale;
+    private javax.swing.JButton btnTimKiemVoucher;
     private javax.swing.ButtonGroup buttonGroup_TrangThaiSale;
     private javax.swing.ButtonGroup buttonGroup_TrangThaiVoucher;
     private javax.swing.JComboBox<String> cboDonViGiamSale;
     private javax.swing.JComboBox<String> cboDonViGiamSale1;
     private javax.swing.JComboBox<String> cboDonViGiamVoucher;
     private javax.swing.JComboBox<String> cboLocTTSale;
-    private javax.swing.JComboBox<String> cboLocVaiTro1;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JComboBox<String> cboLocTrangThai;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
@@ -958,27 +969,34 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private com.toedter.calendar.JDateChooser jdcKTDot4;
+    private com.toedter.calendar.JDateChooser jdcKTDot5;
+    private com.toedter.calendar.JDateChooser jdcLocNgayBD;
+    private com.toedter.calendar.JDateChooser jdcLocNgayKT;
+    private com.toedter.calendar.JDateChooser jdcNgayBD;
+    private com.toedter.calendar.JDateChooser jdcNgayKT;
     private javax.swing.JLabel lblDangXuat;
     private javax.swing.JLabel lblDonViGiamSale;
     private javax.swing.JLabel lblDonViGiamSale1;
     private javax.swing.JLabel lblDonViGiamVoucher;
     private javax.swing.JLabel lblEndDateSale;
-    private javax.swing.JLabel lblEndDateVoucher;
     private javax.swing.JLabel lblGiaTriGiamSale;
     private javax.swing.JLabel lblGiaTriGiamVoucher;
-    private javax.swing.JLabel lblMaVoucher;
+    private javax.swing.JLabel lblMaHD;
+    private javax.swing.JLabel lblMaKH;
+    private javax.swing.JLabel lblMaNV;
+    private javax.swing.JLabel lblNgayBatDau;
+    private javax.swing.JLabel lblNgayKT;
     private javax.swing.JLabel lblSoLuongSale;
     private javax.swing.JLabel lblSoLuongVoucher;
     private javax.swing.JLabel lblStartDateSale;
-    private javax.swing.JLabel lblStartDateVoucher;
     private javax.swing.JLabel lblTenChienDichSale;
     private javax.swing.JLabel lblTenChienDichVoucher;
+    private javax.swing.JLabel lblTimKiemTenCD;
     private javax.swing.JLabel lblTrangThaiSale;
     private javax.swing.JLabel lblTrangThaiVoucher;
     private javax.swing.JLabel lbl_Sale;
-    private javax.swing.JLabel lbl_Voucher;
     private javax.swing.JPanel pnTimKiemSale;
-    private javax.swing.JPanel pnTimKiemVoucher;
     private javax.swing.JPanel pnlSale;
     private javax.swing.JPanel pnlVoucher;
     private javax.swing.JRadioButton rdoActiveSale;
@@ -987,18 +1005,36 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdoDisableVoucher;
     private javax.swing.JTable tblSale;
     private javax.swing.JTable tblVoucher;
-    private javax.swing.JTextField txtEndDateSale;
-    private javax.swing.JTextField txtEndDateVoucher;
     private javax.swing.JTextField txtGiaTriGiamSale;
     private javax.swing.JTextField txtGiaTriGiamVoucher;
-    private javax.swing.JTextField txtMaVoucher;
+    private javax.swing.JTextField txtMaHD;
+    private javax.swing.JTextField txtMaKH;
+    private javax.swing.JTextField txtMaNV;
     private javax.swing.JTextField txtSoLuongSale;
     private javax.swing.JTextField txtSoLuongVoucher;
-    private javax.swing.JTextField txtStartDateSale;
-    private javax.swing.JTextField txtStartDateVoucher;
     private javax.swing.JTextField txtTenChienDichSale;
     private javax.swing.JTextField txtTenChienDichVoucher;
-    private javax.swing.JTextField txtTimTen1;
     private javax.swing.JTextField txtTimTenCD;
+    private javax.swing.JTextField txtTimTenCDVoucher;
     // End of variables declaration//GEN-END:variables
+
+    private void fillTable(ArrayList<VoucherCT> lst) {
+        mol = (DefaultTableModel) tblVoucher.getModel();
+        mol.setRowCount(0);
+        for (VoucherCT voucherCT : lst) {
+            mol.addRow(new Object[]{
+                voucherCT.getV().getN().getTenNV(),
+                voucherCT.getK().getMaKH(),
+                voucherCT.getH().getMaHD(),
+                voucherCT.getV().getTenCD(),
+                voucherCT.getV().getStartDate(),
+                voucherCT.getV().getEndDate(),
+                voucherCT.getGtGiam(),
+                voucherCT.getDvGiam(),
+                voucherCT.getSoLuong(),
+                voucherCT.isTrangThai()
+            });
+        }
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

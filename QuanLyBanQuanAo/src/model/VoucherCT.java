@@ -16,6 +16,7 @@ public class VoucherCT {
     private String maVoucherCT;
     private Voucher v;
     private KhachHang k;
+    private HoaDon h;
     private int soLuong;
     private int gtGiam;
     private String dvGiam;
@@ -24,11 +25,12 @@ public class VoucherCT {
     public VoucherCT() {
     }
 
-    public VoucherCT(Long id, String maVoucherCT, Voucher v, KhachHang k, int soLuong, int gtGiam, String dvGiam, boolean trangThai) {
+    public VoucherCT(Long id, String maVoucherCT, Voucher v, KhachHang k, HoaDon h, int soLuong, int gtGiam, String dvGiam, boolean trangThai) {
         this.id = id;
         this.maVoucherCT = maVoucherCT;
         this.v = v;
         this.k = k;
+        this.h = h;
         this.soLuong = soLuong;
         this.gtGiam = gtGiam;
         this.dvGiam = dvGiam;
@@ -67,6 +69,14 @@ public class VoucherCT {
         this.k = k;
     }
 
+    public HoaDon getH() {
+        return h;
+    }
+
+    public void setH(HoaDon h) {
+        this.h = h;
+    }
+
     public int getSoLuong() {
         return soLuong;
     }
@@ -101,7 +111,7 @@ public class VoucherCT {
 
     @Override
     public String toString() {
-        return "VoucherCT{" + "id=" + id + ", maVoucherCT=" + maVoucherCT + ", v=" + v + ", k=" + k + ", soLuong=" + soLuong + ", gtGiam=" + gtGiam + ", dvGiam=" + dvGiam + ", trangThai=" + trangThai + '}';
+        return "VoucherCT{" + "id=" + id + ", maVoucherCT=" + maVoucherCT + ", v=" + v + ", k=" + k + ", h=" + h + ", soLuong=" + soLuong + ", gtGiam=" + gtGiam + ", dvGiam=" + dvGiam + ", trangThai=" + trangThai + '}';
     }
 
 }
