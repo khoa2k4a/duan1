@@ -4,8 +4,17 @@
  */
 package view;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import model.HoaDon;
+import model.KhachHang;
+import model.NhanVien;
+import model.Voucher;
 import model.VoucherCT;
 import service.VoucherService;
 
@@ -18,14 +27,14 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
     /**
      * Creates new form ViewTrangChu
      */
-    private final VoucherService service = new VoucherService();
+    private final VoucherService serviceVct = new VoucherService();
     private DefaultTableModel mol = new DefaultTableModel();
-    private int index = -1;
+    private int row = -1;
 
     public KhuyenMaiJFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.fillTable(service.getAll());
+        this.fillTable(serviceVct.getAll());
     }
 
     /**
@@ -52,36 +61,6 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
         lblDangXuat = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
-        pnlSale = new javax.swing.JPanel();
-        lbl_Sale = new javax.swing.JLabel();
-        pnTimKiemSale = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        txtTimTenCD = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        cboLocTTSale = new javax.swing.JComboBox<>();
-        btnTimKiemSale = new javax.swing.JButton();
-        lblTenChienDichSale = new javax.swing.JLabel();
-        txtTenChienDichSale = new javax.swing.JTextField();
-        lblStartDateSale = new javax.swing.JLabel();
-        lblEndDateSale = new javax.swing.JLabel();
-        lblSoLuongSale = new javax.swing.JLabel();
-        txtSoLuongSale = new javax.swing.JTextField();
-        lblGiaTriGiamSale = new javax.swing.JLabel();
-        txtGiaTriGiamSale = new javax.swing.JTextField();
-        lblDonViGiamSale = new javax.swing.JLabel();
-        cboDonViGiamSale = new javax.swing.JComboBox<>();
-        lblTrangThaiSale = new javax.swing.JLabel();
-        rdoActiveSale = new javax.swing.JRadioButton();
-        rdoDisableSale = new javax.swing.JRadioButton();
-        btnThemSale = new javax.swing.JButton();
-        btnSuaSale = new javax.swing.JButton();
-        btnClearSale = new javax.swing.JButton();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        tblSale = new javax.swing.JTable();
-        lblDonViGiamSale1 = new javax.swing.JLabel();
-        cboDonViGiamSale1 = new javax.swing.JComboBox<>();
-        jdcKTDot4 = new com.toedter.calendar.JDateChooser();
-        jdcKTDot5 = new com.toedter.calendar.JDateChooser();
         pnlVoucher = new javax.swing.JPanel();
         lblTimKiemTenCD = new javax.swing.JLabel();
         txtTimTenCDVoucher = new javax.swing.JTextField();
@@ -115,6 +94,36 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
         jdcNgayBD = new com.toedter.calendar.JDateChooser();
         lblNgayKT = new javax.swing.JLabel();
         jdcNgayKT = new com.toedter.calendar.JDateChooser();
+        pnlSale = new javax.swing.JPanel();
+        lbl_Sale = new javax.swing.JLabel();
+        pnTimKiemSale = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        txtTimTenCD = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        cboLocTTSale = new javax.swing.JComboBox<>();
+        btnTimKiemSale = new javax.swing.JButton();
+        lblTenChienDichSale = new javax.swing.JLabel();
+        txtTenChienDichSale = new javax.swing.JTextField();
+        lblStartDateSale = new javax.swing.JLabel();
+        lblEndDateSale = new javax.swing.JLabel();
+        lblSoLuongSale = new javax.swing.JLabel();
+        txtSoLuongSale = new javax.swing.JTextField();
+        lblGiaTriGiamSale = new javax.swing.JLabel();
+        txtGiaTriGiamSale = new javax.swing.JTextField();
+        lblDonViGiamSale = new javax.swing.JLabel();
+        cboDonViGiamSale = new javax.swing.JComboBox<>();
+        lblTrangThaiSale = new javax.swing.JLabel();
+        rdoActiveSale = new javax.swing.JRadioButton();
+        rdoDisableSale = new javax.swing.JRadioButton();
+        btnThemSale = new javax.swing.JButton();
+        btnSuaSale = new javax.swing.JButton();
+        btnClearSale = new javax.swing.JButton();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        tblSale = new javax.swing.JTable();
+        lblDonViGiamSale1 = new javax.swing.JLabel();
+        cboDonViGiamSale1 = new javax.swing.JComboBox<>();
+        jdcKTDot4 = new com.toedter.calendar.JDateChooser();
+        jdcKTDot5 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -264,245 +273,6 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
-
-        pnlSale.setBackground(new java.awt.Color(255, 255, 255));
-
-        lbl_Sale.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
-        lbl_Sale.setText("Quản lý Sale");
-
-        pnTimKiemSale.setBackground(new java.awt.Color(255, 255, 255));
-        pnTimKiemSale.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
-
-        jLabel7.setText("Tên chiến dịch");
-
-        jLabel8.setText("Trạng thái");
-
-        cboLocTTSale.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Disable" }));
-
-        btnTimKiemSale.setBackground(new java.awt.Color(204, 255, 255));
-        btnTimKiemSale.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search.png"))); // NOI18N
-        btnTimKiemSale.setText("Tìm");
-        btnTimKiemSale.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTimKiemSaleActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnTimKiemSaleLayout = new javax.swing.GroupLayout(pnTimKiemSale);
-        pnTimKiemSale.setLayout(pnTimKiemSaleLayout);
-        pnTimKiemSaleLayout.setHorizontalGroup(
-            pnTimKiemSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnTimKiemSaleLayout.createSequentialGroup()
-                .addGap(44, 44, 44)
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(txtTimTenCD, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cboLocTTSale, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(btnTimKiemSale)
-                .addGap(43, 43, 43))
-        );
-        pnTimKiemSaleLayout.setVerticalGroup(
-            pnTimKiemSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTimKiemSaleLayout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(pnTimKiemSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(pnTimKiemSaleLayout.createSequentialGroup()
-                        .addGroup(pnTimKiemSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cboLocTTSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(1, 1, 1))
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnTimKiemSale, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnTimKiemSaleLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(txtTimTenCD)))
-                .addGap(16, 16, 16))
-        );
-
-        lblTenChienDichSale.setText("Tên chiến dịch");
-
-        txtTenChienDichSale.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTenChienDichSaleActionPerformed(evt);
-            }
-        });
-
-        lblStartDateSale.setText("Ngày bắt đầu");
-
-        lblEndDateSale.setText("Ngày kết thúc");
-
-        lblSoLuongSale.setText("Số lượng");
-
-        txtSoLuongSale.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSoLuongSaleActionPerformed(evt);
-            }
-        });
-
-        lblGiaTriGiamSale.setText("Giá trị giảm");
-
-        txtGiaTriGiamSale.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtGiaTriGiamSaleActionPerformed(evt);
-            }
-        });
-
-        lblDonViGiamSale.setText("Đơn vị giảm");
-
-        cboDonViGiamSale.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "%", "VND" }));
-
-        lblTrangThaiSale.setText("Trạng thái");
-
-        buttonGroup_TrangThaiSale.add(rdoActiveSale);
-        rdoActiveSale.setSelected(true);
-        rdoActiveSale.setText("Active");
-
-        buttonGroup_TrangThaiSale.add(rdoDisableSale);
-        rdoDisableSale.setText("Disable");
-
-        btnThemSale.setBackground(new java.awt.Color(204, 255, 255));
-        btnThemSale.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
-        btnThemSale.setText("Thêm");
-
-        btnSuaSale.setBackground(new java.awt.Color(204, 255, 255));
-        btnSuaSale.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
-        btnSuaSale.setText("Sửa");
-
-        btnClearSale.setBackground(new java.awt.Color(204, 255, 255));
-        btnClearSale.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
-        btnClearSale.setText("Clear");
-
-        tblSale.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
-            },
-            new String [] {
-                "Mã Sale", "Tên chiến dịch", "Sản phẩm áp dụng", "Ngày bắt đầu", "Ngày kết thúc", "Giá trị giảm", "Đơn vị giảm", "Số lượng", "Trạng thái"
-            }
-        ));
-        jScrollPane5.setViewportView(tblSale);
-
-        lblDonViGiamSale1.setText("Sản phẩm áp dụng");
-
-        javax.swing.GroupLayout pnlSaleLayout = new javax.swing.GroupLayout(pnlSale);
-        pnlSale.setLayout(pnlSaleLayout);
-        pnlSaleLayout.setHorizontalGroup(
-            pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSaleLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane5)
-                    .addGroup(pnlSaleLayout.createSequentialGroup()
-                        .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(lbl_Sale, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlSaleLayout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnlSaleLayout.createSequentialGroup()
-                                        .addComponent(lblStartDateSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jdcKTDot4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pnlSaleLayout.createSequentialGroup()
-                                        .addComponent(lblTenChienDichSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtTenChienDichSale, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pnlSaleLayout.createSequentialGroup()
-                                        .addComponent(lblEndDateSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jdcKTDot5, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pnlSaleLayout.createSequentialGroup()
-                                        .addComponent(lblTrangThaiSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(rdoActiveSale, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(rdoDisableSale, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(29, 29, 29)
-                                .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(pnlSaleLayout.createSequentialGroup()
-                                        .addComponent(lblDonViGiamSale1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(cboDonViGiamSale1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pnlSaleLayout.createSequentialGroup()
-                                        .addComponent(lblSoLuongSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtSoLuongSale, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pnlSaleLayout.createSequentialGroup()
-                                        .addComponent(lblGiaTriGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtGiaTriGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pnlSaleLayout.createSequentialGroup()
-                                        .addComponent(lblDonViGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(cboDonViGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnThemSale, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnSuaSale, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnClearSale, javax.swing.GroupLayout.Alignment.TRAILING)))
-                            .addComponent(pnTimKiemSale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 36, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-
-        pnlSaleLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClearSale, btnSuaSale, btnThemSale});
-
-        pnlSaleLayout.setVerticalGroup(
-            pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSaleLayout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(lbl_Sale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(pnTimKiemSale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblTenChienDichSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTenChienDichSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblSoLuongSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSoLuongSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnThemSale))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlSaleLayout.createSequentialGroup()
-                        .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblGiaTriGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtGiaTriGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblStartDateSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jdcKTDot4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jdcKTDot5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblDonViGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cboDonViGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(lblEndDateSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(pnlSaleLayout.createSequentialGroup()
-                        .addComponent(btnSuaSale)
-                        .addGap(18, 18, 18)
-                        .addComponent(btnClearSale)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(rdoActiveSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(rdoDisableSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblDonViGiamSale1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cboDonViGiamSale1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblTrangThaiSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        pnlSaleLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnClearSale, btnSuaSale, btnThemSale});
-
-        jTabbedPane1.addTab("Sale", pnlSale);
 
         pnlVoucher.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -775,6 +545,245 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Voucher", pnlVoucher);
 
+        pnlSale.setBackground(new java.awt.Color(255, 255, 255));
+
+        lbl_Sale.setFont(new java.awt.Font("Segoe UI", 1, 15)); // NOI18N
+        lbl_Sale.setText("Quản lý Sale");
+
+        pnTimKiemSale.setBackground(new java.awt.Color(255, 255, 255));
+        pnTimKiemSale.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Tìm kiếm", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
+
+        jLabel7.setText("Tên chiến dịch");
+
+        jLabel8.setText("Trạng thái");
+
+        cboLocTTSale.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Active", "Disable" }));
+
+        btnTimKiemSale.setBackground(new java.awt.Color(204, 255, 255));
+        btnTimKiemSale.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/search.png"))); // NOI18N
+        btnTimKiemSale.setText("Tìm");
+        btnTimKiemSale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemSaleActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnTimKiemSaleLayout = new javax.swing.GroupLayout(pnTimKiemSale);
+        pnTimKiemSale.setLayout(pnTimKiemSaleLayout);
+        pnTimKiemSaleLayout.setHorizontalGroup(
+            pnTimKiemSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnTimKiemSaleLayout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(txtTimTenCD, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cboLocTTSale, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(btnTimKiemSale)
+                .addGap(43, 43, 43))
+        );
+        pnTimKiemSaleLayout.setVerticalGroup(
+            pnTimKiemSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTimKiemSaleLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(pnTimKiemSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(pnTimKiemSaleLayout.createSequentialGroup()
+                        .addGroup(pnTimKiemSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cboLocTTSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(1, 1, 1))
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnTimKiemSale, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnTimKiemSaleLayout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addComponent(txtTimTenCD)))
+                .addGap(16, 16, 16))
+        );
+
+        lblTenChienDichSale.setText("Tên chiến dịch");
+
+        txtTenChienDichSale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTenChienDichSaleActionPerformed(evt);
+            }
+        });
+
+        lblStartDateSale.setText("Ngày bắt đầu");
+
+        lblEndDateSale.setText("Ngày kết thúc");
+
+        lblSoLuongSale.setText("Số lượng");
+
+        txtSoLuongSale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSoLuongSaleActionPerformed(evt);
+            }
+        });
+
+        lblGiaTriGiamSale.setText("Giá trị giảm");
+
+        txtGiaTriGiamSale.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtGiaTriGiamSaleActionPerformed(evt);
+            }
+        });
+
+        lblDonViGiamSale.setText("Đơn vị giảm");
+
+        cboDonViGiamSale.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "%", "VND" }));
+
+        lblTrangThaiSale.setText("Trạng thái");
+
+        buttonGroup_TrangThaiSale.add(rdoActiveSale);
+        rdoActiveSale.setSelected(true);
+        rdoActiveSale.setText("Active");
+
+        buttonGroup_TrangThaiSale.add(rdoDisableSale);
+        rdoDisableSale.setText("Disable");
+
+        btnThemSale.setBackground(new java.awt.Color(204, 255, 255));
+        btnThemSale.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
+        btnThemSale.setText("Thêm");
+
+        btnSuaSale.setBackground(new java.awt.Color(204, 255, 255));
+        btnSuaSale.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
+        btnSuaSale.setText("Sửa");
+
+        btnClearSale.setBackground(new java.awt.Color(204, 255, 255));
+        btnClearSale.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
+        btnClearSale.setText("Clear");
+
+        tblSale.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Mã Sale", "Tên chiến dịch", "Sản phẩm áp dụng", "Ngày bắt đầu", "Ngày kết thúc", "Giá trị giảm", "Đơn vị giảm", "Số lượng", "Trạng thái"
+            }
+        ));
+        jScrollPane5.setViewportView(tblSale);
+
+        lblDonViGiamSale1.setText("Sản phẩm áp dụng");
+
+        javax.swing.GroupLayout pnlSaleLayout = new javax.swing.GroupLayout(pnlSale);
+        pnlSale.setLayout(pnlSaleLayout);
+        pnlSaleLayout.setHorizontalGroup(
+            pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSaleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5)
+                    .addGroup(pnlSaleLayout.createSequentialGroup()
+                        .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbl_Sale, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlSaleLayout.createSequentialGroup()
+                                .addGap(36, 36, 36)
+                                .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(pnlSaleLayout.createSequentialGroup()
+                                        .addComponent(lblStartDateSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jdcKTDot4, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlSaleLayout.createSequentialGroup()
+                                        .addComponent(lblTenChienDichSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtTenChienDichSale, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlSaleLayout.createSequentialGroup()
+                                        .addComponent(lblEndDateSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jdcKTDot5, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlSaleLayout.createSequentialGroup()
+                                        .addComponent(lblTrangThaiSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rdoActiveSale, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(rdoDisableSale, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(29, 29, 29)
+                                .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(pnlSaleLayout.createSequentialGroup()
+                                        .addComponent(lblDonViGiamSale1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cboDonViGiamSale1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlSaleLayout.createSequentialGroup()
+                                        .addComponent(lblSoLuongSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtSoLuongSale, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlSaleLayout.createSequentialGroup()
+                                        .addComponent(lblGiaTriGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtGiaTriGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(pnlSaleLayout.createSequentialGroup()
+                                        .addComponent(lblDonViGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(cboDonViGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(btnThemSale, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnSuaSale, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(btnClearSale, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addComponent(pnTimKiemSale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 36, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+
+        pnlSaleLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnClearSale, btnSuaSale, btnThemSale});
+
+        pnlSaleLayout.setVerticalGroup(
+            pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSaleLayout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(lbl_Sale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(pnTimKiemSale, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTenChienDichSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtTenChienDichSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblSoLuongSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSoLuongSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnThemSale))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlSaleLayout.createSequentialGroup()
+                        .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblGiaTriGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtGiaTriGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblStartDateSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jdcKTDot4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jdcKTDot5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblDonViGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cboDonViGiamSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblEndDateSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(pnlSaleLayout.createSequentialGroup()
+                        .addComponent(btnSuaSale)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnClearSale)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlSaleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(rdoActiveSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(rdoDisableSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblDonViGiamSale1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cboDonViGiamSale1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTrangThaiSale, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        pnlSaleLayout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnClearSale, btnSuaSale, btnThemSale});
+
+        jTabbedPane1.addTab("Sale", pnlSale);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -868,6 +877,8 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
 
     private void tblVoucherMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblVoucherMouseClicked
         // TODO add your handling code here:
+        int row= tblVoucher.getSelectedRow();
+        this.showDataV(row);
     }//GEN-LAST:event_tblVoucherMouseClicked
 
     private void txtGiaTriGiamVoucherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiaTriGiamVoucherActionPerformed
@@ -1036,6 +1047,69 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
                 voucherCT.isTrangThai()
             });
         }
-//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void clearFormV() {
+        txtTenChienDichVoucher.setText(null);
+        txtMaNV.setText(null);
+        txtMaKH.setText(null);
+        txtMaHD.setText(null);
+        txtSoLuongVoucher.setText(null);
+        txtGiaTriGiamVoucher.setText(null);
+        cboDonViGiamVoucher.setSelectedIndex(0);
+        rdoActiveVoucher.setSelected(true);
+    }
+
+    private void showDataV(int row) {
+        VoucherCT vct = serviceVct.getAll().get(row);
+        txtTenChienDichVoucher.setText(vct.getV().getTenCD());
+        txtMaNV.setText(vct.getV().getN().getMaNV());
+        txtMaKH.setText(vct.getK().getMaKH());
+        txtMaHD.setText(vct.getH().getMaHD());
+        Date ngayBD = vct.getV().getStartDate();
+        Date ngayKT = vct.getV().getEndDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            jdcNgayBD.setDate(sdf.parse(ngayBD.toString()));
+            jdcNgayKT.setDate(sdf.parse(ngayKT.toString()));
+        } catch (ParseException ex) {
+            Logger.getLogger(KhuyenMaiJFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        txtSoLuongVoucher.setText(String.valueOf(vct.getSoLuong()));
+        txtGiaTriGiamVoucher.setText(String.valueOf(vct.getGtGiam()));
+        cboDonViGiamVoucher.setSelectedItem(vct.getDvGiam());
+        if (tblVoucher.getValueAt(row, 9).toString().equalsIgnoreCase("true")) {
+            rdoActiveVoucher.setSelected(true);
+        } else {
+            rdoDisableSale.setSelected(true);
+        }
+    }
+
+    private VoucherCT getFormV() {
+        VoucherCT vct = new VoucherCT();
+        NhanVien n = new NhanVien();
+        n.setMaNV(txtMaNV.getText().trim());
+        KhachHang k = new KhachHang();
+        k.setMaKH(txtMaKH.getText().trim());
+        vct.setK(k);
+        HoaDon h = new HoaDon();
+        h.setMaHD(txtMaHD.getText().trim());
+        vct.setH(h);
+        Voucher v = new Voucher();
+        v.setTenCD(txtTenChienDichVoucher.getText().trim());
+        v.setN(n);
+        java.sql.Date ngayBD = new java.sql.Date(jdcNgayBD.getDate().getTime());
+        java.sql.Date ngayKT = new java.sql.Date(jdcNgayKT.getDate().getTime());
+        v.setStartDate(ngayBD);
+        v.setEndDate(ngayKT);
+        v.setGtGiam(Integer.parseInt(txtGiaTriGiamVoucher.getText().trim()));
+        v.setDvGiam(cboDonViGiamVoucher.getSelectedItem().toString());
+        vct.setV(v);
+        if (rdoActiveVoucher.isSelected()) {
+            vct.setTrangThai(true);
+        } else if (rdoDisableVoucher.isSelected()) {
+            vct.setTrangThai(false);
+        }
+        return vct;
     }
 }
