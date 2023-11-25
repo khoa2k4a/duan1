@@ -26,9 +26,12 @@ public class VoucherService {
     public ArrayList<VoucherCT> getAll() {
         ArrayList<VoucherCT> list = new ArrayList<>();
         String sql = """
-                   select MaNV, TenNV, MaKH, MaHD, TenChienDich, VOUCHER.StartDate, VOUCHER.EndDate, VOUCHER_CT.GiaTriGiam, VOUCHER_CT.DonViGiam,
+                   select MaNV, TenNV, MaKH, MaHD, 
+                   VOUCHER.TenChienDich, VOUCHER.StartDate, VOUCHER.EndDate, 
+                   VOUCHER_CT.GiaTriGiam, VOUCHER_CT.DonViGiam,
                    VOUCHER_CT.SoLuong, VOUCHER_CT.TrangThai
-                   from VOUCHER_CT join VOUCHER on VOUCHER_CT.ID_Voucher = VOUCHER.ID_Voucher
+                   from VOUCHER_CT 
+                   join VOUCHER on VOUCHER_CT.ID_Voucher = VOUCHER.ID_Voucher
                    join NHANVIEN on NHANVIEN.ID_NV = VOUCHER.ID_NV
                    join HOADON on HOADON.ID_NV = NHANVIEN.ID_NV
                    join KHACHHANG on KHACHHANG.ID_KH = HOADON.ID_KH
@@ -43,21 +46,21 @@ public class VoucherService {
                 k.setMaKH(rs.getString(3));
                 vct.setK(k);
                 Voucher v = new Voucher();
-                v.setTenCD(rs.getString("TenChienDich"));
-                v.setStartDate(rs.getDate("StartDate"));
-                v.setEndDate(rs.getDate("EndDate"));
+                v.setTenCD(rs.getString(5));
+                v.setStartDate(rs.getDate(6));
+                v.setEndDate(rs.getDate(7));
                 NhanVien n = new NhanVien();
-                n.setMaNV(rs.getString("MaNV"));
-                n.setTenNV(rs.getString("TenNV"));
+                n.setMaNV(rs.getString(1));
+                n.setTenNV(rs.getString(2));
                 v.setN(n);
                 vct.setV(v);
                 HoaDon h = new HoaDon();
                 h.setMaHD(rs.getString(4));
                 vct.setH(h);
-                vct.setGtGiam(rs.getInt("GiaTriGiam"));
-                vct.setDvGiam(rs.getString("DonViGiam"));
-                vct.setSoLuong(rs.getInt("SoLuong"));
-                vct.setTrangThai(rs.getBoolean("TrangThai"));
+                vct.setGtGiam(rs.getInt(8));
+                vct.setDvGiam(rs.getString(9));
+                vct.setSoLuong(rs.getInt(10));
+                vct.setTrangThai(rs.getBoolean(11));
                 list.add(vct);
             }
             return list;
@@ -65,5 +68,27 @@ public class VoucherService {
             e.printStackTrace(System.out);
         }
         return null;
+    }
+
+    public Integer insertV(VoucherCT vct) {
+        String sql = """
+                     insert into VOUCHER_CT values
+                     (?,?,?,?,?,?,?,?)""";
+        try {
+            conn = DBConnect.getConnection();
+            ps = conn.prepareStatement(sql);
+            ps.setObject(1, vct.getV().getId());
+            ps.setObject(2, vct.getK().getId());
+            ps.setObject(3, vct.getH().getId());
+            ps.setObject(4, vct.getMaVoucherCT());
+            ps.setObject(5, vct.getSoLuong());
+            ps.setObject(6, vct.getGtGiam());
+            ps.setObject(7, vct.getDvGiam());
+            ps.setObject(8, vct.isTrangThai());
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return 0;
+        }
     }
 }
