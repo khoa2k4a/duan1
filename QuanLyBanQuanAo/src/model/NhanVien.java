@@ -24,6 +24,10 @@ public class NhanVien {
     public NhanVien() {
     }
 
+    public NhanVien(String maNV) {
+        this.maNV = maNV;
+    }
+
     public NhanVien(Long id, String maNV, String tenNV, String diaChi, String email, boolean gioiTinh, String taiKhoan, String matKhau, String vaiTro, boolean trangThai) {
         this.id = id;
         this.maNV = maNV;

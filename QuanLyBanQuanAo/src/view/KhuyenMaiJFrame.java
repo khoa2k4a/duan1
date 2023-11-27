@@ -1078,7 +1078,7 @@ public class KhuyenMaiJFrame extends javax.swing.JFrame {
         txtSoLuongVoucher.setText(String.valueOf(vct.getSoLuong()));
         txtGiaTriGiamVoucher.setText(String.valueOf(vct.getGtGiam()));
         cboDonViGiamVoucher.setSelectedItem(vct.getDvGiam());
-        if (tblVoucher.getValueAt(row, 9).toString().equalsIgnoreCase("true")) {
+        if (vct.isTrangThai()) {
             rdoActiveVoucher.setSelected(true);
         } else {
             rdoDisableSale.setSelected(true);

@@ -22,6 +22,10 @@ public class KhachHang {
     public KhachHang() {
     }
 
+    public KhachHang(String tenKH) {
+        this.tenKH = tenKH;
+    }
+
     public KhachHang(String maKH, String tenKH) {
         this.maKH = maKH;
         this.tenKH = tenKH;

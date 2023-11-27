@@ -18,6 +18,11 @@ public class SanPham {
     public SanPham() {
     }
 
+    public SanPham(String maSP, String tenSP) {
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+    }
+
     public SanPham(Long id, String maSP, String tenSP, boolean trangThai) {
         this.id = id;
         this.maSP = maSP;
