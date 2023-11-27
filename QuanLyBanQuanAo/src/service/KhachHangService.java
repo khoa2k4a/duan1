@@ -87,4 +87,46 @@ public class KhachHangService {
             return 0;
         }
     }
+    public List<KhachHang> Timkh(String ten){
+        
+        sql="select MaKH,TenKH,DiaChi,Sdt,Email,GioiTinh,TrangThai from KHACHHANG where TenKH=?";
+        List<KhachHang> listkh = new ArrayList<>();
+        try {
+            con = DbConnect.getConnection();
+            ps= con.prepareStatement(sql); 
+            ps.setObject(1, ten);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                 KhachHang kh = new KhachHang(rs.getString(1), rs.getString(2), rs.getString(4), rs.getString(3), rs.getString(5), rs.getBoolean(6), rs.getBoolean(7));
+                listkh.add(kh);
+            }
+            return listkh;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        
+    
+    }
+    
+    
+    public KhachHang timma(String ma){
+        KhachHang kh = null;
+        sql="select MaKH,TenKH,DiaChi,Sdt,Email,GioiTinh,TrangThai from KHACHHANG where MaKH = ?";
+        try {
+            con=DbConnect.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.setObject(1,ma);
+            rs=ps.executeQuery();           
+            while(rs.next()){
+                 kh = new KhachHang(rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getBoolean(6), rs.getBoolean(7));
+                             
+            }
+            return kh;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
 }
+

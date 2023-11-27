@@ -90,4 +90,42 @@ public class NhanVienService {
             return 0;
         }
     }
+    public List<NhanVien> timten(String ten){
+        List<NhanVien> listTim = new ArrayList<>();
+        sql="select MaNV,TenNV,Sdt,DiaChi,Email,GioiTinh,TaiKhoan,MatKhau,VaiTro,TrangThai from NHANVIEN where TenNV like ?";
+        try {
+            con=DbConnect.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.setObject(1, ten);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                NhanVien nv = new NhanVien(rs.getString(1), rs.getString(2), rs.getString(4), rs.getString(3),rs.getString(5),rs.getBoolean(6), rs.getString(7),rs.getString(8), rs.getString(9), rs.getBoolean(10));
+                listTim.add(nv);              
+            }
+            return listTim;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
+    public List<NhanVien> timvaitro(String vaitro){
+        List<NhanVien> listTim = new ArrayList<>();
+        sql="select MaNV,TenNV,Sdt,DiaChi,Email,GioiTinh,TaiKhoan,MatKhau,VaiTro,TrangThai from NHANVIEN where VaiTro like ?";
+        try {
+            con=DbConnect.getConnection();
+            ps=con.prepareStatement(sql);
+            ps.setObject(1,vaitro);
+            rs=ps.executeQuery();
+            while(rs.next()){
+                NhanVien nv = new NhanVien(rs.getString(1), rs.getString(2), rs.getString(4), rs.getString(3),rs.getString(5),rs.getBoolean(6), rs.getString(7),rs.getString(8), rs.getString(9), rs.getBoolean(10));
+                listTim.add(nv);              
+            }
+            return listTim;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
 }
