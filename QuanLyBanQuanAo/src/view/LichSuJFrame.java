@@ -473,40 +473,40 @@ public class LichSuJFrame extends javax.swing.JFrame {
 
     private void tblLichSuMouseClicked(java.awt.event.MouseEvent evt) throws SQLException {//GEN-FIRST:event_tblLichSuMouseClicked
         int selectedRow = tblLichSu.getSelectedRow();
-        if (selectedRow != -1) { // Kiểm tra xem đã chọn dòng nào chưa
-            int idHD = Integer.parseInt(tblLichSu.getValueAt(selectedRow, 0).toString()); // Giả sử MaHD ở cột đầu tiên, cột 0
-            HoaDon hoaDon = service.getH().get(selectedRow);
-            HoaDonCT hdct = service.getSPtheoIDHD(idHD).get(selectedRow);
-            if (hoaDon != null) {
-                txtMaNVLS.setText(String.valueOf(hoaDon.getId()));
-                txtTenKHLS.setText(hoaDon.getK().getTenKH());
-                txtGiaTienLS.setText(String.valueOf(hdct.getBtsp().getGiaSP()));
-                txtGhiChuLS.setText(hoaDon.getGhiChu());
-                txtNgayLapLS.setText(String.valueOf(hoaDon.getNgayTao()));
-                String trangThaiText = hoaDon.isTrangThai() ? "Đã thanh toán" : "Đang tạo";
-                txtTrangThaiLS.setText(trangThaiText);
-                txtHinhThucTTLS.setText(hoaDon.getHinhThucTT());
-            }
-            List<HoaDonCT> list = service.getSPtheoIDHD(idHD);
-            DefaultTableModel model = (DefaultTableModel) tblSanPhamLichSu.getModel();
-            model.setRowCount(0); // Xóa hết dữ liệu cũ trong bảng
-            int i = 1;
-            for (HoaDonCT hoaDonCT : list) {
-                // Thêm từng dòng dữ liệu vào bảng tblSanPhamLichSu
-                Voucher v = new Voucher();
-                double giamGia = Double.parseDouble(v.getGtGiam() + v.getDvGiam().toString());
-                model.addRow(new Object[]{
-                        i++,
-                        hoaDonCT.getBtsp().getSp().getMaSP(),
-                        hoaDonCT.getBtsp().getSp().getTenSP(),
-                        hoaDonCT.getSoLuong(),
-                        hoaDonCT.getBtsp().getGiaSP(),
-                        hoaDonCT.getH().getMaGiamGia(),
-                        // Tính toán TongTien
-                        (hoaDonCT.getBtsp().getGiaSP() * hoaDonCT.getSoLuong()) - (giamGia * hoaDonCT.getSoLuong())
-                });
-            }
-        }
+//        if (selectedRow != -1) { // Kiểm tra xem đã chọn dòng nào chưa
+//            int idHD = Integer.parseInt(tblLichSu.getValueAt(selectedRow, 0).toString()); // Giả sử MaHD ở cột đầu tiên, cột 0
+//            HoaDon hoaDon = service.getH().get(selectedRow);
+//            HoaDonCT hdct = service.getSPtheoIDHD(idHD).get(selectedRow);
+//            if (hoaDon != null) {
+//                txtMaNVLS.setText(String.valueOf(hoaDon.getId()));
+//                txtTenKHLS.setText(hoaDon.getK().getTenKH());
+//                txtGiaTienLS.setText(String.valueOf(hdct.getBtsp().getGiaSP()));
+//                txtGhiChuLS.setText(hoaDon.getGhiChu());
+//                txtNgayLapLS.setText(String.valueOf(hoaDon.getNgayTao()));
+//                String trangThaiText = hoaDon.isTrangThai() ? "Đã thanh toán" : "Đang tạo";
+//                txtTrangThaiLS.setText(trangThaiText);
+//                txtHinhThucTTLS.setText(hoaDon.getHinhThucTT());
+//            }
+//            List<HoaDonCT> list = service.getSPtheoIDHD(idHD);
+//            DefaultTableModel model = (DefaultTableModel) tblSanPhamLichSu.getModel();
+//            model.setRowCount(0); // Xóa hết dữ liệu cũ trong bảng
+//            int i = 1;
+//            for (HoaDonCT hoaDonCT : list) {
+//                // Thêm từng dòng dữ liệu vào bảng tblSanPhamLichSu
+//                Voucher v = new Voucher();
+//                double giamGia = Double.parseDouble(v.getGtGiam() + v.getDvGiam().toString());
+//                model.addRow(new Object[]{
+//                        i++,
+//                        hoaDonCT.getBtsp().getSp().getMaSP(),
+//                        hoaDonCT.getBtsp().getSp().getTenSP(),
+//                        hoaDonCT.getSoLuong(),
+//                        hoaDonCT.getBtsp().getGiaSP(),
+//                        hoaDonCT.getH().getMaGiamGia(),
+//                        // Tính toán TongTien
+//                        (hoaDonCT.getBtsp().getGiaSP() * hoaDonCT.getSoLuong()) - (giamGia * hoaDonCT.getSoLuong())
+//                });
+//            }
+//        }
     }//GEN-LAST:event_tblLichSuMouseClicked
 
     private void tblLichSAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tblLichSAncestorAdded

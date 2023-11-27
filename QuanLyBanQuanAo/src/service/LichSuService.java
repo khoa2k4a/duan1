@@ -86,7 +86,7 @@ public class LichSuService {
                 hdct.setSoLuong(rs.getInt(4));
                 hdct.setH(h);
                 hdct.setBtsp(btsp);
-                list.add(hdct);
+//                list.add(hdct);
             }
             return list;
         } catch (Exception e) {
