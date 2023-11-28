@@ -4,11 +4,23 @@
  */
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import model.ChiTietSP;
+import model.LoaiSP;
+import model.Mau;
+import model.SanPham;
+import service.SanPhamService;
+
 /**
  *
  * @author ADMIN
  */
 public class HoaDonJFrame extends javax.swing.JFrame {
+    private DefaultTableModel mol = new DefaultTableModel();
+    private SanPhamService serSP = new SanPhamService();
+    private int index = -1;
 
     /**
      * Creates new form ViewTrangChu
@@ -16,6 +28,7 @@ public class HoaDonJFrame extends javax.swing.JFrame {
     public HoaDonJFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.fillDSSP(serSP.getChiTietSP());
 
     }
 
@@ -76,6 +89,7 @@ public class HoaDonJFrame extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         txtTimkiem = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -235,7 +249,7 @@ public class HoaDonJFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã HĐ", "Ngày Lập", "Mã NV", "Trạng thái"
+                "Mã HĐ", "Tên NV", "Tên KH", "Ngày Lập", "Tổng Tiền", "Trạng thái"
             }
         ));
         tblDanhSachHoaDon.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -252,11 +266,11 @@ public class HoaDonJFrame extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Mã SP", "Tên SP", "Size", "Số Lượng", "Tiền", "Giảm giá", "Tổng Tiền"
+                "Mã SP", "Tên SP", "Màu", "Chất Liệu", "Size", "Số Lượng", "Đơn Giá", "Tổng Tiền"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, true, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -458,7 +472,7 @@ public class HoaDonJFrame extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 189, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 87, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnHuy, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -475,6 +489,13 @@ public class HoaDonJFrame extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("Thêm");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout hoadonLayout = new javax.swing.GroupLayout(hoadon);
         hoadon.setLayout(hoadonLayout);
         hoadonLayout.setHorizontalGroup(
@@ -487,7 +508,9 @@ public class HoaDonJFrame extends javax.swing.JFrame {
                         .addComponent(txtTimkiem)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
-                        .addGap(209, 209, 209)
+                        .addGap(68, 68, 68)
+                        .addComponent(jButton4)
+                        .addGap(66, 66, 66)
                         .addComponent(jButton2))
                     .addComponent(jScrollPane5)
                     .addComponent(jScrollPane8))
@@ -505,7 +528,8 @@ public class HoaDonJFrame extends javax.swing.JFrame {
                 .addGroup(hoadonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -664,6 +688,11 @@ public class HoaDonJFrame extends javax.swing.JFrame {
         //        loadhd(row);
     }//GEN-LAST:event_tblDanhSachHoaDonMouseClicked
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -707,6 +736,14 @@ public class HoaDonJFrame extends javax.swing.JFrame {
             new HoaDonJFrame().setVisible(true);
         });
     }
+    
+    void fillDSSP(List<ChiTietSP> list){
+        mol = (DefaultTableModel)tblDanhSachSP.getModel();
+        mol.setRowCount(0);
+        for(ChiTietSP ctsp : list){
+            mol.addRow(ctsp.dataDSSP());
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnHoaDon;
@@ -727,6 +764,7 @@ public class HoaDonJFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel22;

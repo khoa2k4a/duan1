@@ -130,4 +130,16 @@ public class ChiTietSP {
             this.trangThai
         };
     }
+    public Object[] dataDSSP() {
+        return new Object[]{
+            this.maBienThe,
+            this.sp.getTenSP(),
+            this.mau.getTenMau(),
+            this.cl.getTenCL(),
+            this.size.getTenSize(),        
+            this.soLuong,
+            this.gia,
+            this.trangThai
+        };
+    }
 }
