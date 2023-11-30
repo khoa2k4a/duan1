@@ -25,6 +25,10 @@ public class HoaDon {
     public HoaDon() {
     }
 
+    public HoaDon(String maHD) {
+        this.maHD = maHD;
+    }
+
     public HoaDon(int idHD, String maHD, NhanVien nv, KhachHang kh, Date ngayTao, double tongTien, String maGG, String ghiChu, String hinhThuc, boolean trangThai) {
         this.idHD = idHD;
         this.maHD = maHD;
@@ -121,8 +125,8 @@ public class HoaDon {
     public Object[] dataHD(){
         return new Object[]{
             this.maHD,
-            this.nv,
-            this.kh,
+            this.nv.getTennv(),
+            this.kh.getTenkh(),
             this.ngayTao,
             this.tongTien,
             this.trangThai

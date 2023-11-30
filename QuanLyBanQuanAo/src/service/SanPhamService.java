@@ -117,7 +117,8 @@ public class SanPhamService {
                 ChatLieu cl = new ChatLieu(rs.getString(6));
                 ctsp.setCl(cl);
                 ctsp.setSoLuong(rs.getInt(7));
-                ctsp.setTrangThai(rs.getBoolean(8));
+                ctsp.setGia(rs.getDouble(8));
+                ctsp.setTrangThai(rs.getBoolean(9));
                 listCTSP.add(ctsp);
             }
             return listCTSP;
@@ -197,7 +198,8 @@ public class SanPhamService {
                 ChatLieu cl = new ChatLieu(rs.getString(6));
                 ctsp.setCl(cl);
                 ctsp.setSoLuong(rs.getInt(7));
-                ctsp.setTrangThai(rs.getBoolean(8));
+                ctsp.setGia(rs.getDouble(8));
+                ctsp.setTrangThai(rs.getBoolean(9));
                 listCTSP.add(ctsp);
             }
             return listCTSP;

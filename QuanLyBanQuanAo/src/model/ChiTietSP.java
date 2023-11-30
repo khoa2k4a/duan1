@@ -24,6 +24,15 @@ public class ChiTietSP {
     public ChiTietSP() {
     }
 
+    public ChiTietSP(SanPham sp, String maBienThe, Mau mau, Size size, ChatLieu cl, double gia) {
+        this.sp = sp;
+        this.maBienThe = maBienThe;
+        this.mau = mau;
+        this.size = size;
+        this.cl = cl;
+        this.gia = gia;
+    }
+
     public ChiTietSP(int idBienThe, SanPham sp, String maBienThe, LoaiSP loai, Mau mau, Size size, ChatLieu cl, int soLuong, double gia, boolean trangThai) {
         this.idBienThe = idBienThe;
         this.sp = sp;

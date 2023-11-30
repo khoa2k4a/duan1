@@ -7,10 +7,13 @@ package view;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import model.ChiTietHoaDon;
 import model.ChiTietSP;
+import model.HoaDon;
 import model.LoaiSP;
 import model.Mau;
 import model.SanPham;
+import service.HoaDonService;
 import service.SanPhamService;
 
 /**
@@ -18,8 +21,10 @@ import service.SanPhamService;
  * @author ADMIN
  */
 public class HoaDonJFrame extends javax.swing.JFrame {
+
     private DefaultTableModel mol = new DefaultTableModel();
     private SanPhamService serSP = new SanPhamService();
+    private HoaDonService serHD = new HoaDonService();
     private int index = -1;
 
     /**
@@ -29,6 +34,7 @@ public class HoaDonJFrame extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.fillDSSP(serSP.getChiTietSP());
+        this.fillDSHD(serHD.getHoaDon());
 
     }
 
@@ -623,18 +629,18 @@ public class HoaDonJFrame extends javax.swing.JFrame {
 
     private void txtTienKhachDuaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtTienKhachDuaFocusLost
         //        txtTienKhachDua.addFocusListener(new FocusAdapter() {
-            //            @Override
-            //            public void focusLost(FocusEvent e) {
-                //                try {
-                    //                    double tienKhachDua = Double.parseDouble(txtTienKhachDua.getText());
-                    //                    double tongTien = Double.parseDouble(lblTongTien.getText());
-                    //                    double tienTraKhach = tienKhachDua - tongTien;
-                    //                    lblTienTraKhach.setText(String.valueOf(tienTraKhach));
-                    //                } catch (NumberFormatException ex) {
-                    //                    lblTienTraKhach.setText("0"); // hoặc hiển thị thông báo lỗi
-                    //                }
-                //            }
-            //        });
+        //            @Override
+        //            public void focusLost(FocusEvent e) {
+        //                try {
+        //                    double tienKhachDua = Double.parseDouble(txtTienKhachDua.getText());
+        //                    double tongTien = Double.parseDouble(lblTongTien.getText());
+        //                    double tienTraKhach = tienKhachDua - tongTien;
+        //                    lblTienTraKhach.setText(String.valueOf(tienTraKhach));
+        //                } catch (NumberFormatException ex) {
+        //                    lblTienTraKhach.setText("0"); // hoặc hiển thị thông báo lỗi
+        //                }
+        //            }
+        //        });
     }//GEN-LAST:event_txtTienKhachDuaFocusLost
 
     private void cboHinhThucThanhToanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboHinhThucThanhToanMouseClicked
@@ -662,35 +668,43 @@ public class HoaDonJFrame extends javax.swing.JFrame {
 
     private void tblDanhSachSPMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhSachSPMouseClicked
         //        if (evt.getClickCount() == 1) {
-            //            int selectedRow = tblDanhSachSP.getSelectedRow();
-            //            if (selectedRow != -1) {
-                //                DefaultTableModel model = (DefaultTableModel) tblDanhSachSP.getModel();
-                //                String maSp = (String) model.getValueAt(selectedRow, 0);
-                //                String tenSp = (String) model.getValueAt(selectedRow, 1);
-                //                int soLuongHienTai = (int) model.getValueAt(selectedRow, 5);
-                //
-                //                int newQuantity = promptForNewQuantity(tenSp, soLuongHienTai);
-                //                if (newQuantity != -1) {
-                    //                    if (newQuantity <= soLuongHienTai) {
-                        //                        addToShoppingCart(maSp, tenSp, newQuantity);
-                        //                        int updatedQuantity = soLuongHienTai - newQuantity;
-                        //                        model.setValueAt(updatedQuantity, selectedRow, 5); // Cập nhật số lượng mới trong bảng tblDSSP
-                        //                    } else {
-                        //                        JOptionPane.showMessageDialog(null, "Số lượng nhập vào lớn hơn số lượng hiện có.");
-                        //                    }
-                    //                }
-                //            }
-            //        }
+        //            int selectedRow = tblDanhSachSP.getSelectedRow();
+        //            if (selectedRow != -1) {
+        //                DefaultTableModel model = (DefaultTableModel) tblDanhSachSP.getModel();
+        //                String maSp = (String) model.getValueAt(selectedRow, 0);
+        //                String tenSp = (String) model.getValueAt(selectedRow, 1);
+        //                int soLuongHienTai = (int) model.getValueAt(selectedRow, 5);
+        //
+        //                int newQuantity = promptForNewQuantity(tenSp, soLuongHienTai);
+        //                if (newQuantity != -1) {
+        //                    if (newQuantity <= soLuongHienTai) {
+        //                        addToShoppingCart(maSp, tenSp, newQuantity);
+        //                        int updatedQuantity = soLuongHienTai - newQuantity;
+        //                        model.setValueAt(updatedQuantity, selectedRow, 5); // Cập nhật số lượng mới trong bảng tblDSSP
+        //                    } else {
+        //                        JOptionPane.showMessageDialog(null, "Số lượng nhập vào lớn hơn số lượng hiện có.");
+        //                    }
+        //                }
+        //            }
+        //        }
     }//GEN-LAST:event_tblDanhSachSPMouseClicked
 
     private void tblDanhSachHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblDanhSachHoaDonMouseClicked
-        int row = tblDanhSachHoaDon.getSelectedRow();
-        //        loadhd(row);
+        index = tblDanhSachHoaDon.getSelectedRow();
+        String ma = tblDanhSachHoaDon.getValueAt(index, 0).toString();
+        int id = 0;
+        for(HoaDon hd : serHD.getHoaDon()){
+            if(hd.getMaHD().equals(ma)){
+                id = hd.getIdHD();
+            }
+        }
+        this.fillSP(serHD.findCTHD(id));
+       
     }//GEN-LAST:event_tblDanhSachHoaDonMouseClicked
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
@@ -736,12 +750,28 @@ public class HoaDonJFrame extends javax.swing.JFrame {
             new HoaDonJFrame().setVisible(true);
         });
     }
-    
-    void fillDSSP(List<ChiTietSP> list){
-        mol = (DefaultTableModel)tblDanhSachSP.getModel();
+
+    private void fillDSSP(List<ChiTietSP> list) {
+        mol = (DefaultTableModel) tblDanhSachSP.getModel();
         mol.setRowCount(0);
-        for(ChiTietSP ctsp : list){
+        for (ChiTietSP ctsp : list) {
             mol.addRow(ctsp.dataDSSP());
+        }
+    }
+
+    private void fillDSHD(List<HoaDon> list) {
+        mol = (DefaultTableModel) tblDanhSachHoaDon.getModel();
+        mol.setRowCount(0);
+        for (HoaDon hd : list) {
+            mol.addRow(hd.dataHD());
+        }
+    }
+
+    private void fillSP(List<ChiTietHoaDon> list) {
+        mol = (DefaultTableModel) tblGioHang.getModel();
+        mol.setRowCount(0);
+        for (ChiTietHoaDon cthd : list) {
+            mol.addRow(cthd.dataCTHD());
         }
     }
 
