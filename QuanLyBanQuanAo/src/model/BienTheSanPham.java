@@ -10,7 +10,7 @@ package model;
  */
 public class BienTheSanPham {
 
-    private Long id;
+    private int id;
     private SanPham sp;
     private LoaiSanPham lsp;
     private Mau m;
@@ -19,13 +19,12 @@ public class BienTheSanPham {
     private String maBTSP;
     private int soLuong;
     private double giaSP;
-    private double giaSauSale;
     private boolean trangThai;
 
     public BienTheSanPham() {
     }
 
-    public BienTheSanPham(Long id, SanPham sp, LoaiSanPham lsp, Mau m, Size s, ChatLieu cl, String maBTSP, int soLuong, double giaSP, double giaSauSale, boolean trangThai) {
+    public BienTheSanPham(int id, SanPham sp, LoaiSanPham lsp, Mau m, Size s, ChatLieu cl, String maBTSP, int soLuong, double giaSP, boolean trangThai) {
         this.id = id;
         this.sp = sp;
         this.lsp = lsp;
@@ -35,15 +34,14 @@ public class BienTheSanPham {
         this.maBTSP = maBTSP;
         this.soLuong = soLuong;
         this.giaSP = giaSP;
-        this.giaSauSale = giaSauSale;
         this.trangThai = trangThai;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -111,25 +109,12 @@ public class BienTheSanPham {
         this.giaSP = giaSP;
     }
 
-    public double getGiaSauSale() {
-        return giaSauSale;
-    }
-
-    public void setGiaSauSale(double giaSauSale) {
-        this.giaSauSale = giaSauSale;
-    }
-
     public boolean isTrangThai() {
         return trangThai;
     }
 
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
-    }
-
-    @Override
-    public String toString() {
-        return "BienTheSanPham{" + "id=" + id + ", sp=" + sp + ", lsp=" + lsp + ", m=" + m + ", s=" + s + ", cl=" + cl + ", maBTSP=" + maBTSP + ", soLuong=" + soLuong + ", giaSP=" + giaSP + ", giaSauSale=" + giaSauSale + ", trangThai=" + trangThai + '}';
     }
 
 }

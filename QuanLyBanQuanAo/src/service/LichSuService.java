@@ -35,7 +35,7 @@ public class LichSuService {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 HoaDon h = new HoaDon();
-                h.setId(rs.getLong(1));
+                h.setId(rs.getInt(1));
                 h.setMaHD(rs.getString(2));
                 h.setNgayTao(rs.getDate(3));
                 h.setHinhThucTT(rs.getString(4));

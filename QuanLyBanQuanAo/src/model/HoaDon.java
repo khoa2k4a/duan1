@@ -12,7 +12,7 @@ import java.util.Date;
  */
 public class HoaDon {
 
-    private Long id;
+    private int id;
     private String maHD;
     private NhanVien n;
     private KhachHang k;
@@ -25,11 +25,15 @@ public class HoaDon {
     public HoaDon() {
     }
 
+    public HoaDon(int id) {
+        this.id = id;
+    }
+    
     public HoaDon(String maHD) {
         this.maHD = maHD;
     }
 
-    public HoaDon(Long id, String maHD, NhanVien n, KhachHang k, Date ngayTao, String maGiamGia, String ghiChu, String hinhThucTT, boolean trangThai) {
+    public HoaDon(int id, String maHD, NhanVien n, KhachHang k, Date ngayTao, String maGiamGia, String ghiChu, String hinhThucTT, boolean trangThai) {
         this.id = id;
         this.maHD = maHD;
         this.n = n;
@@ -41,11 +45,11 @@ public class HoaDon {
         this.trangThai = trangThai;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

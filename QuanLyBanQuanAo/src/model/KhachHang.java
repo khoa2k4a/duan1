@@ -10,29 +10,18 @@ package model;
  */
 public class KhachHang {
 
-    private Long id;
     private String maKH;
     private String tenKH;
     private String diaChi;
     private String sdt;
     private String email;
-    private boolean gioiTinh;
-    private boolean trangThai;
+    private int gioiTinh;
+    private int trangThai;
 
     public KhachHang() {
     }
 
-    public KhachHang(String tenKH) {
-        this.tenKH = tenKH;
-    }
-
-    public KhachHang(String maKH, String tenKH) {
-        this.maKH = maKH;
-        this.tenKH = tenKH;
-    }
-
-    public KhachHang(Long id, String maKH, String tenKH, String diaChi, String sdt, String email, boolean gioiTinh, boolean trangThai) {
-        this.id = id;
+    public KhachHang(String maKH, String tenKH, String diaChi, String sdt, String email, int gioiTinh, int trangThai) {
         this.maKH = maKH;
         this.tenKH = tenKH;
         this.diaChi = diaChi;
@@ -40,14 +29,6 @@ public class KhachHang {
         this.email = email;
         this.gioiTinh = gioiTinh;
         this.trangThai = trangThai;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getMaKH() {
@@ -90,25 +71,39 @@ public class KhachHang {
         this.email = email;
     }
 
-    public boolean isGioiTinh() {
+    public int getGioiTinh() {
         return gioiTinh;
     }
 
-    public void setGioiTinh(boolean gioiTinh) {
+    public void setGioiTinh(int gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
 
-    public boolean isTrangThai() {
+    public int getTrangThai() {
         return trangThai;
     }
 
-    public void setTrangThai(boolean trangThai) {
+    public void setTrangThai(int trangThai) {
         this.trangThai = trangThai;
     }
 
-    @Override
-    public String toString() {
-        return "KhachHang{" + "id=" + id + ", maKH=" + maKH + ", tenKH=" + tenKH + ", diaChi=" + diaChi + ", sdt=" + sdt + ", email=" + email + ", gioiTinh=" + gioiTinh + ", trangThai=" + trangThai + '}';
+    public String getGT() {
+        if (gioiTinh == 0) {
+            return "Nam";
+        } else {
+            return "Nữ";
+        }
     }
 
+    public String getTT() {
+        if (trangThai == 0) {
+            return "Active";
+        } else {
+            return "Disable";
+        }
+    }
+
+    public Object[] todata() {
+        return new Object[]{this.maKH, this.tenKH, this.sdt, this.diaChi, this.email, this.getGT(), this.getTT()};
+    }
 }
