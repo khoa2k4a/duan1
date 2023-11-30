@@ -43,7 +43,6 @@ public class LoginJDialog extends javax.swing.JDialog {
         txtPassword = new javax.swing.JPasswordField();
         btnDangNhap = new javax.swing.JButton();
         btnThoat = new javax.swing.JButton();
-        lbl_ForgotPass = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
@@ -86,9 +85,6 @@ public class LoginJDialog extends javax.swing.JDialog {
         btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconThoat.png"))); // NOI18N
         btnThoat.setText("Thoát");
 
-        lbl_ForgotPass.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_forgotpass.png"))); // NOI18N
-        lbl_ForgotPass.setText("Quên mật khẩu");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -112,9 +108,7 @@ public class LoginJDialog extends javax.swing.JDialog {
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lbl_ForgotPass, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(btnDangNhap)
                                 .addGap(45, 45, 45)
@@ -142,13 +136,11 @@ public class LoginJDialog extends javax.swing.JDialog {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lbl_ForgotPass)
-                .addGap(25, 25, 25)
+                .addGap(53, 53, 53)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDangNhap, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnThoat, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(99, Short.MAX_VALUE))
         );
 
         jPanel2Layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {btnDangNhap, btnThoat});
@@ -261,7 +253,6 @@ public class LoginJDialog extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblTenDN;
     private javax.swing.JLabel lbl_DangNhap;
-    private javax.swing.JLabel lbl_ForgotPass;
     private javax.swing.JLabel lbl_Pass;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtTenDN;
