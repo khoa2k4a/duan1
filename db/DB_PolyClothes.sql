@@ -157,7 +157,7 @@ BEGIN
     UPDATE NHANVIEN SET MaNV = @maNV WHERE ID_NV = @idNV;
 END;
 GO
-INSERT INTO NHANVIEN VALUES('',N'Nguyễn Thu Nghĩa',N'Đông Anh, Hà Nội','0834045324','nghiant12@gmail.com',1,'nghiant12','nghia123','Quản lý',0);
+INSERT INTO NHANVIEN VALUES('',N'Nguyễn Thu Nghĩa',N'Đông Anh, Hà Nội','0834045324','nghiant12@gmail.com',1,'nghiant12','nghia123',N'Quản lý',0);
 INSERT INTO NHANVIEN VALUES('',N'Lê Văn Nam',N'Bắc Giang','0931037777','namlv@gmail.com',0,'namlv04','namdeptrai','Nhân viên',0);
 INSERT INTO NHANVIEN VALUES('',N'Vũ Thế Anh',N'Thanh Hóa','0306082004','anhvt@gmail.com',0,'theanh68','theanh123','Nhân viên',1);
 INSERT INTO NHANVIEN VALUES('',N'Bùi Cao Minh',N'Mê Linh, Hà Nội','0378902004','minhbc@gmail.com',0,'minhcodoc','minh123','Nhân viên',0);

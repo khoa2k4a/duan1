@@ -150,4 +150,24 @@ public class HoaDonService {
             return null;
         }
     }
+    
+    public int addHD(HoaDon hd){
+        sql = "insert into HOADON(MaHD, ID_NV, ID_KH, NgayTao, MaGiamGia, GhiChu, HinhThucThanhToan, TrangThai) values(?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, hd.getMaHD());
+            ps.setObject(2, hd.getNv());
+            ps.setObject(3, hd.getKh());
+            ps.setObject(4, hd.getNgayTao());
+            ps.setObject(5, hd.getMaGG());
+            ps.setObject(6, hd.getGhiChu());
+            ps.setObject(7, hd.getHinhThuc());
+            ps.setObject(8, hd.isTrangThai());
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
 }

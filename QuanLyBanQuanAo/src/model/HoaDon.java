@@ -29,6 +29,16 @@ public class HoaDon {
         this.maHD = maHD;
     }
 
+    public HoaDon(String maHD, NhanVien nv, KhachHang kh, Date ngayTao, String ghiChu, String hinhThuc, boolean trangThai) {
+        this.maHD = maHD;
+        this.nv = nv;
+        this.kh = kh;
+        this.ngayTao = ngayTao;
+        this.ghiChu = ghiChu;
+        this.hinhThuc = hinhThuc;
+        this.trangThai = trangThai;
+    }
+
     public HoaDon(int idHD, String maHD, NhanVien nv, KhachHang kh, Date ngayTao, double tongTien, String maGG, String ghiChu, String hinhThuc, boolean trangThai) {
         this.idHD = idHD;
         this.maHD = maHD;
@@ -125,8 +135,8 @@ public class HoaDon {
     public Object[] dataHD(){
         return new Object[]{
             this.maHD,
-            this.nv.getTennv(),
-            this.kh.getTenkh(),
+            this.nv.getTenNV(),
+            this.kh.getTenKH(),
             this.ngayTao,
             this.tongTien,
             this.trangThai

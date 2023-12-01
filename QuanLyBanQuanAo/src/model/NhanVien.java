@@ -9,50 +9,37 @@ package model;
  * @author ADMIN
  */
 public class NhanVien {
+
     private int id;
-    private String manv;
-    private String tennv;
-    private String diachi;
+    private String maNV;
+    private String tenNV;
+    private String diaChi;
     private String sdt;
     private String email;
-    private boolean gioitinh;
-    private String taikhoan;
-    private String matkhau;
-    private String vaitro;
-    private boolean trangthai;
+    private int gioiTinh;
+    private String taiKhoan;
+    private String matKhau;
+    private String vaiTro;
+    private int trangThai;
 
     public NhanVien() {
     }
 
-    public NhanVien(String tennv) {
-        this.tennv = tennv;
+    public NhanVien(String tenNV) {
+        this.tenNV = tenNV;
     }
 
-    public NhanVien(String manv, String tennv, String diachi, String sdt, String email, boolean gioitinh, String taikhoan, String matkhau, String vaitro, boolean trangthai) {
-        this.manv = manv;
-        this.tennv = tennv;
-        this.diachi = diachi;
+    public NhanVien(String maNV, String tenNV, String diaChi, String sdt, String email, int gioiTinh, String taiKhoan, String matKhau, String vaiTro, int trangThai) {
+        this.maNV = maNV;
+        this.tenNV = tenNV;
+        this.diaChi = diaChi;
         this.sdt = sdt;
         this.email = email;
-        this.gioitinh = gioitinh;
-        this.taikhoan = taikhoan;
-        this.matkhau = matkhau;
-        this.vaitro = vaitro;
-        this.trangthai = trangthai;
-    }
-    
-    public NhanVien(int id, String manv, String tennv, String diachi, String sdt, String email, boolean gioitinh, String taikhoan, String matkhau, String vaitro, boolean trangthai) {
-        this.id = id;
-        this.manv = manv;
-        this.tennv = tennv;
-        this.diachi = diachi;
-        this.sdt = sdt;
-        this.email = email;
-        this.gioitinh = gioitinh;
-        this.taikhoan = taikhoan;
-        this.matkhau = matkhau;
-        this.vaitro = vaitro;
-        this.trangthai = trangthai;
+        this.gioiTinh = gioiTinh;
+        this.taiKhoan = taiKhoan;
+        this.matKhau = matKhau;
+        this.vaiTro = vaiTro;
+        this.trangThai = trangThai;
     }
 
     public int getId() {
@@ -63,28 +50,28 @@ public class NhanVien {
         this.id = id;
     }
 
-    public String getManv() {
-        return manv;
+    public String getMaNV() {
+        return maNV;
     }
 
-    public void setManv(String manv) {
-        this.manv = manv;
+    public void setMaNV(String maNV) {
+        this.maNV = maNV;
     }
 
-    public String getTennv() {
-        return tennv;
+    public String getTenNV() {
+        return tenNV;
     }
 
-    public void setTennv(String tennv) {
-        this.tennv = tennv;
+    public void setTenNV(String tenNV) {
+        this.tenNV = tenNV;
     }
 
-    public String getDiachi() {
-        return diachi;
+    public String getDiaChi() {
+        return diaChi;
     }
 
-    public void setDiachi(String diachi) {
-        this.diachi = diachi;
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
     }
 
     public String getSdt() {
@@ -103,47 +90,63 @@ public class NhanVien {
         this.email = email;
     }
 
-    public boolean isGioitinh() {
-        return gioitinh;
+    public int getGioiTinh() {
+        return gioiTinh;
     }
 
-    public void setGioitinh(boolean gioitinh) {
-        this.gioitinh = gioitinh;
+    public void setGioiTinh(int gioiTinh) {
+        this.gioiTinh = gioiTinh;
     }
 
-    public String getTaikhoan() {
-        return taikhoan;
+    public String getTaiKhoan() {
+        return taiKhoan;
     }
 
-    public void setTaikhoan(String taikhoan) {
-        this.taikhoan = taikhoan;
+    public void setTaiKhoan(String taiKhoan) {
+        this.taiKhoan = taiKhoan;
     }
 
-    public String getMatkhau() {
-        return matkhau;
+    public String getMatKhau() {
+        return matKhau;
     }
 
-    public void setMatkhau(String matkhau) {
-        this.matkhau = matkhau;
+    public void setMatKhau(String matKhau) {
+        this.matKhau = matKhau;
     }
 
-    public String getVaitro() {
-        return vaitro;
+    public String getVaiTro() {
+        return vaiTro;
     }
 
-    public void setVaitro(String vaitro) {
-        this.vaitro = vaitro;
+    public void setVaiTro(String vaiTro) {
+        this.vaiTro = vaiTro;
     }
 
-    public boolean isTrangthai() {
-        return trangthai;
+    public int getTrangThai() {
+        return trangThai;
     }
 
-    public void setTrangthai(boolean trangthai) {
-        this.trangthai = trangthai;
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
     }
-    
-    public Object[] toData(){
-        return new Object[]{this.manv,this.tennv,this.sdt,this.diachi,this.email,this.gioitinh,this.taikhoan,this.matkhau,this.vaitro,this.trangthai};
+
+    public String getGT() {
+        if (gioiTinh == 0) {
+            return "Nam";
+        } else {
+            return "Nữ";
+        }
+    }
+
+    public String getTT() {
+        if (trangThai == 0) {
+            return "Active";
+        } else {
+            return "Disable";
+        }
+    }
+
+    public Object[] toData() {
+        return new Object[]{this.maNV, this.tenNV, this.sdt, this.diaChi, this.email, this.getGT(), this.taiKhoan, this.matKhau, this.vaiTro, this.getTT()};
     }
 }

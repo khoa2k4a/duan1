@@ -35,16 +35,16 @@ public class LichSuService {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 HoaDon h = new HoaDon();
-                h.setId(rs.getInt(1));
+                h.setIdHD(rs.getInt(1));
                 h.setMaHD(rs.getString(2));
                 h.setNgayTao(rs.getDate(3));
-                h.setHinhThucTT(rs.getString(4));
+                h.setHinhThuc(rs.getString(4));
                 NhanVien n = new NhanVien();
                 n.setMaNV(rs.getString(5));
-                h.setN(n);
+                h.setNv(n);
                 KhachHang k = new KhachHang();
                 k.setTenKH(rs.getString(6));
-                h.setK(k);
+                h.setKh(k);
                 h.setTrangThai(rs.getBoolean(7));
                 list.add(h);
             }
@@ -80,7 +80,7 @@ public class LichSuService {
                 btsp.setGiaSP(rs.getDouble(5));
                 btsp.setSp(sp);
                 HoaDon h = new HoaDon();
-                h.setMaGiamGia(rs.getString(6));
+                h.setMaGG(rs.getString(6));
                 HoaDonCT hdct = new HoaDonCT();
                 hdct.setId(rs.getLong(1));
                 hdct.setSoLuong(rs.getInt(4));

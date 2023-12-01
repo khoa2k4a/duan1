@@ -560,11 +560,11 @@ public class LichSuJFrame extends javax.swing.JFrame {
         mol.setRowCount(0);
         for (HoaDon h : lst) {
             mol.addRow(new Object[]{
-                    h.getId(),
+                    h.getIdHD(),
                     h.getMaHD(),
                     h.getNgayTao(),
-                    h.getN().getMaNV(),
-                    h.getK().getTenKH(),
+                    h.getNv().getMaNV(),
+                    h.getKh().getTenKH(),
                     h.isTrangThai()
             });
         }

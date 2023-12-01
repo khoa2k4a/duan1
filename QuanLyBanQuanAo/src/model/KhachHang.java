@@ -9,53 +9,74 @@ package model;
  * @author ADMIN
  */
 public class KhachHang {
-    private String makh;
-    private String tenkh;
-    private String diachi;
+
+    private int idKH;
+    private String maKH;
+    private String tenKH;
+    private String diaChi;
     private String sdt;
     private String email;
-    private boolean gioitinh;
-    private boolean trangthai;
+    private int gioiTinh;
+    private int trangThai;
 
     public KhachHang() {
     }
 
-    public KhachHang(String tenkh) {
-        this.tenkh = tenkh;
+    public KhachHang(String tenKH) {
+        this.tenKH = tenKH;
     }
 
-    public KhachHang(String makh, String tenkh, String diachi, String sdt, String email, boolean gioitinh, boolean trangthai) {
-        this.makh = makh;
-        this.tenkh = tenkh;
-        this.diachi = diachi;
+    public KhachHang(String maKH, String tenKH, String diaChi, String sdt, String email, int gioiTinh, int trangThai) {
+        this.maKH = maKH;
+        this.tenKH = tenKH;
+        this.diaChi = diaChi;
         this.sdt = sdt;
         this.email = email;
-        this.gioitinh = gioitinh;
-        this.trangthai = trangthai;
+        this.gioiTinh = gioiTinh;
+        this.trangThai = trangThai;
     }
 
-    public String getMakh() {
-        return makh;
+    public KhachHang(int idKH, String maKH, String tenKH, String diaChi, String sdt, String email, int gioiTinh, int trangThai) {
+        this.idKH = idKH;
+        this.maKH = maKH;
+        this.tenKH = tenKH;
+        this.diaChi = diaChi;
+        this.sdt = sdt;
+        this.email = email;
+        this.gioiTinh = gioiTinh;
+        this.trangThai = trangThai;
     }
 
-    public void setMakh(String makh) {
-        this.makh = makh;
+    public int getIdKH() {
+        return idKH;
     }
 
-    public String getTenkh() {
-        return tenkh;
+    public void setIdKH(int idKH) {
+        this.idKH = idKH;
     }
 
-    public void setTenkh(String tenkh) {
-        this.tenkh = tenkh;
+    public String getMaKH() {
+        return maKH;
     }
 
-    public String getDiachi() {
-        return diachi;
+    public void setMaKH(String maKH) {
+        this.maKH = maKH;
     }
 
-    public void setDiachi(String diachi) {
-        this.diachi = diachi;
+    public String getTenKH() {
+        return tenKH;
+    }
+
+    public void setTenKH(String tenKH) {
+        this.tenKH = tenKH;
+    }
+
+    public String getDiaChi() {
+        return diaChi;
+    }
+
+    public void setDiaChi(String diaChi) {
+        this.diaChi = diaChi;
     }
 
     public String getSdt() {
@@ -74,23 +95,39 @@ public class KhachHang {
         this.email = email;
     }
 
-    public boolean isGioitinh() {
-        return gioitinh;
+    public int getGioiTinh() {
+        return gioiTinh;
     }
 
-    public void setGioitinh(boolean gioitinh) {
-        this.gioitinh = gioitinh;
+    public void setGioiTinh(int gioiTinh) {
+        this.gioiTinh = gioiTinh;
     }
 
-    public boolean isTrangthai() {
-        return trangthai;
+    public int getTrangThai() {
+        return trangThai;
     }
 
-    public void setTrangthai(boolean trangthai) {
-        this.trangthai = trangthai;
+    public void setTrangThai(int trangThai) {
+        this.trangThai = trangThai;
     }
-    
-    public Object[] todata(){
-        return new Object[]{this.makh,this.tenkh,this.sdt,this.diachi,this.email,this.gioitinh,this.trangthai};
+
+    public String getGT() {
+        if (gioiTinh == 0) {
+            return "Nam";
+        } else {
+            return "Nữ";
+        }
+    }
+
+    public String getTT() {
+        if (trangThai == 0) {
+            return "Active";
+        } else {
+            return "Disable";
+        }
+    }
+
+    public Object[] todata() {
+        return new Object[]{this.maKH, this.tenKH, this.sdt, this.diaChi, this.email, this.getGT(), this.getTT()};
     }
 }
