@@ -255,6 +255,8 @@ public class TaiKhoanJFrame extends javax.swing.JFrame {
 
         lblMatKhau.setText("Mật khẩu");
 
+        txtMatKhau.setEditable(false);
+
         lblVaiTro.setText("Vai trò");
 
         buttonGroup1.add(rdoNV);
@@ -263,8 +265,6 @@ public class TaiKhoanJFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(rdoQL);
         rdoQL.setText("Quản lý");
-
-        txtTimTK.setText("Tên nhân viên");
 
         btnTim.setText("Tìm");
         btnTim.addActionListener(new java.awt.event.ActionListener() {
@@ -284,11 +284,6 @@ public class TaiKhoanJFrame extends javax.swing.JFrame {
         btnSua.setBackground(new java.awt.Color(204, 255, 255));
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
         btnSua.setText("Sửa");
-        btnSua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaActionPerformed(evt);
-            }
-        });
 
         btnXoa.setBackground(new java.awt.Color(204, 255, 255));
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
@@ -472,26 +467,6 @@ public class TaiKhoanJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.fillTable(service.getAll());
     }//GEN-LAST:event_btnLoadTKActionPerformed
-
-    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // TODO add your handling code here:
-        index = tblTaiKhoan.getSelectedRow();
-        NhanVien nv = this.getForm();
-        String ma = tblTaiKhoan.getValueAt(index, 0).toString();
-        try {
-            if (validForm()) {
-                if (service.suaTK(nv, ma) > 0) {
-                    JOptionPane.showMessageDialog(this, "Sửa thành công");
-                    this.fillTable(service.getAll());
-                    
-                } else {
-                    JOptionPane.showMessageDialog(this, "Sửa thất bại");
-                }
-            }
-        } catch (HeadlessException e) {
-            JOptionPane.showMessageDialog(this, "Lỗi nút sửa");
-        }
-    }//GEN-LAST:event_btnSuaActionPerformed
 
     /**
      * @param args the command line arguments
