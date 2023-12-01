@@ -2,9 +2,7 @@
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
   <NonVisualComponents>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup_TrangThaiVoucher">
-    </Component>
-    <Component class="javax.swing.ButtonGroup" name="buttonGroup_TrangThaiSale">
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup_TrangThai">
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -312,11 +310,11 @@
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="lblPhanTramGiamGia" min="-2" pref="126" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                      <Component id="jTextField1" max="32767" attributes="0"/>
+                                      <Component id="txtPhanTramGiamGia" max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="103" alignment="1" groupAlignment="0" attributes="0">
                                       <Component id="lblDKGiamGia" alignment="0" min="-2" pref="217" max="-2" attributes="0"/>
-                                      <Component id="jTextField4" alignment="0" min="-2" pref="246" max="-2" attributes="0"/>
+                                      <Component id="txtDKGiam" alignment="0" min="-2" pref="246" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -360,11 +358,11 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblDKGiamGia" min="-2" pref="30" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="jTextField4" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtDKGiam" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
                                       <Component id="lblPhanTramGiamGia" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      <Component id="jTextField1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="txtPhanTramGiamGia" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                           </Group>
@@ -434,14 +432,14 @@
             <Property name="text" type="java.lang.String" value="&#x110;i&#x1ec1;u ki&#x1ec7;n gi&#x1ea3;m gi&#xe1; (H&#xf3;a &#x111;&#x1a1;n &gt;)"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField4">
+        <Component class="javax.swing.JTextField" name="txtDKGiam">
         </Component>
         <Component class="javax.swing.JLabel" name="lblPhanTramGiamGia">
           <Properties>
             <Property name="text" type="java.lang.String" value="Ph&#x1ea7;n tr&#x103;m gi&#x1ea3;m gi&#xe1;"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="jTextField1">
+        <Component class="javax.swing.JTextField" name="txtPhanTramGiamGia">
         </Component>
         <Component class="javax.swing.JLabel" name="lblNgayBatDau">
           <Properties>
@@ -464,12 +462,18 @@
         </Component>
         <Component class="javax.swing.JRadioButton" name="rdoActive">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="buttonGroup_TrangThai"/>
+            </Property>
             <Property name="selected" type="boolean" value="true"/>
             <Property name="text" type="java.lang.String" value="Active"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="rdoDisable">
           <Properties>
+            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+              <ComponentRef name="buttonGroup_TrangThai"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Disable"/>
           </Properties>
         </Component>
@@ -497,6 +501,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="S&#x1eed;a"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSuaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnXoa">
           <Properties>
@@ -538,10 +545,49 @@
                     <Column editable="true" title="T&#xea;n chi&#x1ebf;n d&#x1ecb;ch" type="java.lang.Object"/>
                     <Column editable="true" title="Ng&#xe0;y b&#x1eaf;t &#x111;&#x1ea7;u" type="java.lang.Object"/>
                     <Column editable="true" title="Ng&#xe0;y k&#x1ebf;t th&#xfa;c" type="java.lang.Object"/>
-                    <Column editable="true" title="&#x110;i&#x1ec1;u ki&#x1ec7;n gi&#x1ea3;m gi&#xe1; (H&#xf3;a &#x111;&#x1a1;n &gt;)" type="java.lang.Object"/>
                     <Column editable="true" title="Ph&#x1ea7;n tr&#x103;m gi&#x1ea3;m gi&#xe1;" type="java.lang.Object"/>
+                    <Column editable="true" title="&#x110;i&#x1ec1;u ki&#x1ec7;n gi&#x1ea3;m gi&#xe1; (H&#xf3;a &#x111;&#x1a1;n &gt;)" type="java.lang.Object"/>
                     <Column editable="true" title="Tr&#x1ea1;ng th&#xe1;i" type="java.lang.Object"/>
                   </Table>
+                </Property>
+                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                  <TableColumnModel selectionModel="0">
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                      <Title/>
+                      <Editor/>
+                      <Renderer/>
+                    </Column>
+                  </TableColumnModel>
                 </Property>
                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>

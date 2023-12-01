@@ -4,7 +4,15 @@
  */
 package view;
 
+import java.awt.HeadlessException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import model.GiamGia;
+import service.GiamGiaService;
 
 /**
  *
@@ -15,14 +23,14 @@ public class DotGiamGiaJFrame extends javax.swing.JFrame {
     /**
      * Creates new form ViewTrangChu
      */
-//    private final VoucherService service = new VoucherService();
+    private final GiamGiaService service = new GiamGiaService();
     private DefaultTableModel mol = new DefaultTableModel();
     private int index = -1;
 
     public DotGiamGiaJFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
-//        this.fillTable(service.getAll());
+        this.fillTable(service.getAll());
     }
 
     /**
@@ -34,8 +42,7 @@ public class DotGiamGiaJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup_TrangThaiVoucher = new javax.swing.ButtonGroup();
-        buttonGroup_TrangThaiSale = new javax.swing.ButtonGroup();
+        buttonGroup_TrangThai = new javax.swing.ButtonGroup();
         pnMenu = new javax.swing.JPanel();
         btnHome = new javax.swing.JButton();
         btnSP = new javax.swing.JButton();
@@ -53,9 +60,9 @@ public class DotGiamGiaJFrame extends javax.swing.JFrame {
         lblMaDotGiamGia = new javax.swing.JLabel();
         txtMaDot = new javax.swing.JTextField();
         lblDKGiamGia = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtDKGiam = new javax.swing.JTextField();
         lblPhanTramGiamGia = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtPhanTramGiamGia = new javax.swing.JTextField();
         lblNgayBatDau = new javax.swing.JLabel();
         jdcNgayBD = new com.toedter.calendar.JDateChooser();
         lblNgayKT = new javax.swing.JLabel();
@@ -233,9 +240,11 @@ public class DotGiamGiaJFrame extends javax.swing.JFrame {
 
         lblTrangThai.setText("Trạng thái");
 
+        buttonGroup_TrangThai.add(rdoActive);
         rdoActive.setSelected(true);
         rdoActive.setText("Active");
 
+        buttonGroup_TrangThai.add(rdoDisable);
         rdoDisable.setText("Disable");
 
         btnThem.setBackground(new java.awt.Color(204, 255, 255));
@@ -250,6 +259,11 @@ public class DotGiamGiaJFrame extends javax.swing.JFrame {
         btnSua.setBackground(new java.awt.Color(204, 255, 255));
         btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/update.png"))); // NOI18N
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnXoa.setBackground(new java.awt.Color(204, 255, 255));
         btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/delete.png"))); // NOI18N
@@ -276,7 +290,7 @@ public class DotGiamGiaJFrame extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Mã đợt giảm giá", "Tên chiến dịch", "Ngày bắt đầu", "Ngày kết thúc", "Điều kiện giảm giá (Hóa đơn >)", "Phần trăm giảm giá", "Trạng thái"
+                "Mã đợt giảm giá", "Tên chiến dịch", "Ngày bắt đầu", "Ngày kết thúc", "Phần trăm giảm giá", "Điều kiện giảm giá (Hóa đơn >)", "Trạng thái"
             }
         ));
         tblGiamGia.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -339,10 +353,10 @@ public class DotGiamGiaJFrame extends javax.swing.JFrame {
                                 .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pnlGiamGiaLayout.createSequentialGroup()
                                     .addComponent(lblPhanTramGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jTextField1))
+                                    .addComponent(txtPhanTramGiamGia))
                                 .addGroup(pnlGiamGiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblDKGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtDKGiam, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(69, 69, 69)
                         .addGroup(pnlGiamGiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnClear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -374,11 +388,11 @@ public class DotGiamGiaJFrame extends javax.swing.JFrame {
                             .addGroup(pnlGiamGiaLayout.createSequentialGroup()
                                 .addComponent(lblDKGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtDKGiam, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(pnlGiamGiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(lblPhanTramGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtPhanTramGiamGia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGroup(pnlGiamGiaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnlGiamGiaLayout.createSequentialGroup()
                                 .addGap(4, 4, 4)
@@ -464,39 +478,43 @@ public class DotGiamGiaJFrame extends javax.swing.JFrame {
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
+        new MainJFrame().setVisible(true);
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        try {
-
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        this.insert();
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
-        //        this.clearForm();
+        this.del();
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
+        this.clearForm();
     }//GEN-LAST:event_btnClearActionPerformed
 
     private void tblGiamGiaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblGiamGiaMouseClicked
         // TODO add your handling code here:
-        //        try {
-            //            index = tblVoucher.getSelectedRow();
-            //            this.showDataV(index);
-            //        } catch (Exception e) {
-            //            JOptionPane.showMessageDialog(this, "Lỗi ");
-            //        }
+        try {
+            index = tblGiamGia.getSelectedRow();
+            this.showData(index);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Lỗi click");
+        }
     }//GEN-LAST:event_tblGiamGiaMouseClicked
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         // TODO add your handling code here:
+        this.findTen();
     }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // TODO add your handling code here:
+        this.update();
+    }//GEN-LAST:event_btnSuaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -573,11 +591,8 @@ public class DotGiamGiaJFrame extends javax.swing.JFrame {
     private javax.swing.JButton btnThongKe;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.ButtonGroup buttonGroup_TrangThaiSale;
-    private javax.swing.ButtonGroup buttonGroup_TrangThaiVoucher;
+    private javax.swing.ButtonGroup buttonGroup_TrangThai;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField4;
     private com.toedter.calendar.JDateChooser jdcNgayBD;
     private com.toedter.calendar.JDateChooser jdcNgayKT;
     private javax.swing.JLabel lblDKGiamGia;
@@ -593,160 +608,215 @@ public class DotGiamGiaJFrame extends javax.swing.JFrame {
     private javax.swing.JRadioButton rdoActive;
     private javax.swing.JRadioButton rdoDisable;
     private javax.swing.JTable tblGiamGia;
+    private javax.swing.JTextField txtDKGiam;
     private javax.swing.JTextField txtMaDot;
+    private javax.swing.JTextField txtPhanTramGiamGia;
     private javax.swing.JTextField txtTenCD;
     private javax.swing.JTextField txtTimTenCD;
     // End of variables declaration//GEN-END:variables
 
-//    private void fillTable(ArrayList<VoucherCT> lst) {
-//        mol = (DefaultTableModel) tblVoucher.getModel();
-//        mol.setRowCount(0);
-//        for (VoucherCT voucherCT : lst) {
-//            mol.addRow(new Object[]{
-//                voucherCT.getV().getN().getTenNV(),
-//                voucherCT.getK().getMaKH(),
-//                voucherCT.getH().getMaHD(),
-//                voucherCT.getV().getTenCD(),
-//                voucherCT.getV().getStartDate(),
-//                voucherCT.getV().getEndDate(),
-//                voucherCT.getGtGiam(),
-//                voucherCT.getDvGiam(),
-//                voucherCT.getSoLuong(),
-//                voucherCT.isTrangThai()
-//            });
-//        }
-//    }
+    private void fillTable(List<GiamGia> lst) {
+        mol = (DefaultTableModel) tblGiamGia.getModel();
+        mol.setRowCount(0);
+        for (GiamGia g : lst) {
+            mol.addRow(new Object[]{
+                g.getMaDot(),
+                g.getTenDot(),
+                g.getStartDate(),
+                g.getEndDate(),
+                g.getPhanTramGiam(),
+                g.getDieuKienGiam(),
+                g.getTT()
+            });
+        }
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 
-//    private void clearForm() {
-//        txtTenChienDichVoucher.setText(null);
-//        txtMaNV.setText(null);
-//        txtMaKH.setText(null);
-//        txtMaHD.setText(null);
-//        txtSoLuongVoucher.setText(null);
-//        txtGiaTriGiamVoucher.setText(null);
-//        cboDonViGiamVoucher.setSelectedIndex(0);
-//        rdoActiveVoucher.setSelected(true);
-//    }
-//
-//    private void showDataV(int row) {
-//        VoucherCT vct = service.getAll().get(row);
-//        txtTenChienDichVoucher.setText(vct.getV().getTenCD());
-//        txtMaNV.setText(vct.getV().getN().getMaNV());
-//        txtMaKH.setText(vct.getK().getMaKH());
-//        txtMaHD.setText(vct.getH().getMaHD());
-//        Date ngayBD = vct.getV().getStartDate();
-//        Date ngayKT = vct.getV().getEndDate();
-//        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//        try {
-//            jdcNgayBD.setDate(sdf.parse(ngayBD.toString()));
-//            jdcNgayKT.setDate(sdf.parse(ngayKT.toString()));
-//        } catch (ParseException ex) {
+    private void clearForm() {
+        txtMaDot.setText(null);
+        txtTenCD.setText(null);
+        txtDKGiam.setText(null);
+        txtPhanTramGiamGia.setText(null);
+        rdoActive.setSelected(true);
+    }
+
+    private void showData(int row) {
+        GiamGia g = service.getAll().get(row);
+        txtMaDot.setText(g.getMaDot());
+        txtTenCD.setText(g.getTenDot());
+        Date ngayBD = g.getStartDate();
+        Date ngayKT = g.getEndDate();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        try {
+            jdcNgayBD.setDate(sdf.parse(ngayBD.toString()));
+            jdcNgayKT.setDate(sdf.parse(ngayKT.toString()));
+        } catch (ParseException ex) {
 //            Logger.getLogger(DotGiamGiaJFrame.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//        txtSoLuongVoucher.setText(String.valueOf(vct.getSoLuong()));
-//        txtGiaTriGiamVoucher.setText(String.valueOf(vct.getGtGiam()));
-//        cboDonViGiamVoucher.setSelectedItem(vct.getDvGiam());
-//        if (vct.isTrangThai()) {
-//            rdoActiveVoucher.setSelected(true);
-//        } else {
-//            rdoDisableVoucher.setSelected(true);
-//        }
-//    }
-//
-//    private VoucherCT getFormV() {
-//        VoucherCT vct = new VoucherCT();
-//        NhanVien n = new NhanVien();
-//        n.setMaNV(txtMaNV.getText().trim());
-//        KhachHang k = new KhachHang();
-//        k.setMaKH(txtMaKH.getText().trim());
-//        vct.setK(k);
-//        HoaDon h = new HoaDon();
-//        h.setMaHD(txtMaHD.getText().trim());
-//        vct.setH(h);
-//        Voucher v = new Voucher();
-//        v.setTenCD(txtTenChienDichVoucher.getText().trim());
-//        v.setN(n);
-//        java.sql.Date ngayBD = new java.sql.Date(jdcNgayBD.getDate().getTime());
-//        java.sql.Date ngayKT = new java.sql.Date(jdcNgayKT.getDate().getTime());
-//        v.setStartDate(ngayBD);
-//        v.setEndDate(ngayKT);
-//        v.setGtGiam(Integer.parseInt(txtGiaTriGiamVoucher.getText().trim()));
-//        v.setDvGiam(cboDonViGiamVoucher.getSelectedItem().toString());
-//        vct.setV(v);
-//        vct.setSoLuong(Integer.parseInt(txtSoLuongVoucher.getText().trim()));
-//        if (rdoActiveVoucher.isSelected()) {
-//            vct.setTrangThai(true);
-//        } else if (rdoDisableVoucher.isSelected()) {
-//            vct.setTrangThai(false);
-//        }
-//        return vct;
-//    }
-//
-//    private boolean checkDL() {
-//        if (txtMaNV.getText().trim().isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Mã nhân viên tạo không được để trống");
-//            txtMaNV.requestFocus();
-//            return false;
-//        }
-//        if (txtMaKH.getText().trim().isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Mã khách hàng không được để trống");
-//            txtMaNV.requestFocus();
-//            return false;
-//        }
-//        if (txtMaHD.getText().trim().isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Mã hóa đơn áp dụng không được để trống");
-//            txtMaNV.requestFocus();
-//            return false;
-//        }
-//        if (txtTenChienDichVoucher.getText().trim().isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Tên chiến dịch không được để trống");
-//            txtMaNV.requestFocus();
-//            return false;
-//        }
-//        if (jdcNgayBD.getDate().toString().isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Vui lòng chọn ngày bắt đầu");
-//            jdcNgayBD.requestFocus();
-//            return false;
-//        }
-//        if (jdcNgayKT.getDate().toString().isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Vui lòng chọn ngày kết thúc");
-//            jdcNgayKT.requestFocus();
-//            return false;
-//        }
-//        if (txtSoLuongVoucher.getText().trim().isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Vui lòng nhập số lượng");
-//            txtSoLuongVoucher.requestFocus();
-//            return false;
-//        } else {
-//            try {
-//                if (Integer.parseInt(txtSoLuongVoucher.getText().trim()) <= 0) {
-//                    JOptionPane.showMessageDialog(this, "Số lượng phải lớn hơn 0");
-//                    txtSoLuongVoucher.requestFocus();
-//                }
-//                if (Integer.parseInt(txtSoLuongVoucher.getText().trim()) >= 20) {
-//                    JOptionPane.showMessageDialog(this, "Số lượng không vượt quá 20");
-//                    txtSoLuongVoucher.requestFocus();
-//                }
-//            } catch (HeadlessException | NumberFormatException e) {
-//                JOptionPane.showMessageDialog(this, "Số lượng phải là số");
-//                txtSoLuongVoucher.requestFocus();
-//            }
-//        }
-//        if (txtGiaTriGiamVoucher.getText().trim().isEmpty()) {
-//            JOptionPane.showMessageDialog(this, "Vui lòng nhập giá trị giảm");
-//            txtGiaTriGiamVoucher.requestFocus();
-//            return false;
-//        } else {
-//            try {
-//                if (Integer.parseInt(txtGiaTriGiamVoucher.getText().trim()) <= 0) {
-//                    JOptionPane.showMessageDialog(this, "Giá trị giảm phải lớn hơn 0");
-//                    txtGiaTriGiamVoucher.requestFocus();
-//                }
-//            } catch (HeadlessException | NumberFormatException e) {
-//                JOptionPane.showMessageDialog(this, "Giá trị giảm phải là số");
-//                txtGiaTriGiamVoucher.requestFocus();
-//            }
-//        }
-//        return true;
-//    }
+        }
+        txtPhanTramGiamGia.setText(String.valueOf(g.getPhanTramGiam()));
+        txtDKGiam.setText(String.valueOf(g.getDieuKienGiam()));
+        if (g.getTrangThai() == 0) {
+            rdoActive.setSelected(true);
+        } else {
+            rdoDisable.setSelected(true);
+        }
+    }
+
+    private GiamGia getForm() {
+        GiamGia g = new GiamGia();
+        g.setMaDot(txtMaDot.getText().trim());
+        g.setTenDot(txtTenCD.getText().trim());
+        g.setStartDate(jdcNgayBD.getDate());
+        g.setEndDate(jdcNgayKT.getDate());
+        g.setPhanTramGiam(Integer.parseInt(txtPhanTramGiamGia.getText().trim()));
+        g.setDieuKienGiam(Float.parseFloat(txtDKGiam.getText().trim()));
+        if (rdoActive.isSelected()) {
+            g.setTrangThai(0);
+        } else {
+            g.setTrangThai(1);
+        }
+        return g;
+    }
+
+    private boolean checkDL() {
+        if (txtMaDot.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Mã đợt giảm giá không được để trống");
+            txtMaDot.requestFocus();
+            return false;
+        }
+        if (txtTenCD.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Tên chiến dịch không được để trống");
+            txtTenCD.requestFocus();
+            return false;
+        }
+        if (jdcNgayBD.getDate().toString().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn ngày bắt đầu");
+            jdcNgayBD.requestFocus();
+            return false;
+        }
+        if (jdcNgayKT.getDate().toString().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn ngày kết thúc");
+            jdcNgayKT.requestFocus();
+            return false;
+        }
+        if (txtPhanTramGiamGia.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập phần trăm giảm giá");
+            txtPhanTramGiamGia.requestFocus();
+            return false;
+        } else {
+            try {
+                if (Integer.parseInt(txtPhanTramGiamGia.getText().trim()) < 0) {
+                    JOptionPane.showMessageDialog(this, "Phần trăm giảm phải lớn hơn 0");
+                    txtPhanTramGiamGia.requestFocus();
+                    return false;
+                }
+                if (Integer.parseInt(txtPhanTramGiamGia.getText().trim()) >= 100) {
+                    JOptionPane.showMessageDialog(this, "Phần trăm giảm không vượt quá 100");
+                    txtPhanTramGiamGia.requestFocus();
+                    return false;
+                }
+            } catch (HeadlessException | NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Phần trăm giảm là số");
+                txtPhanTramGiamGia.requestFocus();
+                return false;
+            }
+        }
+        if (txtDKGiam.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng nhập điều kiện giảm");
+            txtDKGiam.requestFocus();
+            return false;
+        } else {
+            try {
+                if (Float.parseFloat(txtDKGiam.getText().trim()) <= 0) {
+                    JOptionPane.showMessageDialog(this, "Điều kiện giảm phải lớn hơn 0");
+                    txtDKGiam.requestFocus();
+                    return false;
+                }
+            } catch (HeadlessException | NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Điều kiện giảm phải là số");
+                txtDKGiam.requestFocus();
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private void insert() {
+        try {
+            if (checkDL()) {
+                int hoi = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn thêm hay không?");
+                if (hoi != JOptionPane.YES_OPTION) {
+                    return;
+                }
+                GiamGia g = this.getForm();
+                if (service.add(g) != 0) {
+                    JOptionPane.showMessageDialog(this, "Thêm thành công");
+                    this.fillTable(service.getAll());
+                } else {
+                    JOptionPane.showMessageDialog(this, "Thêm thất bại");
+                }
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(this, "Lỗi Thêm");
+            e.printStackTrace(System.out);
+        }
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void del() {
+        index = tblGiamGia.getSelectedRow();
+        String maDot = tblGiamGia.getValueAt(index, 0).toString();
+        try {
+            int hoi = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn xóa hay không?");
+            if (hoi != JOptionPane.YES_OPTION) {
+                return;
+            }
+            if (service.del(maDot) != 0) {
+                JOptionPane.showMessageDialog(this, "Xóa thành công");
+                this.fillTable(service.getAll());
+                this.clearForm();
+            } else {
+                JOptionPane.showMessageDialog(this, "Xóa thất bại");
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(this, "Lỗi Xóa");
+            e.printStackTrace(System.out);
+        }
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void update() {
+        index = tblGiamGia.getSelectedRow();
+        String maDot = tblGiamGia.getValueAt(index, 0).toString();
+        try {
+            int hoi = JOptionPane.showConfirmDialog(this, "Bạn có chắc muốn sửa hay không?");
+            if (hoi != JOptionPane.YES_OPTION) {
+                return;
+            }
+            GiamGia g = this.getForm();
+            if (service.update(g, maDot) != 0) {
+                JOptionPane.showMessageDialog(this, "Sửa thành công");
+                this.fillTable(service.getAll());
+                this.clearForm();
+            } else {
+                JOptionPane.showMessageDialog(this, "Sửa thất bại");
+            }
+        } catch (HeadlessException e) {
+            JOptionPane.showMessageDialog(this, "Lỗi Sửa");
+            e.printStackTrace(System.out);
+        }
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    private void findTen() {
+        String ten = txtTimTenCD.getText();
+        ten = "%" + ten + "%";
+        if (service.findTen(ten) != null) {
+            this.fillTable(service.findTen(ten));
+        } else {
+            JOptionPane.showMessageDialog(this, "Không tìm thấy tên chiến dịch nào!");
+        }
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
