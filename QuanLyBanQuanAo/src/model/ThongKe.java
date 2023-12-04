@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -16,8 +17,13 @@ public class ThongKe {
     private String tenkh;
     private Date ngaytao;
     private double tongtien;
+    private double tongtientatca;
 
     public ThongKe() {
+    }
+
+    public ThongKe(double tongtientatca) {
+        this.tongtientatca = tongtientatca;
     }
 
     public ThongKe(String mahoadon, String tennv, String tenkh, Date ngaytao, double tongtien) {
@@ -67,8 +73,18 @@ public class ThongKe {
     public void setTongtien(double tongtien) {
         this.tongtien = tongtien;
     }
+
+    public double getTongtientatca() {
+        return tongtientatca;
+    }
+
+    public void setTongtientatca(double tongtientatca) {
+        this.tongtientatca = tongtientatca;
+    }
     
     public Object[] toData(){
         return new Object[]{this.mahoadon,this.tennv,this.ngaytao,this.tenkh,this.tongtien};
     }
+    
+    
 }
