@@ -76,12 +76,22 @@ public class SanPham {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
+    
+    public String getTrangThai(){
+        String trangThai;
+        if(this.isTrangThai()){
+            trangThai = "còn bán";
+        }else{
+            trangThai = "Ngưng bán";
+        }
+        return trangThai;
+    }
 
     public Object[] dataSanPham() {
         return new Object[]{
             this.maSP,
             this.tenSP,
-            this.trangThai
+            this.getTrangThai()
         };
     }
 }

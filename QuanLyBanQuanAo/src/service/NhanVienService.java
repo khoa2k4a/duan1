@@ -22,15 +22,15 @@ public class NhanVienService {
     ResultSet rs = null;
 
     public List<NhanVien> getAll() {
-        sql = "select MaNV,TenNV,Sdt,DiaChi,Email,GioiTinh,TaiKhoan,MatKhau,VaiTro,TrangThai from NHANVIEN";
+        sql = "select ID_NV, MaNV,TenNV,Sdt,DiaChi,Email,GioiTinh,TaiKhoan,MatKhau,VaiTro,TrangThai from NHANVIEN";
         List<NhanVien> listnv = new ArrayList<>();
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                NhanVien nv = new NhanVien(rs.getString(1), rs.getString(2), rs.getString(4), rs.getString(3), rs.getString(5), rs.getInt(6),
-                        rs.getString(7), rs.getString(8), rs.getString(9), rs.getInt(10));
+                NhanVien nv = new NhanVien(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(5), rs.getString(4), rs.getString(6), rs.getInt(7),
+                        rs.getString(8), rs.getString(9), rs.getString(10), rs.getInt(11));
                 listnv.add(nv);
             }
             return listnv;

@@ -29,54 +29,6 @@ public class KhachHangJFrame extends javax.swing.JFrame {
         this.fillTable(servicekhachhang.getAll());
     }
 
-    private void fillTable(List<KhachHang> list) {
-        mol = (DefaultTableModel) tblKhachHang.getModel();
-        mol.setRowCount(0);
-        for (KhachHang x : list) {
-            mol.addRow(x.todata());
-        }
-    }
-
-    void showKh(int index) {
-        KhachHang kh = servicekhachhang.getAll().get(index);
-        txtDiaChi.setText(kh.getDiaChi());
-        txtEmail.setText(kh.getEmail());
-        txtMaKH.setText(kh.getMaKH());
-        txtSDT.setText(kh.getSdt());
-        txtTenKH.setText(kh.getTenKH());
-        if (kh.getGioiTinh() == 0) {
-            rdoNam.setSelected(true);
-        } else {
-            rdoNu.setSelected(true);
-        }
-        if (kh.getTrangThai() == 0) {
-            rdoActive.setSelected(true);
-        } else {
-            rdoDisable.setSelected(true);
-        }
-    }
-
-    KhachHang readfrom() {
-        String ma, ten, diachi, email, sdt;
-        int gioitinh, trangthai;
-        ma = txtMaKH.getText();
-        ten = txtTenKH.getText();
-        diachi = txtDiaChi.getText();
-        email = txtEmail.getText();
-        sdt = txtSDT.getText();
-        if (rdoNam.isSelected()) {
-            gioitinh = 0;
-        } else {
-            gioitinh = 1;
-        }
-        if (rdoActive.isSelected()) {
-            trangthai = 0;
-        } else {
-            trangthai = 1;
-        }
-        return new KhachHang(ma, ten, diachi, sdt, email, gioitinh, trangthai);
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -557,14 +509,20 @@ public class KhachHangJFrame extends javax.swing.JFrame {
 
     private void btnSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPActionPerformed
         // TODO add your handling code here:
+        new SanPhamJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnSPActionPerformed
 
     private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
         // TODO add your handling code here:
+        new NhanVienJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void btnHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonActionPerformed
         // TODO add your handling code here:
+        new HoaDonJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHoaDonActionPerformed
 
     private void btnKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKHActionPerformed
@@ -573,22 +531,32 @@ public class KhachHangJFrame extends javax.swing.JFrame {
 
     private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed
         // TODO add your handling code here:
+        new DotGiamGiaJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnKhuyenMaiActionPerformed
 
     private void btnLichSuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLichSuActionPerformed
         // TODO add your handling code here:
+        new LichSuJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnLichSuActionPerformed
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
         // TODO add your handling code here:
+        new ThongKeJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaiKhoanActionPerformed
         // TODO add your handling code here:
+        new TaiKhoanJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnTaiKhoanActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
+        new MainQLJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void txtMaKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaKHActionPerformed
@@ -722,6 +690,62 @@ public class KhachHangJFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> {
             new KhachHangJFrame().setVisible(true);
         });
+    }
+
+    private void fillTable(List<KhachHang> list) {
+        mol = (DefaultTableModel) tblKhachHang.getModel();
+        mol.setRowCount(0);
+        for (KhachHang x : list) {
+            mol.addRow(x.todata());
+        }
+    }
+
+    private void showKh(int index) {
+        KhachHang kh = servicekhachhang.getAll().get(index);
+        txtDiaChi.setText(kh.getDiaChi());
+        txtEmail.setText(kh.getEmail());
+        txtMaKH.setText(kh.getMaKH());
+        txtSDT.setText(kh.getSdt());
+        txtTenKH.setText(kh.getTenKH());
+        if (kh.getGioiTinh() == 0) {
+            rdoNam.setSelected(true);
+        } else {
+            rdoNu.setSelected(true);
+        }
+        if (kh.getTrangThai() == 0) {
+            rdoActive.setSelected(true);
+        } else {
+            rdoDisable.setSelected(true);
+        }
+    }
+
+    private KhachHang readfrom() {
+        String ma, ten, diachi, email, sdt;
+        int gioitinh, trangthai;
+        ma = txtMaKH.getText();
+        ten = txtTenKH.getText();
+        diachi = txtDiaChi.getText();
+        email = txtEmail.getText();
+        sdt = txtSDT.getText();
+        if (rdoNam.isSelected()) {
+            gioitinh = 0;
+        } else {
+            gioitinh = 1;
+        }
+        if (rdoActive.isSelected()) {
+            trangthai = 0;
+        } else {
+            trangthai = 1;
+        }
+        return new KhachHang(ma, ten, diachi, sdt, email, gioitinh, trangthai);
+    }
+    
+    private boolean check(){
+        if(txtTenKH.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Tên Khách Hàng trống");
+            return false;
+        }
+        return true;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

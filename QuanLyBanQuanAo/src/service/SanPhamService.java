@@ -78,12 +78,15 @@ public class SanPhamService {
         }
     }
     
-    public int deleteSP(String ma){
-        sql = "delete SANPHAM where MaSP = ?";
+    public int deleteSP(int id){
+        sql = """
+              delete BienThe_SANPHAM where ID_SP = ?
+              delete SANPHAM where ID_SP = ?""";
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
-            ps.setObject(1, ma);
+            ps.setObject(1, id);
+            ps.setObject(2, id);
             return ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
@@ -94,7 +97,7 @@ public class SanPhamService {
     public List<ChiTietSP> getChiTietSP() {
         List<ChiTietSP> listCTSP = new ArrayList<>();
         sql = """
-              select MaBienTheSP, TenSP, TenLoaiSP, TenMau, TenSize, TenCL, SoLuong, GiaSP, BienThe_SANPHAM.TrangThai from BienThe_SANPHAM
+              select ID_BienTheSP, MaBienTheSP, TenSP, TenLoaiSP, TenMau, TenSize, TenCL, SoLuong, GiaSP, BienThe_SANPHAM.TrangThai from BienThe_SANPHAM
               join SANPHAM on BienThe_SANPHAM.ID_SP = SANPHAM.ID_SP
               join LOAISANPHAM on BienThe_SANPHAM.ID_LoaiSP = LOAISANPHAM.ID_LoaiSP
               join MAU on BienThe_SANPHAM.ID_Mau = MAU.ID_Mau
@@ -106,20 +109,21 @@ public class SanPhamService {
             rs = ps.executeQuery();
             while (rs.next()) {
                 ChiTietSP ctsp = new ChiTietSP();
-                SanPham sp = new SanPham(rs.getString(2));
+                ctsp.setIdBienThe(rs.getInt(1));
+                SanPham sp = new SanPham(rs.getString(3));
                 ctsp.setSp(sp);
-                ctsp.setMaBienThe(rs.getString(1));
-                LoaiSP l = new LoaiSP(rs.getString(3));
+                ctsp.setMaBienThe(rs.getString(2));
+                LoaiSP l = new LoaiSP(rs.getString(4));
                 ctsp.setLoai(l);
-                Mau m = new Mau(rs.getString(4));
+                Mau m = new Mau(rs.getString(5));
                 ctsp.setMau(m);
-                Size s = new Size(rs.getString(5));
+                Size s = new Size(rs.getString(6));
                 ctsp.setSize(s);
-                ChatLieu cl = new ChatLieu(rs.getString(6));
+                ChatLieu cl = new ChatLieu(rs.getString(7));
                 ctsp.setCl(cl);
-                ctsp.setSoLuong(rs.getInt(7));
-                ctsp.setGia(rs.getDouble(8));
-                ctsp.setTrangThai(rs.getBoolean(9));
+                ctsp.setSoLuong(rs.getInt(8));
+                ctsp.setGia(rs.getDouble(9));
+                ctsp.setTrangThai(rs.getBoolean(10));
                 listCTSP.add(ctsp);
             }
             return listCTSP;
@@ -228,6 +232,45 @@ public class SanPhamService {
                 listTim.add(sp);
             }
             return listTim;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    public List<ChiTietSP> findTenCTSP(String ten){
+        List<ChiTietSP> listCTSP = new ArrayList<>();
+        sql = """
+              select MaBienTheSP, TenSP, TenLoaiSP, TenMau, TenSize, TenCL, SoLuong, GiaSP, BienThe_SANPHAM.TrangThai from BienThe_SANPHAM
+                              join SANPHAM on BienThe_SANPHAM.ID_SP = SANPHAM.ID_SP
+                              join LOAISANPHAM on BienThe_SANPHAM.ID_LoaiSP = LOAISANPHAM.ID_LoaiSP
+                              join MAU on BienThe_SANPHAM.ID_Mau = MAU.ID_Mau
+                              join SIZE on BienThe_SANPHAM.ID_Size = SIZE.ID_Size
+                              join CHATLIEU on BienThe_SANPHAM.ID_ChatLieu = CHATLIEU.ID_CL
+              \t\t where TenSP like ?""";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, ten);
+            rs = ps.executeQuery();
+            while(rs.next()){
+                ChiTietSP ctsp = new ChiTietSP();
+                SanPham sp = new SanPham(rs.getString(2));
+                ctsp.setSp(sp);
+                ctsp.setMaBienThe(rs.getString(1));
+                LoaiSP l = new LoaiSP(rs.getString(3));
+                ctsp.setLoai(l);
+                Mau m = new Mau(rs.getString(4));
+                ctsp.setMau(m);
+                Size s = new Size(rs.getString(5));
+                ctsp.setSize(s);
+                ChatLieu cl = new ChatLieu(rs.getString(6));
+                ctsp.setCl(cl);
+                ctsp.setSoLuong(rs.getInt(7));
+                ctsp.setGia(rs.getDouble(8));
+                ctsp.setTrangThai(rs.getBoolean(9));
+                listCTSP.add(ctsp);
+            }
+            return listCTSP;
         } catch (Exception e) {
             e.printStackTrace();
             return null;

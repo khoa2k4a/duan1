@@ -55,7 +55,7 @@ public class LichSuService {
         }
     }
 
-    public List<HoaDonCT> getSPtheoIDHD(int idHD) throws SQLException {
+    public List<ChiTietHoaDon> getSPtheoIDHD(int idHD) throws SQLException {
         String sql = """
                 select ID_HDCT, SANPHAM.MaSP, SANPHAM.TenSP,
                 HOADON_CT.SoLuong, BienThe_SANPHAM.GiaSP, HOADON.MaGiamGia
@@ -65,7 +65,7 @@ public class LichSuService {
                 inner join HOADON on HOADON.ID_HD = HOADON_CT.ID_HD
                 where HOADON.ID_HD = ?
                 """;
-        List<HoaDonCT> list = new ArrayList<>();
+        List<ChiTietHoaDon> list = new ArrayList<>();
         try {
             conn = DBConnect.getConnection();
             ps = conn.prepareStatement(sql);
@@ -76,16 +76,16 @@ public class LichSuService {
                 SanPham sp = new SanPham();
                 sp.setMaSP(rs.getString(2));
                 sp.setTenSP(rs.getString(3));
-                BienTheSanPham btsp = new BienTheSanPham();
-                btsp.setGiaSP(rs.getDouble(5));
+                ChiTietSP btsp = new ChiTietSP();
+                btsp.setGia(rs.getDouble(5));
                 btsp.setSp(sp);
                 HoaDon h = new HoaDon();
                 h.setMaGG(rs.getString(6));
-                HoaDonCT hdct = new HoaDonCT();
-                hdct.setId(rs.getLong(1));
+                ChiTietHoaDon hdct = new ChiTietHoaDon();
+                hdct.setIdCTHD(rs.getInt(1));
                 hdct.setSoLuong(rs.getInt(4));
-                hdct.setH(h);
-                hdct.setBtsp(btsp);
+                hdct.setHd(h);
+                hdct.setSp(btsp);
 //                list.add(hdct);
             }
             return list;

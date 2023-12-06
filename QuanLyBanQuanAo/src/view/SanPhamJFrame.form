@@ -389,7 +389,7 @@
               <SubComponents>
                 <Component class="javax.swing.JLabel" name="lblLoaiThuocTinh">
                   <Properties>
-                    <Property name="text" type="java.lang.String" value="Lo&#x1ea1;i thu&#x1ed9;c t&#xed;nh"/>
+                    <Property name="text" type="java.lang.String" value="Thu&#x1ed9;c t&#xed;nh"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblTenThuocTinh">
@@ -781,7 +781,7 @@
                       <ComponentRef name="buttonGroup_TrangThaiSP"/>
                     </Property>
                     <Property name="selected" type="boolean" value="true"/>
-                    <Property name="text" type="java.lang.String" value="Active"/>
+                    <Property name="text" type="java.lang.String" value="C&#xf2;n b&#xe1;n"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="rdoDisableSP">
@@ -789,7 +789,7 @@
                     <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
                       <ComponentRef name="buttonGroup_TrangThaiSP"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Disable"/>
+                    <Property name="text" type="java.lang.String" value="Ng&#x1b0;ng b&#xe1;n"/>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lblLoaiSP">

@@ -4,11 +4,17 @@
  */
 package view;
 
+import javax.swing.JOptionPane;
+import model.NhanVien;
+import service.NhanVienService;
+
 /**
  *
  * @author admin
  */
 public class LoginJDialog extends javax.swing.JDialog {
+
+    private NhanVienService serNV = new NhanVienService();
 
     /**
      * Creates new form LoginJDialog
@@ -80,6 +86,11 @@ public class LoginJDialog extends javax.swing.JDialog {
         btnDangNhap.setBackground(new java.awt.Color(255, 214, 232));
         btnDangNhap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_DN.png"))); // NOI18N
         btnDangNhap.setText("Đăng nhập");
+        btnDangNhap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDangNhapActionPerformed(evt);
+            }
+        });
 
         btnThoat.setBackground(new java.awt.Color(255, 214, 232));
         btnThoat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/iconThoat.png"))); // NOI18N
@@ -205,6 +216,31 @@ public class LoginJDialog extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
 
+    private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
+        // TODO add your handling code here:
+        int count = 0;
+        String user = txtTenDN.getText();
+        String pass = new String(txtPassword.getPassword());
+
+        for (NhanVien nv : serNV.getAll()) {
+            if (nv.getTaiKhoan().equalsIgnoreCase(user) && nv.getMatKhau().equalsIgnoreCase(pass)) {
+                if (nv.getVaiTro().contains("Quản lý")) {
+                    new MainQLJFrame().setVisible(true);
+                    this.dispose();
+                } else {
+                    new MainNVJFrame().setVisible(true);
+                    this.dispose();
+                }
+                count++;
+            }
+        }
+        if (count == 0) {
+            JOptionPane.showMessageDialog(this, "user pass sai");
+        }
+
+
+    }//GEN-LAST:event_btnDangNhapActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -225,7 +261,7 @@ public class LoginJDialog extends javax.swing.JDialog {
             java.util.logging.Logger.getLogger(LoginJDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the dialog */

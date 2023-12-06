@@ -11,6 +11,7 @@ import java.util.Date;
  * @author ADMIN
  */
 public class HoaDon {
+
     private int idHD;
     private String maHD;
     private NhanVien nv;
@@ -29,11 +30,12 @@ public class HoaDon {
         this.maHD = maHD;
     }
 
-    public HoaDon(String maHD, NhanVien nv, KhachHang kh, Date ngayTao, String ghiChu, String hinhThuc, boolean trangThai) {
+    public HoaDon(String maHD, NhanVien nv, KhachHang kh, Date ngayTao, String maGG, String ghiChu, String hinhThuc, boolean trangThai) {
         this.maHD = maHD;
         this.nv = nv;
         this.kh = kh;
         this.ngayTao = ngayTao;
+        this.maGG = maGG;
         this.ghiChu = ghiChu;
         this.hinhThuc = hinhThuc;
         this.trangThai = trangThai;
@@ -131,15 +133,23 @@ public class HoaDon {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-    
-    public Object[] dataHD(){
+
+    public String getTrangThai(){
+        String trangThai;
+        if(this.isTrangThai()){
+            trangThai = "đã thanh toán";
+        }else{
+            trangThai = "chưa thanh toán";
+        }
+        return trangThai;
+    }
+    public Object[] dataHD() {
         return new Object[]{
             this.maHD,
             this.nv.getTenNV(),
             this.kh.getTenKH(),
             this.ngayTao,
-            this.tongTien,
-            this.trangThai
+            this.getTrangThai()
         };
     }
 }

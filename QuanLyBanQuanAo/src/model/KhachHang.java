@@ -26,6 +26,11 @@ public class KhachHang {
         this.tenKH = tenKH;
     }
 
+    public KhachHang(String maKH, String tenKH) {
+        this.maKH = maKH;
+        this.tenKH = tenKH;
+    }
+
     public KhachHang(String maKH, String tenKH, String diaChi, String sdt, String email, int gioiTinh, int trangThai) {
         this.maKH = maKH;
         this.tenKH = tenKH;

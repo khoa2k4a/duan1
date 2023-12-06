@@ -29,62 +29,6 @@ public class NhanVienJFrame extends javax.swing.JFrame {
         this.fillTable(serviceNhanVien.getAll());
     }
 
-    private void fillTable(List<NhanVien> list) {
-        mol = (DefaultTableModel) tblNhanVien.getModel();
-        mol.setRowCount(0);
-        for (NhanVien nv : list) {
-            mol.addRow(nv.toData());
-        }
-    }
-
-    void showNhanVien(int index) {
-        NhanVien nv = serviceNhanVien.getAll().get(index);
-        txtMaNV.setText(String.valueOf(nv.getMaNV()));
-        txtDiaChi.setText(nv.getDiaChi());
-        txtEmail.setText(nv.getEmail());
-        txtMatKhau.setText(nv.getMatKhau());
-        txtSDT.setText(nv.getSdt());
-        txtTaiKhoan.setText(nv.getTaiKhoan());
-        txtTenNV.setText(nv.getTenNV());
-        if (nv.getGioiTinh() == 0) {
-            rdoNam.setSelected(true);
-        } else {
-            rdoNu.setSelected(true);
-        }
-        cboVaiTro.setSelectedItem(nv.getVaiTro());
-        if (nv.getTrangThai() == 0) {
-            rdoActive.setSelected(true);
-        } else {
-            rdoDisable.setSelected(true);
-        }
-    }
-
-    NhanVien readfrom() {
-        String ma, ten, diachi, sdt, email, taikhoan, matkhau, vaitro;
-        int gioitinh, trangthai;
-        ma = txtMaNV.getText();
-        ten = txtTenNV.getText();
-        diachi = txtDiaChi.getText();
-        sdt = txtSDT.getText();
-        email = txtEmail.getText();
-        taikhoan = txtTaiKhoan.getText();
-        matkhau = txtMatKhau.getText();
-        vaitro = cboVaiTro.getSelectedItem().toString();
-        if (rdoNu.isSelected()) {
-            gioitinh = 1;
-        } else {
-            gioitinh = 0;
-        }
-
-        if (rdoActive.isSelected()) {
-            trangthai = 0;
-        } else {
-            trangthai = 1;
-        }
-
-        return new NhanVien(ma, ten, diachi, sdt, email, gioitinh, taikhoan, matkhau, vaitro, trangthai);
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -646,6 +590,8 @@ public class NhanVienJFrame extends javax.swing.JFrame {
 
     private void btnSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPActionPerformed
         // TODO add your handling code here:
+        new SanPhamJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnSPActionPerformed
 
     private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
@@ -654,30 +600,44 @@ public class NhanVienJFrame extends javax.swing.JFrame {
 
     private void btnHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonActionPerformed
         // TODO add your handling code here:
+        new HoaDonJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHoaDonActionPerformed
 
     private void btnKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKHActionPerformed
         // TODO add your handling code here:
+        new KhachHangJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnKHActionPerformed
 
     private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed
         // TODO add your handling code here:
+        new DotGiamGiaJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnKhuyenMaiActionPerformed
 
     private void btnLichSuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLichSuActionPerformed
         // TODO add your handling code here:
+        new LichSuJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnLichSuActionPerformed
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
         // TODO add your handling code here:
+        new ThongKeJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaiKhoanActionPerformed
         // TODO add your handling code here:
+        new TaiKhoanJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnTaiKhoanActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
+        new MainQLJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
@@ -869,6 +829,62 @@ public class NhanVienJFrame extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(() -> {
             new NhanVienJFrame().setVisible(true);
         });
+    }
+
+    private void fillTable(List<NhanVien> list) {
+        mol = (DefaultTableModel) tblNhanVien.getModel();
+        mol.setRowCount(0);
+        for (NhanVien nv : list) {
+            mol.addRow(nv.toData());
+        }
+    }
+
+    private void showNhanVien(int index) {
+        NhanVien nv = serviceNhanVien.getAll().get(index);
+        txtMaNV.setText(String.valueOf(nv.getMaNV()));
+        txtDiaChi.setText(nv.getDiaChi());
+        txtEmail.setText(nv.getEmail());
+        txtMatKhau.setText(nv.getMatKhau());
+        txtSDT.setText(nv.getSdt());
+        txtTaiKhoan.setText(nv.getTaiKhoan());
+        txtTenNV.setText(nv.getTenNV());
+        if (nv.getGioiTinh() == 0) {
+            rdoNam.setSelected(true);
+        } else {
+            rdoNu.setSelected(true);
+        }
+        cboVaiTro.setSelectedItem(nv.getVaiTro());
+        if (nv.getTrangThai() == 0) {
+            rdoActive.setSelected(true);
+        } else {
+            rdoDisable.setSelected(true);
+        }
+    }
+
+    private NhanVien readfrom() {
+        String ma, ten, diachi, sdt, email, taikhoan, matkhau, vaitro;
+        int gioitinh, trangthai;
+        ma = txtMaNV.getText();
+        ten = txtTenNV.getText();
+        diachi = txtDiaChi.getText();
+        sdt = txtSDT.getText();
+        email = txtEmail.getText();
+        taikhoan = txtTaiKhoan.getText();
+        matkhau = txtMatKhau.getText();
+        vaitro = cboVaiTro.getSelectedItem().toString();
+        if (rdoNu.isSelected()) {
+            gioitinh = 1;
+        } else {
+            gioitinh = 0;
+        }
+
+        if (rdoActive.isSelected()) {
+            trangthai = 0;
+        } else {
+            trangthai = 1;
+        }
+
+        return new NhanVien(ma, ten, diachi, sdt, email, gioitinh, taikhoan, matkhau, vaitro, trangthai);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

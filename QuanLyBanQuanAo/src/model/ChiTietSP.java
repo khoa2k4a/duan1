@@ -24,6 +24,10 @@ public class ChiTietSP {
     public ChiTietSP() {
     }
 
+    public ChiTietSP(int idBienThe) {
+        this.idBienThe = idBienThe;
+    }
+
     public ChiTietSP(SanPham sp, String maBienThe, Mau mau, Size size, ChatLieu cl, double gia) {
         this.sp = sp;
         this.maBienThe = maBienThe;
@@ -126,6 +130,15 @@ public class ChiTietSP {
         this.trangThai = trangThai;
     }
 
+    public String getTrangThai(){
+        String trangThai;
+        if(this.isTrangThai()){
+            trangThai = "Còn bán";
+        }else{
+            trangThai = "Ngưng bán";
+        }
+        return trangThai;
+    }
     public Object[] dataSPCT() {
         return new Object[]{
             this.maBienThe,
@@ -136,7 +149,7 @@ public class ChiTietSP {
             this.cl.getTenCL(),
             this.soLuong,
             this.gia,
-            this.trangThai
+            this.getTrangThai()
         };
     }
     public Object[] dataDSSP() {

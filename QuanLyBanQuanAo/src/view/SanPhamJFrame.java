@@ -32,7 +32,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
      */
     public SanPhamJFrame() {
         initComponents();
-        for(SanPham sp : serviceSP.getSP()){
+        for (SanPham sp : serviceSP.getSP()) {
             cboSP.addItem(sp.getTenSP());
         }
         for (LoaiSP l : serviceTT.getLoai()) {
@@ -281,7 +281,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
 
         pnlThuocTinhSP.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblLoaiThuocTinh.setText("Loại thuộc tính");
+        lblLoaiThuocTinh.setText("Thuộc tính");
 
         lblTenThuocTinh.setText("Tên thuộc tính");
 
@@ -465,10 +465,10 @@ public class SanPhamJFrame extends javax.swing.JFrame {
 
         buttonGroup_TrangThaiSP.add(rdoActiveSP);
         rdoActiveSP.setSelected(true);
-        rdoActiveSP.setText("Active");
+        rdoActiveSP.setText("Còn bán");
 
         buttonGroup_TrangThaiSP.add(rdoDisableSP);
-        rdoDisableSP.setText("Disable");
+        rdoDisableSP.setText("Ngưng bán");
 
         lblLoaiSP.setText("Loại sản phẩm");
 
@@ -773,35 +773,50 @@ public class SanPhamJFrame extends javax.swing.JFrame {
 
     private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
         // TODO add your handling code here:
-        
+        new NhanVienJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void btnHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonActionPerformed
         // TODO add your handling code here:
+        new HoaDonJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHoaDonActionPerformed
 
     private void btnKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKHActionPerformed
         // TODO add your handling code here:
+        new KhachHangJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnKHActionPerformed
 
     private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed
         // TODO add your handling code here:
+        new DotGiamGiaJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnKhuyenMaiActionPerformed
 
     private void btnLichSuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLichSuActionPerformed
         // TODO add your handling code here:
+        new LichSuJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnLichSuActionPerformed
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
         // TODO add your handling code here:
+        new ThongKeJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaiKhoanActionPerformed
         // TODO add your handling code here:
+        new TaiKhoanJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnTaiKhoanActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
+        new MainQLJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void txtTenThuocTinhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenThuocTinhActionPerformed
@@ -824,9 +839,9 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         String ten = txtTimTenSP.getText();
         ten = "%" + ten + "%";
-        if(serviceSP.findSP(ten) != null){
+        if (serviceSP.findSP(ten) != null) {
             this.fillSP(serviceSP.findSP(ten));
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Không tìm thấy");
         }
     }//GEN-LAST:event_btnTimKiemActionPerformed
@@ -869,34 +884,36 @@ public class SanPhamJFrame extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        if (cboLoaiTT.getSelectedItem().equals("Màu Sắc")) {
-            if (serviceTT.addMau(this.readMau()) > 0) {
-                JOptionPane.showMessageDialog(this, "thêm màu thành công");
+        if (checkTT()) {
+            if (cboLoaiTT.getSelectedItem().equals("Màu Sắc")) {
+                if (serviceTT.addMau(this.readMau()) > 0) {
+                    JOptionPane.showMessageDialog(this, "thêm màu thành công");
+                } else {
+                    JOptionPane.showMessageDialog(this, "thêm màu thất bại");
+                }
+                this.fillMau(serviceTT.getMau());
+            } else if (cboLoaiTT.getSelectedItem().equals("Chất Liệu")) {
+                if (serviceTT.addChatLieu(this.readChatLieu()) > 0) {
+                    JOptionPane.showMessageDialog(this, "thêm chất liệu thành công");
+                } else {
+                    JOptionPane.showMessageDialog(this, "thêm chất liệu thất bại");
+                }
+                this.fillChatLieu(serviceTT.getChatLieu());
+            } else if (cboLoaiTT.getSelectedItem().equals("Size")) {
+                if (serviceTT.addSize(this.readSize()) > 0) {
+                    JOptionPane.showMessageDialog(this, "thêm size thành công");
+                } else {
+                    JOptionPane.showMessageDialog(this, "thêm size thất bại");
+                }
+                this.fillSize(serviceTT.getSize());
             } else {
-                JOptionPane.showMessageDialog(this, "thêm màu thất bại");
+                if (serviceTT.addloaiSP(this.readLoaiSP()) > 0) {
+                    JOptionPane.showMessageDialog(this, "thêm loại sản phẩm thành công");
+                } else {
+                    JOptionPane.showMessageDialog(this, "thêm loại sản phẩm thất bại");
+                }
+                this.fillLoaiSP(serviceTT.getLoai());
             }
-            this.fillMau(serviceTT.getMau());
-        } else if (cboLoaiTT.getSelectedItem().equals("Chất Liệu")) {
-            if (serviceTT.addChatLieu(this.readChatLieu()) > 0) {
-                JOptionPane.showMessageDialog(this, "thêm chất liệu thành công");
-            } else {
-                JOptionPane.showMessageDialog(this, "thêm chất liệu thất bại");
-            }
-            this.fillChatLieu(serviceTT.getChatLieu());
-        } else if (cboLoaiTT.getSelectedItem().equals("Size")) {
-            if (serviceTT.addSize(this.readSize()) > 0) {
-                JOptionPane.showMessageDialog(this, "thêm size thành công");
-            } else {
-                JOptionPane.showMessageDialog(this, "thêm size thất bại");
-            }
-            this.fillSize(serviceTT.getSize());
-        } else{
-            if (serviceTT.addloaiSP(this.readLoaiSP()) > 0) {
-                JOptionPane.showMessageDialog(this, "thêm loại sản phẩm thành công");
-            } else {
-                JOptionPane.showMessageDialog(this, "thêm loại sản phẩm thất bại");
-            }
-            this.fillLoaiSP(serviceTT.getLoai());
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -941,33 +958,53 @@ public class SanPhamJFrame extends javax.swing.JFrame {
 
     private void tblSanPhamChiTietMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblSanPhamChiTietMouseClicked
         // TODO add your handling code here:
-        int row = tblSanPham.getSelectedRow();
-        String ma = tblSanPham.getValueAt(row, 0).toString();
+        int row = -1;
+        row = tblSanPham.getSelectedRow();
+
         index = tblSanPhamChiTiet.getSelectedRow();
-        ChiTietSP ctsp = serviceSP.findCTSP(ma).get(index);
-        txtDonGia.setText(String.valueOf(ctsp.getGia()));
-        txtMaBienThe.setText(ctsp.getMaBienThe());
-        txtSoLuong.setText(String.valueOf(ctsp.getSoLuong()));
-        cboSP.setSelectedItem(ctsp.getSp().getTenSP());
-        cboChatLieu.setSelectedItem(ctsp.getCl().getTenCL());
-        cboLoaiSP.setSelectedItem(ctsp.getLoai().getTenLoai());
-        cboMau.setSelectedItem(ctsp.getMau().getTenMau());
-        cboSize.setSelectedItem(ctsp.getSize().getTenSize());
-        if(ctsp.isTrangThai()){
-            rdoActiveSP.setSelected(true);
-        }else{
-            rdoDisableSP.setSelected(true);
+        if (row < 0) {
+            ChiTietSP ctsp = serviceSP.getChiTietSP().get(index);
+            txtDonGia.setText(String.valueOf(ctsp.getGia()));
+            txtMaBienThe.setText(ctsp.getMaBienThe());
+            txtSoLuong.setText(String.valueOf(ctsp.getSoLuong()));
+            cboSP.setSelectedItem(ctsp.getSp().getTenSP());
+            cboChatLieu.setSelectedItem(ctsp.getCl().getTenCL());
+            cboLoaiSP.setSelectedItem(ctsp.getLoai().getTenLoai());
+            cboMau.setSelectedItem(ctsp.getMau().getTenMau());
+            cboSize.setSelectedItem(ctsp.getSize().getTenSize());
+            if (ctsp.isTrangThai()) {
+                rdoActiveSP.setSelected(true);
+            } else {
+                rdoDisableSP.setSelected(true);
+            }
+        } else {
+            String ma = tblSanPham.getValueAt(row, 0).toString();
+            ChiTietSP ctsp = serviceSP.findCTSP(ma).get(index);
+            txtDonGia.setText(String.valueOf(ctsp.getGia()));
+            txtMaBienThe.setText(ctsp.getMaBienThe());
+            txtSoLuong.setText(String.valueOf(ctsp.getSoLuong()));
+            cboSP.setSelectedItem(ctsp.getSp().getTenSP());
+            cboChatLieu.setSelectedItem(ctsp.getCl().getTenCL());
+            cboLoaiSP.setSelectedItem(ctsp.getLoai().getTenLoai());
+            cboMau.setSelectedItem(ctsp.getMau().getTenMau());
+            cboSize.setSelectedItem(ctsp.getSize().getTenSize());
+            if (ctsp.isTrangThai()) {
+                rdoActiveSP.setSelected(true);
+            } else {
+                rdoDisableSP.setSelected(true);
+            }
         }
     }//GEN-LAST:event_tblSanPhamChiTietMouseClicked
 
     private void btnThemCTSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemCTSPActionPerformed
         // TODO add your handling code here:
-
-        if (serviceSP.addCTSP(this.readChiTietSP()) > 0) {
-            JOptionPane.showMessageDialog(this, "thêm sản phẩm thành công");
-            this.fillChiTietSP(serviceSP.getChiTietSP());
-        } else {
-            JOptionPane.showMessageDialog(this, "thêm sản phẩm thất bại");
+        if (checkSP()) {
+            if (serviceSP.addCTSP(this.readChiTietSP()) > 0) {
+                JOptionPane.showMessageDialog(this, "thêm sản phẩm thành công");
+                this.fillChiTietSP(serviceSP.getChiTietSP());
+            } else {
+                JOptionPane.showMessageDialog(this, "thêm sản phẩm thất bại");
+            }
         }
     }//GEN-LAST:event_btnThemCTSPActionPerformed
 
@@ -988,10 +1025,10 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         index = tblSanPhamChiTiet.getSelectedRow();
         String ma = tblSanPhamChiTiet.getValueAt(index, 0).toString();
-        if(serviceSP.updateCTSP(this.readChiTietSP(), ma) > 0){
-            JOptionPane.showMessageDialog(this, "Sửa yhanhf công");
+        if (serviceSP.updateCTSP(this.readChiTietSP(), ma) > 0) {
+            JOptionPane.showMessageDialog(this, "Sửa thành công");
             this.fillChiTietSP(serviceSP.getChiTietSP());
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Sửa thất bại");
         }
     }//GEN-LAST:event_btnSuaSPActionPerformed
@@ -1053,15 +1090,15 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         });
     }
 
-    void fillSP(List<SanPham> list) {
+    private void fillSP(List<SanPham> list) {
         mol = (DefaultTableModel) tblSanPham.getModel();
         mol.setRowCount(0);
         for (SanPham sp : list) {
             mol.addRow(sp.dataSanPham());
         }
     }
-    
-    void fillMau(List<Mau> list) {
+
+    private void fillMau(List<Mau> list) {
         mol = (DefaultTableModel) tblThuocTinh.getModel();
         mol.setRowCount(0);
         for (Mau m : list) {
@@ -1069,7 +1106,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         }
     }
 
-    void fillSize(List<Size> list) {
+    private void fillSize(List<Size> list) {
         mol = (DefaultTableModel) tblThuocTinh.getModel();
         mol.setRowCount(0);
         for (Size s : list) {
@@ -1077,7 +1114,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         }
     }
 
-    void fillChatLieu(List<ChatLieu> list) {
+    private void fillChatLieu(List<ChatLieu> list) {
         mol = (DefaultTableModel) tblThuocTinh.getModel();
         mol.setRowCount(0);
         for (ChatLieu cl : list) {
@@ -1085,7 +1122,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         }
     }
 
-    void fillLoaiSP(List<LoaiSP> list) {
+    private void fillLoaiSP(List<LoaiSP> list) {
         mol = (DefaultTableModel) tblThuocTinh.getModel();
         mol.setRowCount(0);
         for (LoaiSP loai : list) {
@@ -1093,7 +1130,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         }
     }
 
-    void showSP(int index) {
+    private void showSP(int index) {
         SanPham sp = serviceSP.getSP().get(index);
         txtMaThuocTinh.setText(sp.getMaSP());
         txtTenThuocTinh.setText(sp.getTenSP());
@@ -1103,8 +1140,8 @@ public class SanPhamJFrame extends javax.swing.JFrame {
             rdoDisableTT.setSelected(true);
         }
     }
-    
-    void showMau(int index) {
+
+    private void showMau(int index) {
         Mau m = serviceTT.getMau().get(index);
         txtMaThuocTinh.setText(m.getMaMau());
         txtTenThuocTinh.setText(m.getTenMau());
@@ -1115,7 +1152,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         }
     }
 
-    void showSize(int index) {
+    private void showSize(int index) {
         Size s = serviceTT.getSize().get(index);
         txtMaThuocTinh.setText(s.getMaSize());
         txtTenThuocTinh.setText(s.getTenSize());
@@ -1126,7 +1163,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         }
     }
 
-    void showChatLieu(int index) {
+    private void showChatLieu(int index) {
         ChatLieu cl = serviceTT.getChatLieu().get(index);
         txtMaThuocTinh.setText(cl.getMaCL());
         txtTenThuocTinh.setText(cl.getTenCL());
@@ -1137,7 +1174,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         }
     }
 
-    void showLoai(int index) {
+    private void showLoai(int index) {
         LoaiSP loai = serviceTT.getLoai().get(index);
         txtMaThuocTinh.setText(loai.getMaLoai());
         txtTenThuocTinh.setText(loai.getTenLoai());
@@ -1148,7 +1185,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         }
     }
 
-    SanPham readSP() {
+    private SanPham readSP() {
         SanPham sp = new SanPham();
         sp.setMaSP(txtMaThuocTinh.getText());
         sp.setTenSP(txtTenThuocTinh.getText());
@@ -1159,8 +1196,8 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         }
         return sp;
     }
-    
-    Mau readMau() {
+
+    private Mau readMau() {
         Mau m = new Mau();
         m.setMaMau(txtMaThuocTinh.getText());
         m.setTenMau(txtTenThuocTinh.getText());
@@ -1172,7 +1209,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         return m;
     }
 
-    Size readSize() {
+    private Size readSize() {
         Size s = new Size();
         s.setMaSize(txtMaThuocTinh.getText());
         s.setTenSize(txtTenThuocTinh.getText());
@@ -1184,7 +1221,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         return s;
     }
 
-    LoaiSP readLoaiSP() {
+    private LoaiSP readLoaiSP() {
         LoaiSP l = new LoaiSP();
         l.setMaLoai(txtMaThuocTinh.getText());
         l.setTenLoai(txtTenThuocTinh.getText());
@@ -1196,7 +1233,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         return l;
     }
 
-    ChatLieu readChatLieu() {
+    private ChatLieu readChatLieu() {
         ChatLieu cl = new ChatLieu();
         cl.setMaCL(txtMaThuocTinh.getText());
         cl.setTenCL(txtTenThuocTinh.getText());
@@ -1208,7 +1245,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         return cl;
     }
 
-    void fillChiTietSP(List<ChiTietSP> list) {
+    private void fillChiTietSP(List<ChiTietSP> list) {
         mol = (DefaultTableModel) tblSanPhamChiTiet.getModel();
         mol.setRowCount(0);
         for (ChiTietSP ctsp : list) {
@@ -1216,7 +1253,7 @@ public class SanPhamJFrame extends javax.swing.JFrame {
         }
     }
 
-    ChiTietSP readChiTietSP() {
+    private ChiTietSP readChiTietSP() {
         ChiTietSP ctsp = new ChiTietSP();
         ctsp.setMaBienThe(txtMaBienThe.getText());
         for (SanPham sp : serviceSP.getSP()) {
@@ -1246,12 +1283,50 @@ public class SanPhamJFrame extends javax.swing.JFrame {
                 ctsp.setSize(new Size(s.getIdSize()));
             }
         }
+        if (rdoActiveSP.isSelected()) {
+            ctsp.setTrangThai(true);
+        } else {
+            ctsp.setTrangThai(false);
+        }
+
         return ctsp;
     }
-    
-    boolean check(){
-        if(txtDonGia.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "chưa điền tên sản phẩm");
+
+    private boolean checkSP() {
+        if (txtSoLuong.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "chưa điền số lượng");
+            return false;
+        } else {
+            try {
+                if (Integer.parseInt(txtSoLuong.getText()) < 0) {
+                    JOptionPane.showMessageDialog(this, "Số lượng phải lớn hơn 0");
+                    return false;
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Số lượng phải là số");
+                return false;
+            }
+        }
+        if (txtDonGia.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "chưa điền đơn giá");
+            return false;
+        } else {
+            try {
+                if (Double.parseDouble(txtDonGia.getText()) < 0) {
+                    JOptionPane.showMessageDialog(this, "Đơn giá phải lớn hơn 0");
+                    return false;
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "đơn giá phải là số");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private boolean checkTT() {
+        if (txtTenThuocTinh.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Tên thuộc tính trống");
             return false;
         }
         return true;

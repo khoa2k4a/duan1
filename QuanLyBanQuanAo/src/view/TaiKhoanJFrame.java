@@ -403,41 +403,49 @@ public class TaiKhoanJFrame extends javax.swing.JFrame {
     private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
         // TODO add your handling code here:
         new NhanVienJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void btnHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonActionPerformed
         // TODO add your handling code here:
         new HoaDonJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHoaDonActionPerformed
 
     private void btnKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKHActionPerformed
         // TODO add your handling code here:
         new KhachHangJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnKHActionPerformed
 
     private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed
         // TODO add your handling code here:
-//        new DotGiamGiaJFrame().setVisible(true);
+        new DotGiamGiaJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnKhuyenMaiActionPerformed
 
     private void btnLichSuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLichSuActionPerformed
         // TODO add your handling code here:
         new LichSuJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnLichSuActionPerformed
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
         // TODO add your handling code here:
         new ThongKeJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaiKhoanActionPerformed
         // TODO add your handling code here:
         new TaiKhoanJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnTaiKhoanActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
-        new TaiKhoanJFrame().setVisible(true);
+        new MainQLJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void btnTimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimActionPerformed
@@ -483,7 +491,7 @@ public class TaiKhoanJFrame extends javax.swing.JFrame {
                 if (service.suaTK(nv, ma) > 0) {
                     JOptionPane.showMessageDialog(this, "Sửa thành công");
                     this.fillTable(service.getAll());
-                    
+
                 } else {
                     JOptionPane.showMessageDialog(this, "Sửa thất bại");
                 }

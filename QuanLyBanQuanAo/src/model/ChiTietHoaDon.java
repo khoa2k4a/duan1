@@ -21,6 +21,13 @@ public class ChiTietHoaDon {
     public ChiTietHoaDon() {
     }
 
+    public ChiTietHoaDon(String maCTHD, ChiTietSP sp, HoaDon hd, int soLuong) {
+        this.maCTHD = maCTHD;
+        this.sp = sp;
+        this.hd = hd;
+        this.soLuong = soLuong;
+    }
+
     public ChiTietHoaDon(int idCTHD, String maCTHD, ChiTietSP sp, HoaDon hd, int soLuong, double gia, double tongTien, boolean trangThai) {
         this.idCTHD = idCTHD;
         this.maCTHD = maCTHD;
@@ -105,6 +112,7 @@ public class ChiTietHoaDon {
             this.sp.getSize().getTenSize(),
             this.soLuong,
             this.sp.getGia(),
+            this.tongTien,
             this.trangThai
         };
     }

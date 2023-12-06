@@ -15,6 +15,7 @@ import service.SanPhamService;
  * @author ADMIN
  */
 public class ThongTinSPJFrame extends javax.swing.JFrame {
+
     private DefaultTableModel mol = new DefaultTableModel();
     private SanPhamService ser = new SanPhamService();
     private int index = -1;
@@ -96,10 +97,10 @@ public class ThongTinSPJFrame extends javax.swing.JFrame {
 
         buttonGroup1.add(rdoActive);
         rdoActive.setSelected(true);
-        rdoActive.setText("Active");
+        rdoActive.setText("Còn bán");
 
         buttonGroup1.add(rdoDisable);
-        rdoDisable.setText("Disable");
+        rdoDisable.setText("Ngưng bán");
         rdoDisable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rdoDisableActionPerformed(evt);
@@ -143,19 +144,19 @@ public class ThongTinSPJFrame extends javax.swing.JFrame {
                         .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(rdoActive, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(rdoDisable, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtTenSP))
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtMaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(txtMaSP, javax.swing.GroupLayout.PREFERRED_SIZE, 195, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(rdoActive, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(rdoDisable))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -214,11 +215,13 @@ public class ThongTinSPJFrame extends javax.swing.JFrame {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
-        if(ser.addSP(this.readSP()) > 0){
-            JOptionPane.showMessageDialog(this, "Thêm sản phẩm thành công");
-            this.fillSP(ser.getSP());
-        }else{
-            JOptionPane.showMessageDialog(this, "Thêm sản phẩm thất bại");
+        if (check()) {
+            if (ser.addSP(this.readSP()) > 0) {
+                JOptionPane.showMessageDialog(this, "Thêm sản phẩm thành công");
+                this.fillSP(ser.getSP());
+            } else {
+                JOptionPane.showMessageDialog(this, "Thêm sản phẩm thất bại");
+            }
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -232,10 +235,10 @@ public class ThongTinSPJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         index = tblSP.getSelectedRow();
         String ma = tblSP.getValueAt(index, 0).toString();
-        if(ser.updateSP(this.readSP(), ma) > 0){
+        if (ser.updateSP(this.readSP(), ma) > 0) {
             JOptionPane.showMessageDialog(this, "Sửa sản phẩm thành công");
             this.fillSP(ser.getSP());
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Sửa thất bại");
         }
     }//GEN-LAST:event_btnSuaActionPerformed
@@ -244,10 +247,16 @@ public class ThongTinSPJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         index = tblSP.getSelectedRow();
         String ma = tblSP.getValueAt(index, 0).toString();
-        if(ser.deleteSP(ma) > 0){
+        int id = 0;
+        for (SanPham sp : ser.getSP()) {
+            if (ma.equalsIgnoreCase(sp.getMaSP())) {
+                id = sp.getIdSP();
+            }
+        }
+        if (ser.deleteSP(id) > 0) {
             JOptionPane.showMessageDialog(this, "Xóa thành công");
             this.fillSP(ser.getSP());
-        }else{
+        } else {
             JOptionPane.showMessageDialog(this, "Xóa thất bại");
         }
     }//GEN-LAST:event_btnXoaActionPerformed
@@ -286,36 +295,44 @@ public class ThongTinSPJFrame extends javax.swing.JFrame {
             }
         });
     }
-    
-    void fillSP(List<SanPham> list){
-        mol = (DefaultTableModel)tblSP.getModel();
+
+    private void fillSP(List<SanPham> list) {
+        mol = (DefaultTableModel) tblSP.getModel();
         mol.setRowCount(0);
-        for(SanPham sp : list){
+        for (SanPham sp : list) {
             mol.addRow(sp.dataSanPham());
         }
     }
-    
-    void showSP(int index){
+
+    private void showSP(int index) {
         SanPham sp = ser.getSP().get(index);
         txtMaSP.setText(sp.getMaSP());
         txtTenSP.setText(sp.getTenSP());
-        if(sp.isTrangThai()){
+        if (sp.isTrangThai()) {
             rdoActive.setSelected(true);
-        }else{
+        } else {
             rdoDisable.setSelected(true);
         }
     }
-    
-    SanPham readSP(){
+
+    private SanPham readSP() {
         SanPham sp = new SanPham();
         sp.setMaSP(txtMaSP.getText());
         sp.setTenSP(txtTenSP.getText());
-        if(rdoActive.isSelected()){
+        if (rdoActive.isSelected()) {
             sp.setTrangThai(true);
-        }else{
+        } else {
             sp.setTrangThai(false);
         }
         return sp;
+    }
+
+    private boolean check() {
+        if (txtTenSP.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Tên sản phẩm rỗng");
+            return false;
+        }
+        return true;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

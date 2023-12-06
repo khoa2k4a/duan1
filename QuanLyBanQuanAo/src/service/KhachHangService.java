@@ -58,6 +58,20 @@ public class KhachHangService {
             return 0;
         }
     }
+    
+    public int themTenKH(KhachHang kh){
+        sql = "insert into KHACHHANG(MaKH,TenKH) values (?,?)";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, kh.getMaKH());
+            ps.setObject(2, kh.getTenKH());
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return 0;
+        }
+    }
 
     public int suaKh(KhachHang kh, String ma) {
         sql = "update KHACHHANG set TenKH=?,Sdt=?,DiaChi=?,Email=?,GioiTinh=?,TrangThai=? where MaKH=?";

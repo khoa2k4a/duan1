@@ -7,22 +7,26 @@ package view;
 import java.sql.SQLException;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
+import model.ChiTietHoaDon;
 
 import model.HoaDon;
+import service.HoaDonService;
 import service.LichSuService;
 
 /**
  * @author ADMIN
  */
 public class LichSuJFrame extends javax.swing.JFrame {
+
     private final LichSuService service = new LichSuService();
     private DefaultTableModel mol = new DefaultTableModel();
+    private HoaDonService serHD = new HoaDonService();
     private int index = -1;
 
     public LichSuJFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.fillTable(service.getH());
+        this.fillDSHD(serHD.getHoaDon());
     }
 
     /**
@@ -237,17 +241,17 @@ public class LichSuJFrame extends javax.swing.JFrame {
 
         tblHoaDon.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã HD", "Ngày tạo", "Mã NV", "Tên KH", "Trạng thái"
+                "Mã HD", "Tên NV", "Tên KH", "Ngày tạo", "Trạng thái"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -265,17 +269,17 @@ public class LichSuJFrame extends javax.swing.JFrame {
 
         tblSanPham.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "STT", "Mã SP", "Tên SP", "Số lượng ", "Giá", "Giảm giá", "Thành tiền"
+                "Mã SP", "Tên SP", "Màu", "Chất Liệu", "Size", "Số lượng ", "Giá", "Thành tiền"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false
+                false, false, true, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -431,40 +435,49 @@ public class LichSuJFrame extends javax.swing.JFrame {
     private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
         // TODO add your handling code here:
         new NhanVienJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnNhanVienActionPerformed
 
     private void btnHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonActionPerformed
         // TODO add your handling code here:
         new HoaDonJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHoaDonActionPerformed
 
     private void btnKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKHActionPerformed
         // TODO add your handling code here:
         new KhachHangJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnKHActionPerformed
 
     private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed
         // TODO add your handling code here:
+        new DotGiamGiaJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnKhuyenMaiActionPerformed
 
     private void btnLichSuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLichSuActionPerformed
         // TODO add your handling code here:
         new LichSuJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnLichSuActionPerformed
 
     private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
         // TODO add your handling code here:
         new ThongKeJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnThongKeActionPerformed
 
     private void btnTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaiKhoanActionPerformed
         // TODO add your handling code here:
         new TaiKhoanJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnTaiKhoanActionPerformed
 
     private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
         // TODO add your handling code here:
-        new LichSuJFrame().setVisible(true);
+        new MainQLJFrame().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnHomeActionPerformed
 
     private void jScrollPane1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jScrollPane1AncestorAdded
@@ -485,6 +498,9 @@ public class LichSuJFrame extends javax.swing.JFrame {
 
     private void tblHoaDonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblHoaDonMouseClicked
         // TODO add your handling code here:
+        index = tblHoaDon.getSelectedRow();
+        String ma = tblHoaDon.getValueAt(index, 0).toString();
+        this.fillSP(serHD.findCTHD(ma));
     }//GEN-LAST:event_tblHoaDonMouseClicked
 
     /**
@@ -503,8 +519,8 @@ public class LichSuJFrame extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
-                 javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException
+                | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(LichSuJFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -555,18 +571,18 @@ public class LichSuJFrame extends javax.swing.JFrame {
     private javax.swing.JTextField txtTrangThaiLS;
     // End of variables declaration//GEN-END:variables
 
-    private void fillTable(List<HoaDon> lst) {
+    private void fillDSHD(List<HoaDon> list) {
         mol = (DefaultTableModel) tblHoaDon.getModel();
         mol.setRowCount(0);
-        for (HoaDon h : lst) {
-            mol.addRow(new Object[]{
-                    h.getIdHD(),
-                    h.getMaHD(),
-                    h.getNgayTao(),
-                    h.getNv().getMaNV(),
-                    h.getKh().getTenKH(),
-                    h.isTrangThai()
-            });
+        for (HoaDon hd : list) {
+            mol.addRow(hd.dataHD());
+        }
+    }
+    private void fillSP(List<ChiTietHoaDon> list) {
+        mol = (DefaultTableModel) tblSanPham.getModel();
+        mol.setRowCount(0);
+        for (ChiTietHoaDon cthd : list) {
+            mol.addRow(cthd.dataCTHD());
         }
     }
 }
