@@ -444,43 +444,6 @@ public class DotGiamGiaJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSPActionPerformed
-
-    private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnNhanVienActionPerformed
-
-    private void btnHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHoaDonActionPerformed
-
-    private void btnKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKHActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnKHActionPerformed
-
-    private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnKhuyenMaiActionPerformed
-
-    private void btnLichSuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLichSuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnLichSuActionPerformed
-
-    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnThongKeActionPerformed
-
-    private void btnTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaiKhoanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnTaiKhoanActionPerformed
-
-    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
-        // TODO add your handling code here:
-        new MainJFrame().setVisible(true);
-    }//GEN-LAST:event_btnHomeActionPerformed
-
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
         this.insert();
@@ -515,6 +478,44 @@ public class DotGiamGiaJFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.update();
     }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTaiKhoanActionPerformed
+        // TODO add your handling code here:
+        //        new TaiKhoanJFrame().setVisible(true);
+    }//GEN-LAST:event_btnTaiKhoanActionPerformed
+
+    private void btnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThongKeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnThongKeActionPerformed
+
+    private void btnLichSuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLichSuActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnLichSuActionPerformed
+
+    private void btnKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKhuyenMaiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnKhuyenMaiActionPerformed
+
+    private void btnKHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKHActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnKHActionPerformed
+
+    private void btnHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHoaDonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHoaDonActionPerformed
+
+    private void btnNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNhanVienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnNhanVienActionPerformed
+
+    private void btnSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSPActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSPActionPerformed
+
+    private void btnHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHomeActionPerformed
+        // TODO add your handling code here:
+        //        new MainJFrame().setVisible(true);
+    }//GEN-LAST:event_btnHomeActionPerformed
 
     /**
      * @param args the command line arguments

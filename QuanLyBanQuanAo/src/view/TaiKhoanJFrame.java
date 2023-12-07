@@ -256,6 +256,7 @@ public class TaiKhoanJFrame extends javax.swing.JFrame {
         lblMatKhau.setText("Mật khẩu");
 
         txtMatKhau.setEditable(false);
+        txtMatKhau.setBackground(new java.awt.Color(255, 255, 255));
 
         lblVaiTro.setText("Vai trò");
 

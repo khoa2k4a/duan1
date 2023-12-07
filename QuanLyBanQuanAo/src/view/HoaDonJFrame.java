@@ -226,6 +226,7 @@ public class HoaDonJFrame extends javax.swing.JFrame {
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
+        hoadon.setBackground(new java.awt.Color(255, 255, 255));
         hoadon.setPreferredSize(new java.awt.Dimension(1012, 450));
 
         jScrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder("Danh sách hóa đơn"));
@@ -290,6 +291,7 @@ public class HoaDonJFrame extends javax.swing.JFrame {
         });
         jScrollPane8.setViewportView(tblDanhSachSP);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Tạo hóa đơn"));
 
         jLabel18.setText("Tên Khách Hàng");
