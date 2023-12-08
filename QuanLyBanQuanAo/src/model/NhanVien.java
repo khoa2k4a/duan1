@@ -25,7 +25,25 @@ public class NhanVien {
     public NhanVien() {
     }
 
+    public NhanVien(String tenNV) {
+        this.tenNV = tenNV;
+    }
+
     public NhanVien(String maNV, String tenNV, String diaChi, String sdt, String email, int gioiTinh, String taiKhoan, String matKhau, String vaiTro, int trangThai) {
+        this.maNV = maNV;
+        this.tenNV = tenNV;
+        this.diaChi = diaChi;
+        this.sdt = sdt;
+        this.email = email;
+        this.gioiTinh = gioiTinh;
+        this.taiKhoan = taiKhoan;
+        this.matKhau = matKhau;
+        this.vaiTro = vaiTro;
+        this.trangThai = trangThai;
+    }
+
+    public NhanVien(int id, String maNV, String tenNV, String diaChi, String sdt, String email, int gioiTinh, String taiKhoan, String matKhau, String vaiTro, int trangThai) {
+        this.id = id;
         this.maNV = maNV;
         this.tenNV = tenNV;
         this.diaChi = diaChi;
@@ -136,9 +154,9 @@ public class NhanVien {
 
     public String getTT() {
         if (trangThai == 0) {
-            return "Active";
+            return "Đang làm việc";
         } else {
-            return "Disable";
+            return "Đã nghỉ";
         }
     }
 

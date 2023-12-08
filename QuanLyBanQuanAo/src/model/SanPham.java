@@ -10,12 +10,21 @@ package model;
  */
 public class SanPham {
 
-    private Long id;
+    private int idSP;
     private String maSP;
     private String tenSP;
     private boolean trangThai;
+    private String loaiTT = "Tên Sản Phẩm";
 
     public SanPham() {
+    }
+
+    public SanPham(int idSP) {
+        this.idSP = idSP;
+    }
+
+    public SanPham(String tenSP) {
+        this.tenSP = tenSP;
     }
 
     public SanPham(String maSP, String tenSP) {
@@ -23,19 +32,25 @@ public class SanPham {
         this.tenSP = tenSP;
     }
 
-    public SanPham(Long id, String maSP, String tenSP, boolean trangThai) {
-        this.id = id;
+    public SanPham(String maSP, String tenSP, boolean trangThai) {
         this.maSP = maSP;
         this.tenSP = tenSP;
         this.trangThai = trangThai;
     }
 
-    public Long getId() {
-        return id;
+    public SanPham(int idSP, String maSP, String tenSP, boolean trangThai) {
+        this.idSP = idSP;
+        this.maSP = maSP;
+        this.tenSP = tenSP;
+        this.trangThai = trangThai;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public int getIdSP() {
+        return idSP;
+    }
+
+    public void setIdSP(int idSP) {
+        this.idSP = idSP;
     }
 
     public String getMaSP() {
@@ -61,10 +76,22 @@ public class SanPham {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
-
-    @Override
-    public String toString() {
-        return "SanPham{" + "id=" + id + ", maSP=" + maSP + ", tenSP=" + tenSP + ", trangThai=" + trangThai + '}';
+    
+    public String getTrangThai(){
+        String trangThai;
+        if(this.isTrangThai()){
+            trangThai = "Đang bán";
+        }else{
+            trangThai = "Còn bán";
+        }
+        return trangThai;
     }
 
+    public Object[] dataSanPham() {
+        return new Object[]{
+            this.maSP,
+            this.tenSP,
+            this.getTrangThai()
+        };
+    }
 }

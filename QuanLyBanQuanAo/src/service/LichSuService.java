@@ -11,7 +11,6 @@ import java.util.List;
 import model.*;
 import utility.DBConnect;
 
-import javax.swing.*;
 
 /**
  * @author admin
@@ -35,16 +34,16 @@ public class LichSuService {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 HoaDon h = new HoaDon();
-                h.setId(rs.getInt(1));
+                h.setIdHD(rs.getInt(1));
                 h.setMaHD(rs.getString(2));
                 h.setNgayTao(rs.getDate(3));
-                h.setHinhThucTT(rs.getString(4));
+                h.setHinhThuc(rs.getString(4));
                 NhanVien n = new NhanVien();
                 n.setMaNV(rs.getString(5));
-                h.setN(n);
+                h.setNv(n);
                 KhachHang k = new KhachHang();
                 k.setTenKH(rs.getString(6));
-                h.setK(k);
+                h.setKh(k);
                 h.setTrangThai(rs.getBoolean(7));
                 list.add(h);
             }
@@ -55,7 +54,7 @@ public class LichSuService {
         }
     }
 
-    public List<HoaDonCT> getSPtheoIDHD(int idHD) throws SQLException {
+    public List<ChiTietHoaDon> getSPtheoIDHD(int idHD) throws SQLException {
         String sql = """
                 select ID_HDCT, SANPHAM.MaSP, SANPHAM.TenSP,
                 HOADON_CT.SoLuong, BienThe_SANPHAM.GiaSP, HOADON.MaGiamGia
@@ -65,7 +64,7 @@ public class LichSuService {
                 inner join HOADON on HOADON.ID_HD = HOADON_CT.ID_HD
                 where HOADON.ID_HD = ?
                 """;
-        List<HoaDonCT> list = new ArrayList<>();
+        List<ChiTietHoaDon> list = new ArrayList<>();
         try {
             conn = DBConnect.getConnection();
             ps = conn.prepareStatement(sql);
@@ -76,16 +75,16 @@ public class LichSuService {
                 SanPham sp = new SanPham();
                 sp.setMaSP(rs.getString(2));
                 sp.setTenSP(rs.getString(3));
-                BienTheSanPham btsp = new BienTheSanPham();
-                btsp.setGiaSP(rs.getDouble(5));
-                btsp.setSp(sp);
+                ChiTietSP ctsp = new ChiTietSP();
+                ctsp.setGia(rs.getDouble(5));
+                ctsp.setSp(sp);
                 HoaDon h = new HoaDon();
-                h.setMaGiamGia(rs.getString(6));
-                HoaDonCT hdct = new HoaDonCT();
-                hdct.setId(rs.getLong(1));
-                hdct.setSoLuong(rs.getInt(4));
-                hdct.setH(h);
-                hdct.setBtsp(btsp);
+                h.setMaGG(rs.getString(6));
+                ChiTietHoaDon cthd = new ChiTietHoaDon();
+                cthd.setIdCTHD(rs.getInt(1));
+                cthd.setSoLuong(rs.getInt(4));
+                cthd.setHd(h);
+                cthd.setSp(ctsp);
 //                list.add(hdct);
             }
             return list;

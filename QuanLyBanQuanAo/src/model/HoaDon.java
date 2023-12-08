@@ -12,45 +12,54 @@ import java.util.Date;
  */
 public class HoaDon {
 
-    private int id;
+    private int idHD;
     private String maHD;
-    private NhanVien n;
-    private KhachHang k;
+    private NhanVien nv;
+    private KhachHang kh;
     private Date ngayTao;
-    private String maGiamGia;
+    private double tongTien;
+    private String maGG;
     private String ghiChu;
-    private String hinhThucTT;
+    private String hinhThuc;
     private boolean trangThai;
 
     public HoaDon() {
     }
 
-    public HoaDon(int id) {
-        this.id = id;
-    }
-    
     public HoaDon(String maHD) {
         this.maHD = maHD;
     }
 
-    public HoaDon(int id, String maHD, NhanVien n, KhachHang k, Date ngayTao, String maGiamGia, String ghiChu, String hinhThucTT, boolean trangThai) {
-        this.id = id;
+    public HoaDon(String maHD, NhanVien nv, KhachHang kh, Date ngayTao, String maGG, String ghiChu, String hinhThuc, boolean trangThai) {
         this.maHD = maHD;
-        this.n = n;
-        this.k = k;
+        this.nv = nv;
+        this.kh = kh;
         this.ngayTao = ngayTao;
-        this.maGiamGia = maGiamGia;
+        this.maGG = maGG;
         this.ghiChu = ghiChu;
-        this.hinhThucTT = hinhThucTT;
+        this.hinhThuc = hinhThuc;
         this.trangThai = trangThai;
     }
 
-    public int getId() {
-        return id;
+    public HoaDon(int idHD, String maHD, NhanVien nv, KhachHang kh, Date ngayTao, double tongTien, String maGG, String ghiChu, String hinhThuc, boolean trangThai) {
+        this.idHD = idHD;
+        this.maHD = maHD;
+        this.nv = nv;
+        this.kh = kh;
+        this.ngayTao = ngayTao;
+        this.tongTien = tongTien;
+        this.maGG = maGG;
+        this.ghiChu = ghiChu;
+        this.hinhThuc = hinhThuc;
+        this.trangThai = trangThai;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public int getIdHD() {
+        return idHD;
+    }
+
+    public void setIdHD(int idHD) {
+        this.idHD = idHD;
     }
 
     public String getMaHD() {
@@ -61,20 +70,20 @@ public class HoaDon {
         this.maHD = maHD;
     }
 
-    public NhanVien getN() {
-        return n;
+    public NhanVien getNv() {
+        return nv;
     }
 
-    public void setN(NhanVien n) {
-        this.n = n;
+    public void setNv(NhanVien nv) {
+        this.nv = nv;
     }
 
-    public KhachHang getK() {
-        return k;
+    public KhachHang getKh() {
+        return kh;
     }
 
-    public void setK(KhachHang k) {
-        this.k = k;
+    public void setKh(KhachHang kh) {
+        this.kh = kh;
     }
 
     public Date getNgayTao() {
@@ -85,12 +94,20 @@ public class HoaDon {
         this.ngayTao = ngayTao;
     }
 
-    public String getMaGiamGia() {
-        return maGiamGia;
+    public double getTongTien() {
+        return tongTien;
     }
 
-    public void setMaGiamGia(String maGiamGia) {
-        this.maGiamGia = maGiamGia;
+    public void setTongTien(double tongTien) {
+        this.tongTien = tongTien;
+    }
+
+    public String getMaGG() {
+        return maGG;
+    }
+
+    public void setMaGG(String maGG) {
+        this.maGG = maGG;
     }
 
     public String getGhiChu() {
@@ -101,12 +118,12 @@ public class HoaDon {
         this.ghiChu = ghiChu;
     }
 
-    public String getHinhThucTT() {
-        return hinhThucTT;
+    public String getHinhThuc() {
+        return hinhThuc;
     }
 
-    public void setHinhThucTT(String hinhThucTT) {
-        this.hinhThucTT = hinhThucTT;
+    public void setHinhThuc(String hinhThuc) {
+        this.hinhThuc = hinhThuc;
     }
 
     public boolean isTrangThai() {
@@ -117,9 +134,22 @@ public class HoaDon {
         this.trangThai = trangThai;
     }
 
-    @Override
-    public String toString() {
-        return "HoaDon{" + "id=" + id + ", maHD=" + maHD + ", n=" + n + ", k=" + k + ", ngayTao=" + ngayTao + ", maGiamGia=" + maGiamGia + ", ghiChu=" + ghiChu + ", hinhThucTT=" + hinhThucTT + ", trangThai=" + trangThai + '}';
+    public String getTrangThai(){
+        String trangThai;
+        if(this.isTrangThai()){
+            trangThai = "đã thanh toán";
+        }else{
+            trangThai = "chưa thanh toán";
+        }
+        return trangThai;
     }
-
+    public Object[] dataHD() {
+        return new Object[]{
+            this.maHD,
+            this.nv.getTenNV(),
+            this.kh.getTenKH(),
+            this.ngayTao,
+            this.getTrangThai()
+        };
+    }
 }

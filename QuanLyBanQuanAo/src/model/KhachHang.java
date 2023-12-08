@@ -10,6 +10,7 @@ package model;
  */
 public class KhachHang {
 
+    private int idKH;
     private String maKH;
     private String tenKH;
     private String diaChi;
@@ -21,6 +22,15 @@ public class KhachHang {
     public KhachHang() {
     }
 
+    public KhachHang(String tenKH) {
+        this.tenKH = tenKH;
+    }
+
+    public KhachHang(String maKH, String tenKH) {
+        this.maKH = maKH;
+        this.tenKH = tenKH;
+    }
+
     public KhachHang(String maKH, String tenKH, String diaChi, String sdt, String email, int gioiTinh, int trangThai) {
         this.maKH = maKH;
         this.tenKH = tenKH;
@@ -29,6 +39,25 @@ public class KhachHang {
         this.email = email;
         this.gioiTinh = gioiTinh;
         this.trangThai = trangThai;
+    }
+
+    public KhachHang(int idKH, String maKH, String tenKH, String diaChi, String sdt, String email, int gioiTinh, int trangThai) {
+        this.idKH = idKH;
+        this.maKH = maKH;
+        this.tenKH = tenKH;
+        this.diaChi = diaChi;
+        this.sdt = sdt;
+        this.email = email;
+        this.gioiTinh = gioiTinh;
+        this.trangThai = trangThai;
+    }
+
+    public int getIdKH() {
+        return idKH;
+    }
+
+    public void setIdKH(int idKH) {
+        this.idKH = idKH;
     }
 
     public String getMaKH() {
@@ -99,7 +128,7 @@ public class KhachHang {
         if (trangThai == 0) {
             return "Active";
         } else {
-            return "Disable";
+            return "Unactive";
         }
     }
 

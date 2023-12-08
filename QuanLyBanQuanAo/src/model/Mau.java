@@ -6,31 +6,51 @@ package model;
 
 /**
  *
- * @author admin
+ * @author ADMIN
  */
 public class Mau {
 
-    private Long id;
+    private int idMau;
     private String maMau;
     private String tenMau;
     private boolean trangThai;
+    private String loai = "Màu sắc";
 
     public Mau() {
     }
 
-    public Mau(Long id, String maMau, String tenMau, boolean trangThai) {
-        this.id = id;
+    public Mau(int idMau) {
+        this.idMau = idMau;
+    }
+
+    public Mau(String tenMau) {
+        this.tenMau = tenMau;
+    }
+
+    public Mau(String tenMau, boolean trangThai) {
+        this.tenMau = tenMau;
+        this.trangThai = trangThai;
+    }
+
+    public Mau(String maMau, String tenMau, boolean trangThai) {
         this.maMau = maMau;
         this.tenMau = tenMau;
         this.trangThai = trangThai;
     }
 
-    public Long getId() {
-        return id;
+    public Mau(int idMau, String maMau, String tenMau, boolean trangThai) {
+        this.idMau = idMau;
+        this.maMau = maMau;
+        this.tenMau = tenMau;
+        this.trangThai = trangThai;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public int getIdMau() {
+        return idMau;
+    }
+
+    public void setIdMau(int idMau) {
+        this.idMau = idMau;
     }
 
     public String getMaMau() {
@@ -57,9 +77,22 @@ public class Mau {
         this.trangThai = trangThai;
     }
 
-    @Override
-    public String toString() {
-        return "Mau{" + "id=" + id + ", maMau=" + maMau + ", tenMau=" + tenMau + ", trangThai=" + trangThai + '}';
+    public String getTrangThai() {
+        String trangThai;
+        if (this.isTrangThai()) {
+            trangThai = "Còn";
+        } else {
+            trangThai = "Hết";
+        }
+        return trangThai;
     }
 
+    public Object[] dataMau() {
+        return new Object[]{
+            this.maMau,
+            this.loai,
+            this.tenMau,
+            this.getTrangThai()
+        };
+    }
 }

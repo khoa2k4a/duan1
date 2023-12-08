@@ -6,31 +6,51 @@ package model;
 
 /**
  *
- * @author admin
+ * @author ADMIN
  */
 public class Size {
 
-    private Long id;
+    private int idSize;
     private String maSize;
     private String tenSize;
     private boolean trangThai;
+    private String loai = "Size";
 
     public Size() {
     }
 
-    public Size(Long id, String maSize, String tenSize, boolean trangThai) {
-        this.id = id;
+    public Size(int idSize) {
+        this.idSize = idSize;
+    }
+
+    public Size(String tenSize) {
+        this.tenSize = tenSize;
+    }
+
+    public Size(String tenSize, boolean trangThai) {
+        this.tenSize = tenSize;
+        this.trangThai = trangThai;
+    }
+
+    public Size(String maSize, String tenSize, boolean trangThai) {
         this.maSize = maSize;
         this.tenSize = tenSize;
         this.trangThai = trangThai;
     }
 
-    public Long getId() {
-        return id;
+    public Size(int idSize, String maSize, String tenSize, boolean trangThai) {
+        this.idSize = idSize;
+        this.maSize = maSize;
+        this.tenSize = tenSize;
+        this.trangThai = trangThai;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public int getIdSize() {
+        return idSize;
+    }
+
+    public void setIdSize(int idSize) {
+        this.idSize = idSize;
     }
 
     public String getMaSize() {
@@ -57,9 +77,22 @@ public class Size {
         this.trangThai = trangThai;
     }
 
-    @Override
-    public String toString() {
-        return "Size{" + "id=" + id + ", maSize=" + maSize + ", tenSize=" + tenSize + ", trangThai=" + trangThai + '}';
+    public String getTrangThai() {
+        String trangThai;
+        if (this.isTrangThai()) {
+            trangThai = "Còn";
+        } else {
+            trangThai = "Hết";
+        }
+        return trangThai;
     }
 
+    public Object[] dataSize() {
+        return new Object[]{
+            this.maSize,
+            this.loai,
+            this.tenSize,
+            this.getTrangThai()
+        };
+    }
 }

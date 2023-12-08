@@ -6,31 +6,51 @@ package model;
 
 /**
  *
- * @author admin
+ * @author ADMIN
  */
 public class ChatLieu {
 
-    private Long id;
+    private int idCL;
     private String maCL;
     private String tenCL;
     private boolean trangThai;
+    private String loai = "Chất Liệu";
 
     public ChatLieu() {
     }
 
-    public ChatLieu(Long id, String maCL, String tenCL, boolean trangThai) {
-        this.id = id;
+    public ChatLieu(int idCL) {
+        this.idCL = idCL;
+    }
+
+    public ChatLieu(String tenCL) {
+        this.tenCL = tenCL;
+    }
+
+    public ChatLieu(String tenCL, boolean trangThai) {
+        this.tenCL = tenCL;
+        this.trangThai = trangThai;
+    }
+
+    public ChatLieu(String maCL, String tenCL, boolean trangThai) {
         this.maCL = maCL;
         this.tenCL = tenCL;
         this.trangThai = trangThai;
     }
 
-    public Long getId() {
-        return id;
+    public ChatLieu(int idCL, String maCL, String tenCL, boolean trangThai) {
+        this.idCL = idCL;
+        this.maCL = maCL;
+        this.tenCL = tenCL;
+        this.trangThai = trangThai;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public int getIdCL() {
+        return idCL;
+    }
+
+    public void setIdCL(int idCL) {
+        this.idCL = idCL;
     }
 
     public String getMaCL() {
@@ -57,9 +77,22 @@ public class ChatLieu {
         this.trangThai = trangThai;
     }
 
-    @Override
-    public String toString() {
-        return "ChatLieu{" + "id=" + id + ", maCL=" + maCL + ", tenCL=" + tenCL + ", trangThai=" + trangThai + '}';
+    public String getTrangThai() {
+        String trangThai;
+        if (this.isTrangThai()) {
+            trangThai = "Còn";
+        } else {
+            trangThai = "Hết";
+        }
+        return trangThai;
     }
 
+    public Object[] dataChatLieu() {
+        return new Object[]{
+            this.maCL,
+            this.loai,
+            this.tenCL,
+            this.getTrangThai()
+        };
+    }
 }

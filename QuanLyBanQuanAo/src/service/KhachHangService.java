@@ -22,15 +22,15 @@ public class KhachHangService {
     ResultSet rs = null;
 
     public List<KhachHang> getAll() {
-        sql = "select MaKH,TenKH,DiaChi,Sdt,Email,GioiTinh,TrangThai from KHACHHANG";
+        sql = "select ID_KH,MaKH,TenKH,DiaChi,Sdt,Email,GioiTinh,TrangThai from KHACHHANG";
         List<KhachHang> listkh = new ArrayList<>();
         try {
             con = DBConnect.getConnection();
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                KhachHang kh = new KhachHang(rs.getString(1), rs.getString(2), rs.getString(3),
-                        rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7));
+                KhachHang kh = new KhachHang(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                        rs.getString(5), rs.getString(6), rs.getInt(7), rs.getInt(8));
                 listkh.add(kh);
             }
             return listkh;
@@ -52,6 +52,20 @@ public class KhachHangService {
             ps.setObject(5, kh.getEmail());
             ps.setObject(6, kh.getGioiTinh());
             ps.setObject(7, kh.getTrangThai());
+            return ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace(System.out);
+            return 0;
+        }
+    }
+    
+    public int themTenKH(KhachHang kh){
+        sql = "insert into KHACHHANG(MaKH,TenKH) values (?,?)";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, kh.getMaKH());
+            ps.setObject(2, kh.getTenKH());
             return ps.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace(System.out);
@@ -93,7 +107,7 @@ public class KhachHangService {
 
     public List<KhachHang> Timkh(String ten) {
 
-        sql = "select MaKH,TenKH,DiaChi,Sdt,Email,GioiTinh,TrangThai from KHACHHANG where TenKH=?";
+        sql = "select MaKH,TenKH,DiaChi,Sdt,Email,GioiTinh,TrangThai from KHACHHANG where TenKH like ?";
         List<KhachHang> listkh = new ArrayList<>();
         try {
             con = DBConnect.getConnection();
@@ -101,8 +115,8 @@ public class KhachHangService {
             ps.setObject(1, ten);
             rs = ps.executeQuery();
             while (rs.next()) {
-                KhachHang kh = new KhachHang(rs.getString(1), rs.getString(2), rs.getString(4),
-                        rs.getString(3), rs.getString(5), rs.getInt(6), rs.getInt(7));
+                KhachHang kh = new KhachHang(rs.getString(1), rs.getString(2), rs.getString(3),
+                        rs.getString(4), rs.getString(5), rs.getInt(6), rs.getInt(7));
                 listkh.add(kh);
             }
             return listkh;
