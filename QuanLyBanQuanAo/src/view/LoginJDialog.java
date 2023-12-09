@@ -218,26 +218,18 @@ public class LoginJDialog extends javax.swing.JDialog {
 
     private void btnDangNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDangNhapActionPerformed
         // TODO add your handling code here:
-        int count = 0;
         String user = txtTenDN.getText();
         String pass = new String(txtPassword.getPassword());
-
-        for (NhanVien nv : serNV.getAll()) {
-            if (nv.getTaiKhoan().equalsIgnoreCase(user) && nv.getMatKhau().equalsIgnoreCase(pass)) {
-                if (nv.getVaiTro().contains("Quản lý")) {
-                    new MainQLJFrame().setVisible(true);
-                    this.dispose();
-                } else {
-                    new MainNVJFrame().setVisible(true);
-                    this.dispose();
-                }
-                count++;
+        for(NhanVien nv : serNV.getAll()){
+            if(nv.getTaiKhoan().equalsIgnoreCase(user) && nv.getMatKhau().equalsIgnoreCase(pass)){
+                new Main_UI().setVisible(true);
+                this.dispose();
+                break;
+            }else{
+                JOptionPane.showMessageDialog(this, "user hoặc pass chưa chính xác");
+                break;
             }
         }
-        if (count == 0) {
-            JOptionPane.showMessageDialog(this, "user pass sai");
-        }
-
 
     }//GEN-LAST:event_btnDangNhapActionPerformed
 

@@ -61,41 +61,6 @@ public class HoaDonService {
             return null;
         }
     }
-    
-    public List<HoaDon> checkTrung(String ma) {
-        List<HoaDon> listHD = new ArrayList<>();
-        sql = """
-              select HOADON.ID_HD, MaHD, TenNV, TenKH, NgayTao, TongTien, MaGiamGia, GhiChu, HinhThucThanhToan, HOADON.TrangThai from HOADON
-                                          join NHANVIEN on HOADON.ID_NV = NHANVIEN.ID_NV
-                                          join KHACHHANG on HOADON.ID_KH = KHACHHANG.ID_KH
-              where MaHD = ?""";
-        try {
-            con = DBConnect.getConnection();
-            ps = con.prepareStatement(sql);
-            ps.setObject(1, ma);
-            rs = ps.executeQuery();
-            while (rs.next()) {
-                HoaDon hd = new HoaDon();
-                hd.setIdHD(rs.getInt(1));
-                hd.setMaHD(rs.getString(2));
-                NhanVien nv = new NhanVien(rs.getString(3));
-                hd.setNv(nv);
-                KhachHang hk = new KhachHang(rs.getString(4));
-                hd.setKh(hk);
-                hd.setNgayTao(rs.getDate(5));
-                hd.setTongTien(rs.getDouble(6));
-                hd.setMaGG(rs.getString(7));
-                hd.setGhiChu(rs.getString(8));
-                hd.setHinhThuc(rs.getString(9));
-                hd.setTrangThai(rs.getBoolean(10));
-                listHD.add(hd);
-            }
-            return listHD;
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
-    }
 
     public List<ChiTietHoaDon> getCTHD() {
         List<ChiTietHoaDon> listCTHD = new ArrayList<>();
@@ -232,6 +197,36 @@ public class HoaDonService {
             ps = con.prepareStatement(sql);
             ps.setObject(1, 1);
             ps.setObject(2, id);
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+    public int deleteSP(int idHD, int idSP){
+        sql = "delete HOADON_CT where ID_BienTheSP = ? and ID_HD = ?";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, idSP);
+            ps.setObject(2, idHD);
+            return ps.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    
+    public int deleteHD(int idHD){
+        sql = """
+              delete HOADON_CT where ID_HD = ?
+              delete HOADON where ID_HD = ?""";
+        try {
+            con = DBConnect.getConnection();
+            ps = con.prepareStatement(sql);
+            ps.setObject(1, idHD);
+            ps.setObject(2, idHD);
             return ps.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();

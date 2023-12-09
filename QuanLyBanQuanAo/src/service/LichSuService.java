@@ -11,8 +11,6 @@ import java.util.List;
 import model.*;
 import utility.DBConnect;
 
-import javax.swing.*;
-
 /**
  * @author admin
  */
@@ -23,11 +21,13 @@ public class LichSuService {
 
     public List<HoaDon> getH() {
         String sql = """
-                SELECT HOADON.ID_HD, HOADON.MaHD, HOADON.NgayTao, HOADON.HinhThucThanhToan,
-                NHANVIEN.MaNV, KHACHHANG.TenKH, HOADON.TrangThai
-                FROM HOADON
-                INNER JOIN NHANVIEN ON NHANVIEN.ID_NV = HOADON.ID_NV
-                INNER JOIN KHACHHANG ON KHACHHANG.ID_KH = HOADON.ID_KH""";
+                    SELECT HOADON.MaHD,HOADON.NgayTao,
+                    NHANVIEN.MaNV,KHACHHANG.TenKH,DOTGIAMGIA.MaDotGiamGia,
+                    HOADON.TrangThai
+                    FROM HOADON
+                    inner join NHANVIEN on NHANVIEN.ID_NV = HOADON.ID_NV
+                    inner join KHACHHANG on KHACHHANG.ID_KH = HOADON.ID_KH
+                    inner join DOTGIAMGIA on DOTGIAMGIA.MaDotGiamGia = HOADON.MaGiamGia""";
         List<HoaDon> list = new ArrayList<>();
         try {
             conn = DBConnect.getConnection();
@@ -35,17 +35,17 @@ public class LichSuService {
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 HoaDon h = new HoaDon();
-                h.setIdHD(rs.getInt(1));
-                h.setMaHD(rs.getString(2));
-                h.setNgayTao(rs.getDate(3));
-                h.setHinhThuc(rs.getString(4));
+                h.setMaHD(rs.getString(1));
+                h.setNgayTao(rs.getDate(2));
                 NhanVien n = new NhanVien();
-                n.setMaNV(rs.getString(5));
+                n.setMaNV(rs.getString(3));
                 h.setNv(n);
                 KhachHang k = new KhachHang();
-                k.setTenKH(rs.getString(6));
+                k.setTenKH(rs.getString(4));
                 h.setKh(k);
-                h.setTrangThai(rs.getBoolean(7));
+                GiamGia g = new GiamGia();
+                g.setMaDot(rs.getString(5));
+                h.setTrangThai(rs.getBoolean(6));
                 list.add(h);
             }
             return list;
@@ -55,41 +55,36 @@ public class LichSuService {
         }
     }
 
-    public List<ChiTietHoaDon> getSPtheoIDHD(int idHD) throws SQLException {
+    public List<ChiTietHoaDon> getSP(String maHD) {
         String sql = """
-                select ID_HDCT, SANPHAM.MaSP, SANPHAM.TenSP,
-                HOADON_CT.SoLuong, BienThe_SANPHAM.GiaSP, HOADON.MaGiamGia
-                from HOADON_CT
-                inner join BienThe_SANPHAM on BienThe_SANPHAM.ID_BienTheSP = HOADON_CT.ID_BienTheSP
-                inner join SANPHAM on SANPHAM.ID_SP = BienThe_SANPHAM.ID_SP
-                inner join HOADON on HOADON.ID_HD = HOADON_CT.ID_HD
-                where HOADON.ID_HD = ?
-                """;
+                     SELECT SANPHAM.MaSP,SANPHAM.TENSP,
+                     HOADON_CT.SoLuong,BIENTHE_SANPHAM.GiaSP
+                     FROM HOADON_CT
+                     inner join BIENTHE_SANPHAM on BIENTHE_SANPHAM.ID_BienTheSP = HOADON_CT.ID_BienTheSP
+                     inner join SANPHAM on SANPHAM.ID_SP = BIENTHE_SANPHAM.ID_SP
+                     inner join HOADON on HOADON.ID_HD = HOADON_CT.ID_HD
+                     inner join DOTGIAMGIA on DOTGIAMGIA.MaDotGiamGia = HOADON.MaGiamGia
+                     WHERE HOADON.MaHD like ?""";
         List<ChiTietHoaDon> list = new ArrayList<>();
         try {
             conn = DBConnect.getConnection();
             ps = conn.prepareStatement(sql);
+            ps.setObject(1, maHD);
             ResultSet rs = ps.executeQuery();
-//            ps.executeUpdate();
             while (rs.next()) {
-                ps.setObject(1, idHD);
+                ChiTietHoaDon cthd = new ChiTietHoaDon();
+                ChiTietSP ctsp = new ChiTietSP();
                 SanPham sp = new SanPham();
-                sp.setMaSP(rs.getString(2));
-                sp.setTenSP(rs.getString(3));
-                ChiTietSP btsp = new ChiTietSP();
-                btsp.setGia(rs.getDouble(5));
-                btsp.setSp(sp);
-                HoaDon h = new HoaDon();
-                h.setMaGG(rs.getString(6));
-                ChiTietHoaDon hdct = new ChiTietHoaDon();
-                hdct.setIdCTHD(rs.getInt(1));
-                hdct.setSoLuong(rs.getInt(4));
-                hdct.setHd(h);
-                hdct.setSp(btsp);
-//                list.add(hdct);
+                sp.setMaSP(rs.getString(1));
+                sp.setTenSP(rs.getString(2));
+                ctsp.setSp(sp);
+                cthd.setSoLuong(rs.getInt(3));
+                ctsp.setGia(rs.getDouble(4));
+                cthd.setSp(ctsp);
+                list.add(cthd);
             }
             return list;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace(System.out);
             return null;
         }
