@@ -148,6 +148,7 @@ public class TaiKhoan_UI extends javax.swing.JFrame {
             }
         });
 
+        btnTaiKhoan.setBackground(new java.awt.Color(204, 255, 255));
         btnTaiKhoan.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnTaiKhoan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_TaiKhoan.png"))); // NOI18N
         btnTaiKhoan.setText("Tài khoản");

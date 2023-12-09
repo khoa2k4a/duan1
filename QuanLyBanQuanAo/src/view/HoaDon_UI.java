@@ -154,6 +154,7 @@ public class HoaDon_UI extends javax.swing.JFrame {
             }
         });
 
+        btnHoaDon.setBackground(new java.awt.Color(204, 255, 255));
         btnHoaDon.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_HoaDon.png"))); // NOI18N
         btnHoaDon.setText("Hóa đơn");

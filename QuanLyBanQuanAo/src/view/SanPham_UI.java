@@ -145,6 +145,7 @@ public class SanPham_UI extends javax.swing.JFrame {
             }
         });
 
+        btnSP.setBackground(new java.awt.Color(204, 255, 255));
         btnSP.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_SP.png"))); // NOI18N
         btnSP.setText("Sản phẩm");

@@ -111,6 +111,7 @@ public class NhanVien_UI extends javax.swing.JFrame {
             }
         });
 
+        btnNhanVien.setBackground(new java.awt.Color(204, 255, 255));
         btnNhanVien.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_NhanVien.png"))); // NOI18N
         btnNhanVien.setText("Nhân viên");

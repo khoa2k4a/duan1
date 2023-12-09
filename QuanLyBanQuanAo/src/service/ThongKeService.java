@@ -27,10 +27,12 @@ public class ThongKeService {
     public List<HoaDon> getTK() {
         List<HoaDon> listTK = new ArrayList<>();
         String sql = """
-                   SELECT HOADON.MAHD,NHANVIEN.MANV,KHACHHANG.TENKH,HOADON.NGAYTAO,HOADON.TONGTIEN
-                   FROM HOADON
-                   INNER JOIN NHANVIEN ON NHANVIEN.ID_NV = HOADON.ID_NV
-                   INNER JOIN KHACHHANG ON KHACHHANG.ID_KH = HOADON.ID_KH""";
+                     SELECT MAHD, TENNV, TENKH, NGAYTAO, TONGTIEN = SUM(BienThe_SANPHAM.GiaSP * HOADON_CT.SoLuong) FROM HOADON
+                     JOIN HOADON_CT ON HOADON.ID_HD = HOADON_CT.ID_HD
+                     JOIN BienThe_SANPHAM ON HOADON_CT.ID_BienTheSP = BienThe_SANPHAM.ID_BienTheSP
+                     JOIN NHANVIEN ON NHANVIEN.ID_NV = HOADON.ID_NV
+                     JOIN KHACHHANG ON HOADON.ID_KH = KHACHHANG.ID_KH
+                     GROUP BY MAHD, TENNV, TENKH, NGAYTAO""";
         try {
             conn = DBConnect.getConnection();
             ps = conn.prepareStatement(sql);
@@ -39,7 +41,7 @@ public class ThongKeService {
                 HoaDon h = new HoaDon();
                 h.setMaHD(rs.getString(1));
                 NhanVien n = new NhanVien();
-                n.setMaNV(rs.getString(2));
+                n.setTenNV(rs.getString(2));
                 h.setNv(n);
                 KhachHang k = new KhachHang();
                 k.setTenKH(rs.getString(3));

@@ -121,6 +121,7 @@ public class KhachHang_UI extends javax.swing.JFrame {
             }
         });
 
+        btnKH.setBackground(new java.awt.Color(204, 255, 255));
         btnKH.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnKH.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_KhachHang.png"))); // NOI18N
         btnKH.setText("Khách hàng");

@@ -130,6 +130,7 @@ public class DotGiamGia_UI extends javax.swing.JFrame {
             }
         });
 
+        btnKhuyenMai.setBackground(new java.awt.Color(204, 255, 255));
         btnKhuyenMai.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnKhuyenMai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon_KhuyenMai.png"))); // NOI18N
         btnKhuyenMai.setText("Đợt giảm giá");
