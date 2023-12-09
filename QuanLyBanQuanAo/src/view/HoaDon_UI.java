@@ -118,8 +118,8 @@ public class HoaDon_UI extends javax.swing.JFrame {
         cboTenNV = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         txtTimkiem = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        btnXoaSP = new javax.swing.JButton();
+        btnThemSP = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(0, 0, 0));
@@ -525,17 +525,17 @@ public class HoaDon_UI extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Xóa");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnXoaSP.setText("Xóa");
+        btnXoaSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                btnXoaSPActionPerformed(evt);
             }
         });
 
-        jButton4.setText("Thêm");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        btnThemSP.setText("Thêm");
+        btnThemSP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                btnThemSPActionPerformed(evt);
             }
         });
 
@@ -552,9 +552,9 @@ public class HoaDon_UI extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)
                         .addGap(68, 68, 68)
-                        .addComponent(jButton4)
+                        .addComponent(btnThemSP)
                         .addGap(66, 66, 66)
-                        .addComponent(jButton2))
+                        .addComponent(btnXoaSP))
                     .addComponent(jScrollPane5)
                     .addComponent(jScrollPane8))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -571,8 +571,8 @@ public class HoaDon_UI extends javax.swing.JFrame {
                 .addGroup(hoadonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton4))
+                    .addComponent(btnXoaSP)
+                    .addComponent(btnThemSP))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane8, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -667,28 +667,28 @@ public class HoaDon_UI extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnHomeActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void btnXoaSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaSPActionPerformed
         // TODO add your handling code here:
         index = tblGioHang.getSelectedRow();
         String maSP = tblGioHang.getValueAt(index, 0).toString();
         int idSP = 0;
-        for(ChiTietSP sp : serSP.getChiTietSP()){
-            if(sp.getMaBienThe().equalsIgnoreCase(maSP)){
+        for (ChiTietSP sp : serSP.getChiTietSP()) {
+            if (sp.getMaBienThe().equalsIgnoreCase(maSP)) {
                 idSP = sp.getIdBienThe();
             }
         }
         int row = tblDanhSachHoaDon.getSelectedRow();
         String maHD = tblDanhSachHoaDon.getValueAt(row, 0).toString();
         int idHD = 0;
-        for(HoaDon hd : serHD.getHoaDon()){
-            if(hd.getMaHD().equalsIgnoreCase(maHD)){
+        for (HoaDon hd : serHD.getHoaDon()) {
+            if (hd.getMaHD().equalsIgnoreCase(maHD)) {
                 idHD = hd.getIdHD();
             }
         }
-        if(serHD.deleteSP(idHD, idSP) > 0){
+        if (serHD.deleteSP(idHD, idSP) > 0) {
             this.fillSP(serHD.findCTHD(maHD));
         }
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_btnXoaSPActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         if (check()) {
@@ -714,20 +714,20 @@ public class HoaDon_UI extends javax.swing.JFrame {
     }//GEN-LAST:event_cboHinhThucThanhToanMouseClicked
 
     private void btnHuyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHuyActionPerformed
-                index = tblDanhSachHoaDon.getSelectedRow();
-                String maHD = tblDanhSachHoaDon.getValueAt(index, 0).toString();
-                int idHD = 0;
-                for(HoaDon hd : serHD.getHoaDon()){
-                    if(hd.getMaHD().equalsIgnoreCase(maHD)){
-                        idHD = hd.getIdHD();
-                    }
-                }
-                if(serHD.deleteHD(idHD) > 0){
-                    JOptionPane.showMessageDialog(this, "Hủy thành công");
-                    this.fillDSHD(serHD.getHoaDon());
-                }else{
-                    JOptionPane.showMessageDialog(this, "Hủy thất bại");
-                }
+        index = tblDanhSachHoaDon.getSelectedRow();
+        String maHD = tblDanhSachHoaDon.getValueAt(index, 0).toString();
+        int idHD = 0;
+        for (HoaDon hd : serHD.getHoaDon()) {
+            if (hd.getMaHD().equalsIgnoreCase(maHD)) {
+                idHD = hd.getIdHD();
+            }
+        }
+        if (serHD.deleteHD(idHD) > 0) {
+            JOptionPane.showMessageDialog(this, "Hủy thành công");
+            this.fillDSHD(serHD.getHoaDon());
+        } else {
+            JOptionPane.showMessageDialog(this, "Hủy thất bại");
+        }
     }//GEN-LAST:event_btnHuyActionPerformed
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
@@ -794,15 +794,19 @@ public class HoaDon_UI extends javax.swing.JFrame {
 
     }//GEN-LAST:event_tblDanhSachHoaDonMouseClicked
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void btnThemSPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemSPActionPerformed
         // TODO add your handling code here:
-        if (serHD.addCTHD(this.readCTHD()) > 0) {
-            this.fillDSHD(serHD.getHoaDon());
+        int soLuong = Integer.parseInt(JOptionPane.showInputDialog(this, "Vui lòng nhập số lượng"));
+        if (soLuong == 0) {
+            JOptionPane.showMessageDialog(this, "Bạn chưa nhập số lượng");
         } else {
-            JOptionPane.showMessageDialog(this, "thất bại");
+            if (serHD.addCTHD(this.readCTHD(soLuong)) > 0) {
+                this.fillDSHD(serHD.getHoaDon());
+            } else {
+                JOptionPane.showMessageDialog(this, "thất bại");
+            }
         }
-
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_btnThemSPActionPerformed
 
     private void cboMaGGMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cboMaGGMouseClicked
         // TODO add your handling code here:
@@ -934,7 +938,7 @@ public class HoaDon_UI extends javax.swing.JFrame {
         return hd;
     }
 
-    private ChiTietHoaDon readCTHD() {
+    private ChiTietHoaDon readCTHD(int soLuong) {
         ChiTietHoaDon cthd = new ChiTietHoaDon();
         cthd.setMaCTHD("");
         ChiTietSP sp = new ChiTietSP();
@@ -955,7 +959,7 @@ public class HoaDon_UI extends javax.swing.JFrame {
             }
         }
         cthd.setHd(hd);
-        cthd.setSoLuong(1);
+        cthd.setSoLuong(soLuong);
         return cthd;
     }
 
@@ -995,7 +999,9 @@ public class HoaDon_UI extends javax.swing.JFrame {
     private javax.swing.JButton btnSP;
     private javax.swing.JButton btnTaiKhoan;
     private javax.swing.JButton btnThanhToan;
+    private javax.swing.JButton btnThemSP;
     private javax.swing.JButton btnThongKe;
+    private javax.swing.JButton btnXoaSP;
     private javax.swing.ButtonGroup buttonGroup_TrangThaiHD;
     private javax.swing.ButtonGroup buttonGroup_TrangThaiSP;
     private javax.swing.ButtonGroup buttonGroup_TrangThaiTT;
@@ -1004,9 +1010,7 @@ public class HoaDon_UI extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> cboTenNV;
     private javax.swing.JPanel hoadon;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
