@@ -438,6 +438,8 @@ public class SanPham_UI extends javax.swing.JFrame {
 
         lblMaSP.setText("Mã biến thể SP");
 
+        txtMaBienThe.setEditable(false);
+        txtMaBienThe.setEnabled(false);
         txtMaBienThe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaBienTheActionPerformed(evt);

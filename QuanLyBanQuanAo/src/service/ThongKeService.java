@@ -20,19 +20,17 @@ import utility.DBConnect;
  * @author admin
  */
 public class ThongKeService {
-    
+
     Connection conn = null;
     PreparedStatement ps = null;
-    
+
     public List<HoaDon> getTK() {
         List<HoaDon> listTK = new ArrayList<>();
         String sql = """
-                     SELECT MAHD, TENNV, TENKH, NGAYTAO, TONGTIEN = SUM(BienThe_SANPHAM.GiaSP * HOADON_CT.SoLuong) FROM HOADON
-                     JOIN HOADON_CT ON HOADON.ID_HD = HOADON_CT.ID_HD
-                     JOIN BienThe_SANPHAM ON HOADON_CT.ID_BienTheSP = BienThe_SANPHAM.ID_BienTheSP
-                     JOIN NHANVIEN ON NHANVIEN.ID_NV = HOADON.ID_NV
-                     JOIN KHACHHANG ON HOADON.ID_KH = KHACHHANG.ID_KH
-                     GROUP BY MAHD, TENNV, TENKH, NGAYTAO""";
+                     SELECT HOADON.MAHD,NHANVIEN.TENNV,KHACHHANG.TENKH,HOADON.NGAYTAO,HOADON.TONGTIEN
+                     FROM HOADON
+                     INNER JOIN NHANVIEN ON NHANVIEN.ID_NV = HOADON.ID_NV
+                     INNER JOIN KHACHHANG ON KHACHHANG.ID_KH = HOADON.ID_KH""";
         try {
             conn = DBConnect.getConnection();
             ps = conn.prepareStatement(sql);
@@ -67,7 +65,7 @@ public class ThongKeService {
                      GROUP BY TenSP
                      ORDER BY TongSoLuongBanDuoc DESC""";
         try {
-            conn = DBConnect.getConnection();            
+            conn = DBConnect.getConnection();
             ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -91,7 +89,7 @@ public class ThongKeService {
         List<HoaDon> topDT = new ArrayList<>();
         String sql = "SELECT NgayTao,TongTien FROM HOADON";
         try {
-            conn = DBConnect.getConnection();            
+            conn = DBConnect.getConnection();
             ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -116,7 +114,7 @@ public class ThongKeService {
                                               GROUP BY k.MaKH, k.TenKH
                                               ORDER BY TongTienMua DESC""";
         try {
-            conn = DBConnect.getConnection();            
+            conn = DBConnect.getConnection();
             ps = conn.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -132,6 +130,40 @@ public class ThongKeService {
         } catch (SQLException e) {
             e.printStackTrace(System.out);
             return null;
+        }
+    }
+
+    public double ThongKeThang() {
+        double dtThang = 0;
+        String sql = "select sum(TongTien) from HOADON where month(NgayTao) = MONTH(getdate())";
+        try {
+            conn = DBConnect.getConnection();
+            ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                dtThang = rs.getDouble(1);
+            }
+            return dtThang;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return dtThang;
+        }
+    }
+    
+    public double ThongKeNam() {
+        double dtNam = 0;
+        String sql = "select sum(TongTien) from HOADON where year(NgayTao) = year(getdate())";
+        try {
+            conn = DBConnect.getConnection();
+            ps = conn.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                dtNam = rs.getDouble(1);
+            }
+            return dtNam;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return dtNam;
         }
     }
 }

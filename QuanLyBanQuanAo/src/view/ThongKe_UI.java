@@ -76,7 +76,8 @@ public class ThongKe_UI extends javax.swing.JFrame {
         }
         DecimalFormat df = new DecimalFormat("###,###,###");
         TongDoanhThu.setText(String.valueOf(df.format(sum)) + "  VND");
-        
+        lblDTThang.setText(String.valueOf(df.format(serTK.ThongKeThang())));
+        lblDTNam.setText(String.valueOf(df.format(serTK.ThongKeNam())));
 //        this.doanhThuQuy();
     }
 
@@ -86,7 +87,7 @@ public class ThongKe_UI extends javax.swing.JFrame {
         for (HoaDon h : lstTK) {
             mol.addRow(new Object[]{
                 h.getMaHD(),
-                h.getNv().getMaNV(),
+                h.getNv().getTenNV(),
                 h.getKh().getTenKH(),
                 h.getNgayTao(),
                 h.getTongTien()
@@ -104,7 +105,7 @@ public class ThongKe_UI extends javax.swing.JFrame {
             if (hd.getMaHD().toLowerCase().contains(searchMaHD.toLowerCase())) {
                 searchModel.addRow(new Object[]{
                     hd.getMaHD(),
-                    hd.getNv().getMaNV(),
+                    hd.getNv().getTenNV(),
                     hd.getKh().getTenKH(),
                     hd.getNgayTao(),
                     hd.getTongTien()
@@ -114,20 +115,6 @@ public class ThongKe_UI extends javax.swing.JFrame {
         tblThongKe.setModel(searchModel);
     }
 
-    private void doanhThuQuy() {
-        int column = 4;
-        int[] quarterlyRevenue = new int[4];
-        mol = (DefaultTableModel) tblThongKe.getModel();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        for (int i = 0; i < mol.getRowCount(); i++) {
-            Date d= (Date) mol.getValueAt(i, 3);
-            String dateStr = d.toString();
-            LocalDate date = LocalDate.parse(dateStr, formatter);
-            int quarter=((date.getMonthValue()) - 1) / 3;
-        quarterlyRevenue[quarter]+=Double.parseDouble((String) mol.getValueAt(i, column));
-        }
-        lblDTQuy.setText(String.valueOf(quarterlyRevenue));
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -161,10 +148,8 @@ public class ThongKe_UI extends javax.swing.JFrame {
         txtTimKiem = new javax.swing.JTextField();
         btnTimKiem = new javax.swing.JButton();
         lblThang = new javax.swing.JLabel();
-        lblQuy = new javax.swing.JLabel();
         lblNam = new javax.swing.JLabel();
         lblDTThang = new javax.swing.JLabel();
-        lblDTQuy = new javax.swing.JLabel();
         lblDTNam = new javax.swing.JLabel();
         TongHD = new javax.swing.JLabel();
         TongDoanhThu = new javax.swing.JLabel();
@@ -400,10 +385,6 @@ public class ThongKe_UI extends javax.swing.JFrame {
         lblThang.setForeground(new java.awt.Color(51, 51, 51));
         lblThang.setText("Doanh thu theo tháng:  ");
 
-        lblQuy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblQuy.setForeground(new java.awt.Color(51, 51, 51));
-        lblQuy.setText("Doanh thu theo quý: ");
-
         lblNam.setBackground(new java.awt.Color(255, 165, 174));
         lblNam.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblNam.setForeground(new java.awt.Color(51, 51, 51));
@@ -413,11 +394,6 @@ public class ThongKe_UI extends javax.swing.JFrame {
         lblDTThang.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblDTThang.setForeground(new java.awt.Color(51, 51, 51));
         lblDTThang.setText("0.0");
-
-        lblDTQuy.setBackground(new java.awt.Color(255, 255, 102));
-        lblDTQuy.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        lblDTQuy.setForeground(new java.awt.Color(51, 51, 51));
-        lblDTQuy.setText("0.0");
 
         lblDTNam.setBackground(new java.awt.Color(255, 255, 102));
         lblDTNam.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -469,11 +445,7 @@ public class ThongKe_UI extends javax.swing.JFrame {
                                 .addComponent(lblThang)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblDTThang, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(43, 43, 43)
-                                .addComponent(lblQuy, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblDTQuy, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(64, 64, 64)
+                                .addGap(399, 399, 399)
                                 .addComponent(lblNam)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(lblDTNam, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -495,10 +467,8 @@ public class ThongKe_UI extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblThang, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblQuy, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblNam, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDTThang, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblDTQuy, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDTNam, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel6)
@@ -814,134 +784,6 @@ public class ThongKe_UI extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         //</editor-fold>
 
@@ -971,11 +813,9 @@ public class ThongKe_UI extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblDTNam;
-    private javax.swing.JLabel lblDTQuy;
     private javax.swing.JLabel lblDTThang;
     private javax.swing.JLabel lblDangXuat;
     private javax.swing.JLabel lblNam;
-    private javax.swing.JLabel lblQuy;
     private javax.swing.JLabel lblThang;
     private javax.swing.JLabel lblTongDoanhThu;
     private javax.swing.JLabel lblTongHoaDon;

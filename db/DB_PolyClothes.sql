@@ -349,3 +349,16 @@ FROM HOADON
 inner join NHANVIEN on NHANVIEN.ID_NV = HOADON.ID_NV
 inner join KHACHHANG on KHACHHANG.ID_KH = HOADON.ID_KH
 inner join DOTGIAMGIA on DOTGIAMGIA.MaDotGiamGia = HOADON.MaGiamGia
+GO
+CREATE TRIGGER tr_tongtien_hd
+ON HOADON_CT
+AFTER INSERT
+AS
+BEGIN
+    DECLARE @id_hd int;
+	select @id_hd = ID_HD from inserted
+    update HOADON set TongTien = (select sum(BienThe_SANPHAM.GiaSP * HOADON_CT.SoLuong) 
+	from HOADON_CT join BienThe_SANPHAM on HOADON_CT.ID_BienTheSP = BienThe_SANPHAM.ID_BienTheSP
+	where ID_HD = @id_hd)
+	where ID_HD = @id_hd;
+END;

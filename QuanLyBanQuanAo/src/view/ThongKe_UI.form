@@ -302,11 +302,7 @@
                                   <Component id="lblThang" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lblDTThang" min="-2" pref="133" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="43" max="-2" attributes="0"/>
-                                  <Component id="lblQuy" min="-2" pref="153" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="lblDTQuy" min="-2" pref="133" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="64" max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="399" max="-2" attributes="0"/>
                                   <Component id="lblNam" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="lblDTNam" min="-2" pref="133" max="-2" attributes="0"/>
@@ -332,10 +328,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="lblThang" alignment="3" min="-2" pref="145" max="-2" attributes="0"/>
-                      <Component id="lblQuy" alignment="3" min="-2" pref="145" max="-2" attributes="0"/>
                       <Component id="lblNam" alignment="3" min="-2" pref="145" max="-2" attributes="0"/>
                       <Component id="lblDTThang" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
-                      <Component id="lblDTQuy" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                       <Component id="lblDTNam" alignment="3" min="-2" pref="36" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -501,17 +495,6 @@
             <Property name="text" type="java.lang.String" value="Doanh thu theo th&#xe1;ng:  "/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JLabel" name="lblQuy">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="33" green="33" red="33" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Doanh thu theo qu&#xfd;: "/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JLabel" name="lblNam">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -527,20 +510,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDTThang">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="33" green="33" red="33" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="0.0"/>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JLabel" name="lblDTQuy">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="ff" red="ff" type="rgb"/>

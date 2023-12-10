@@ -5,8 +5,10 @@
         <group>
             <file>file:/D:/tailieuhoc/TestDuan/duan1/QuanLyBanQuanAo/src/view/ThongKe_UI.java</file>
             <file>file:/D:/tailieuhoc/TestDuan/duan1/QuanLyBanQuanAo/src/service/ThongKeService.java</file>
+            <file>file:/D:/tailieuhoc/TestDuan/duan1/QuanLyBanQuanAo/src/view/SanPham_UI.java</file>
+            <file>file:/D:/tailieuhoc/TestDuan/duan1/QuanLyBanQuanAo/src/model/Mau.java</file>
             <file>file:/D:/tailieuhoc/TestDuan/duan1/QuanLyBanQuanAo/src/view/HoaDon_UI.java</file>
-            <file>file:/D:/tailieuhoc/TestDuan/duan1/QuanLyBanQuanAo/src/view/Top_ThongKe.java</file>
+            <file>file:/D:/tailieuhoc/TestDuan/duan1/QuanLyBanQuanAo/src/model/LoaiSP.java</file>
         </group>
     </open-files>
 </project-private>

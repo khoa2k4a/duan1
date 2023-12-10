@@ -76,13 +76,23 @@ public class Mau {
     public void setTrangThai(boolean trangThai) {
         this.trangThai = trangThai;
     }
+    
+    public String getTrangThai() {
+        String trangThai;
+        if (this.isTrangThai()) {
+            trangThai = "còn";
+        } else {
+            trangThai = "hết";
+        }
+        return trangThai;
+    }
 
     public Object[] dataMau() {
         return new Object[]{
             this.maMau,
             this.loai,
             this.tenMau,
-            this.trangThai
+            this.getTrangThai()
         };
     }
 }

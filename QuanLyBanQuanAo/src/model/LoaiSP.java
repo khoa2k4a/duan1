@@ -77,12 +77,22 @@ public class LoaiSP {
         this.trangThai = trangThai;
     }
 
+    public String getTrangThai() {
+        String trangThai;
+        if (this.isTrangThai()) {
+            trangThai = "còn";
+        } else {
+            trangThai = "hết";
+        }
+        return trangThai;
+    }
+
     public Object[] dataLoai() {
         return new Object[]{
             this.maLoai,
             this.loai,
             this.tenLoai,
-            this.trangThai
+            this.getTrangThai()
         };
     }
 }
